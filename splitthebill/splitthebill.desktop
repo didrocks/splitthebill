@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=splitthebill
+Exec=qmlscene $@ splitthebill/Main.qml
+Icon=splitthebill/splitthebill.png
+Terminal=false
+Type=Application
+X-Ubuntu-Touch=true
+

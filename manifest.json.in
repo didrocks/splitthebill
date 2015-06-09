@@ -1,0 +1,17 @@
+{
+    "name": "splitthebill.didrocks",
+    "description": "description of splitthebill",
+    "architecture": "@CLICK_ARCH@",
+    "title": "splitthebill",
+    "hooks": {
+        "splitthebill": {
+            "apparmor": "splitthebill/splitthebill.apparmor",
+            "desktop":  "splitthebill/splitthebill.desktop"
+        }
+    },
+    "version": "0.1",
+    "maintainer": "Didier Roche <didrocks@ubuntu.com>",
+    "framework" : "ubuntu-sdk-15.04"
+}
+
+
