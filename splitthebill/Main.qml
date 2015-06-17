@@ -38,6 +38,7 @@ MainView {
         title: "Split the bill"
 
         ColumnLayout {
+            id: main
             spacing: units.gu(1)
             anchors {
                 margins: units.gu(2)
@@ -46,8 +47,22 @@ MainView {
                 right: parent.right
             }
 
-            RowLayout {
+            /*
+             * explain how to add a javascript function. First use . for everything (C local), then in the 18n, use
+             * Qt.local.decimalPoint duplication and then factorize
+             */
+            /*
+             * Display number with 2 digits
+             */
+            function displayNum(number) {
+                number = number.toFixed(2).toString();
+                return number.replace(".", Qt.locale().decimalPoint);
+            }
+
+            // normal Row and not RowLayout as we want to not spawn the entire range
+            Row {
                 spacing: units.gu(1)
+                anchors.horizontalCenter: parent.horizontalCenter
 
                 Label {
                     text: "Bill:"
@@ -57,23 +72,18 @@ MainView {
                 TextField {
                     // TODO: click should select the whole item
                     id: billPrice
-                    text: '0' + Qt.locale().decimalPoint + '0'
+                    placeholderText: main.displayNum(0.0)
                     errorHighlight: true
                     validator: DoubleValidator {}
                     inputMethodHints: Qt.ImhFormattedNumbersOnly
                     width: units.gu(13)
                     //focus: true -> doesn't work?
                     Component.onCompleted: billPrice.forceActiveFocus()
-                    // NOTE for lesson: this adds simple javascript
-                    onActiveFocusChanged: {
-                        // TODO: test on touch
-                        if (activeFocus == true) {
-                            selectAll();
-                        }
-                        else {
-                            select(0,0);
-                        }
-                    }
+                }
+                Label {
+                    text: "$"
+                    verticalAlignment: Text.AlignVCenter
+                    height: parent.height
                 }
             }
 
@@ -148,12 +158,10 @@ MainView {
                     }
                 }
             }
-
             RowLayout {
                 spacing: units.gu(1)
                 width: parent.width
                 Label {
-                    //  width: firstRow.width / 4 - firstRow.spacing
                     id: labelSlider
                     text: "Tip"
                     verticalAlignment: Text.AlignVCenter
@@ -161,7 +169,6 @@ MainView {
                 }
                 Slider {
                     id: tipSlider
-                    //function formatValue(v) { return v.toFixed() }
                     minimumValue: 0
                     maximumValue: 30
                     value: 15
@@ -170,10 +177,81 @@ MainView {
                 }
                 Label {
                     id: labelValueSlider
-                    text: tipSlider.value.toFixed()
+                    text: tipSlider.value.toFixed() + "%"
                     verticalAlignment: Text.AlignVCenter
                     font.weight: Font.Light
                     height: parent.height
+                }
+            }
+
+            // TODO: add additional top spacing if possible in a nicer way?
+            Item {
+                height: units.gu(2)
+            }
+
+            RowLayout {
+                id: totalPay
+                height: units.gu(5)
+                width: parent.width
+
+                property double initialBill: {
+                    if (billPrice.text === "")
+                        // first return 0.0, then return placeholderText
+                        return parseFloat(billPrice.placeholderText.replace(',', '.'))
+                    return parseFloat(billPrice.text.replace(',', '.'));
+                }
+                property double tip: initialBill * tipSlider.value / 100
+                property double bill: initialBill + tip
+
+                RowLayout {
+                    Layout.preferredWidth: parent.width / 2
+                    Label {
+                        text: "Total:"
+                    }
+                    Label {
+                        text: main.displayNum(totalPay.bill) + " $"
+                    }
+                }
+                Label {
+                    Layout.preferredWidth: parent.width / 2
+                    text: "(incl. tip: " + main.displayNum(totalPay.tip) + " $)"
+                    horizontalAlignment: Text.AlignHCenter
+                }
+            }
+            RowLayout {
+                id: sharePay
+                height: units.gu(5)
+                width: parent.width
+
+                // TODO: add internal padding (not affecting anchors)
+                property double percentage: numPeoplePay.currentValue / parseInt(numPeople.text)
+
+                RowLayout {
+                    height: parent.height
+                    Layout.preferredWidth: parent.width / 2
+
+                    // TODO: UbuntuShape force width == height
+                    Rectangle {
+                        radius: units.gu(1)
+                        color: UbuntuColors.orange
+                        anchors {
+                            fill: parent
+                        }
+                    }
+                    Label {
+                        color: "white"
+                        text: "You pay:"
+                    }
+                    Label {
+                        color: UbuntuColors.darkAubergine
+                        text: main.displayNum(sharePay.percentage * totalPay.bill) + " $"
+                        font.bold: true
+                    }
+                }
+                Label {
+                    Layout.preferredWidth: parent.width / 2
+                    text: "(incl. tip: " + main.displayNum(sharePay.percentage * totalPay.tip) + " $)"
+                    horizontalAlignment: Text.AlignHCenter
                 }
             }
         }
