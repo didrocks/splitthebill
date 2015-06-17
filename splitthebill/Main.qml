@@ -7,6 +7,7 @@ import Ubuntu.Components 1.2
   - base layout, grid units, size for phone
   - using icons (for +/-)
   - protecting your input (validator)
+  - how bindings works (advanced bindings)
   - add input methods (as it won't show keyboard) + tricks
     https://developer.ubuntu.com/en/apps/qml/tutorials/ubuntu-screen-keyboard-tricks/
   - factorize components in other files and define API
@@ -14,6 +15,7 @@ import Ubuntu.Components 1.2
   - add currency converter (+ fetching from the web)
   - what happen if the app is or become offline or server doesn't respond?
   - state saver
+  - share (email/twitter)
   - add i18n
   - changing theme
 */
