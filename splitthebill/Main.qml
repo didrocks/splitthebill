@@ -4,10 +4,12 @@ import Ubuntu.Components 1.2
 import Ubuntu.Components.ListItems 1.0
 import Ubuntu.Components.Themes.Ambiance 1.0
 
+import "components"
+
 /* Different episods:
   - project creation, explaining the template, run/deploy on the phone
   - base layout, grid units, size for phone
-  - using icons (for +/-)
+  - using icons (for +/-), with first, mistakes in the addition (no relation between numPeoplePay and numTotalPeople)
   - protecting your input (validator)
   - how bindings works (advanced bindings)
   - add input methods (as it won't show keyboard) + tricks
@@ -121,77 +123,21 @@ MainView {
                 }
             }
 
-            Row {
-                spacing: units.gu(1)
-
-                Label {
-                    text: "Number of people:"
-                    verticalAlignment: Text.AlignVCenter
-                    height: parent.height
-                    width: units.gu(16) // TODO: fix this for i18n and duplication
-                }
-                Row {
-                    Button {
-                        iconName: "remove"
-                        width: height
-                        enabled: numPeople.text > 1
-                        onClicked: { numPeople.text = parseInt(numPeople.text) - 1 }
-                    }
-                    TextField {
-                        // TODO: textField size to match content name?
-                        id: numPeople
-                        horizontalAlignment: TextInput.AlignHCenter
-                        text: "2"
-                        maximumLength: 2
-                        readOnly: true
-                        width: units.gu(5)
-                    }
-                    Button {
-                        iconName: "add"
-                        width: height
-                        onClicked: { numPeople.text = parseInt(numPeople.text) + 1 }
-                    }
-                }
+            AddRemoveInt {
+                id: numPeople
+                text: "Number of people:"
+                defaultValue: 2
+                min: 1
             }
 
-            Row {
-                spacing: units.gu(1)
-
-                Label {
-                    text: "You pay for:"
-                    verticalAlignment: Text.AlignVCenter
-                    height: parent.height
-                    width: units.gu(16) // TODO: fix this for i18n and duplication or use elide?
-                }
-                Row {
-                    Button {
-                        iconName: "remove"
-                        width: height
-                        enabled: numPeoplePay.text > 1
-                        onClicked: { numPeoplePay.currentValue = parseInt(numPeoplePay.currentValue) - 1 }
-                    }
-                    TextField {
-                        // TODO: textField size to match content name?
-                        id: numPeoplePay
-                        horizontalAlignment: TextInput.AlignHCenter
-                        text: {
-                            if (currentValue > numPeople.text)
-                                currentValue = numPeople.text
-                            return currentValue;
-                        }
-                        property int currentValue: 1
-                        maximumLength: 2
-                        readOnly: true
-                        width: units.gu(5)
-                    }
-                    Button {
-                        iconName: "add"
-                        width: height
-                        enabled: numPeoplePay.text < numPeople.text
-                        onClicked: { numPeoplePay.currentValue = parseInt(numPeoplePay.currentValue) + 1 }
-                    }
-                }
+            AddRemoveInt {
+                id: numPeoplePay
+                text: "You pay for:"
+                defaultValue: 1
+                min: 1
+                max: numPeople.currentValue
             }
+
             RowLayout {
                 spacing: units.gu(1)
                 width: parent.width
@@ -255,7 +201,7 @@ MainView {
                 width: parent.width
 
                 // TODO: add internal padding (not affecting anchors)
-                property double percentage: numPeoplePay.currentValue / parseInt(numPeople.text)
+                property double percentage: numPeoplePay.currentValue / numPeople.currentValue
 
                 RowLayout {
                     height: parent.height

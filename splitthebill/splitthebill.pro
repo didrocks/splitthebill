@@ -11,7 +11,8 @@ CONF_FILES +=  splitthebill.apparmor \
                splitthebill.png
 
 OTHER_FILES += $${CONF_FILES} \
-               $${QML_FILES}
+               $${QML_FILES} \
+    components/AddRemoveInt.qml
 
 #specify where the qml/js files are installed to
 qml_files.path = /splitthebill
