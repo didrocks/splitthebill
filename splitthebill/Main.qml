@@ -15,8 +15,7 @@ import "components"
   - add input methods (as it won't show keyboard) + tricks
     https://developer.ubuntu.com/en/apps/qml/tutorials/ubuntu-screen-keyboard-tricks/
   - factorize components in other files and define API: first non visual element like BillData, then AddRemoveInt
-  - state saver
-  - responsive design, portrait mode
+  - state saver (using BillData), app lifecycle management  - responsive design, portrait mode
   - add styling like the TextField
   - add currency converter (+ fetching from the web)
   - what happen if the app is or become offline or server doesn't respond?
@@ -27,7 +26,10 @@ import "components"
   - add flickable + page stacks…
 */
 
+// TODO: ask how to test statesaver on the desktop
+
 MainView {
+    id: mainview
     // objectName for functional testing purposes (autopilot-qt5)
     objectName: "mainView"
 
@@ -61,6 +63,7 @@ MainView {
 
         BillData {
             id: billData
+            title: billName.text
             bill: {
                 // first return placeholderText, then return real text
                 if (billPrice.text === "")
