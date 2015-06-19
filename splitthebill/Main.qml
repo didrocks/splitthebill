@@ -61,6 +61,13 @@ MainView {
                 return number.replace(".", Qt.locale().decimalPoint);
             }
 
+            /* TODO: add the date only on the archive segment (but before localization) */
+            Label {
+                id: dateTime
+                text: new Date().toLocaleDateString(Qt.locale())
+                fontSize: "large"
+            }
+
             // normal Row and not RowLayout as we want to not spawn the entire range
             Row {
                 spacing: units.gu(1)
@@ -77,6 +84,7 @@ MainView {
                     placeholderText: main.displayNum(0.0)
                     errorHighlight: true
                     validator: DoubleValidator {}
+                    maximumLength: 7
                     inputMethodHints: Qt.ImhFormattedNumbersOnly
                     width: units.gu(13)
                     //focus: true -> doesn't work?
@@ -235,7 +243,7 @@ MainView {
                     // TODO: UbuntuShape force width == height
                     Rectangle {
                         radius: units.gu(1)
-                        color: UbuntuColors.orange
+                        gradient: UbuntuColors.orangeGradient
                         anchors {
                             fill: parent
                         }
@@ -247,7 +255,8 @@ MainView {
                     Label {
                         color: UbuntuColors.darkAubergine
                         text: main.displayNum(sharePay.percentage * totalPay.bill) + " $"
-                        font.bold: true
+                        font.pixelSize: units.gu(2)
+                        font.weight: Font.Bold
                     }
                 }
                 Label {
