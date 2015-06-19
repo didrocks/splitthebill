@@ -1,6 +1,8 @@
 import QtQuick 2.4
 import QtQuick.Layouts 1.1
 import Ubuntu.Components 1.2
+import Ubuntu.Components.ListItems 1.0
+import Ubuntu.Components.Themes.Ambiance 1.0
 
 /* Different episods:
   - project creation, explaining the template, run/deploy on the phone
@@ -11,13 +13,16 @@ import Ubuntu.Components 1.2
   - add input methods (as it won't show keyboard) + tricks
     https://developer.ubuntu.com/en/apps/qml/tutorials/ubuntu-screen-keyboard-tricks/
   - factorize components in other files and define API
+  - state saver
   - responsive design, portrait mode
+  - add styling like the TextField
   - add currency converter (+ fetching from the web)
   - what happen if the app is or become offline or server doesn't respond?
-  - state saver
   - share (email/twitter)
   - add i18n
   - changing theme
+  - save and archive: add Top (textinput + date) and notes at the bottom to be saved
+  - add flickable + page stacks…
 */
 
 MainView {
@@ -37,36 +42,55 @@ MainView {
     height: units.gu(75)
 
     Page {
+        id: main
         title: "Split the bill"
 
+        /*
+         * explain how to add a javascript function. First use . for everything (C local), then in the 18n, use
+         * Qt.local.decimalPoint duplication and then factorize
+         */
+        /*
+         * Display number with 2 digits
+         */
+        function displayNum(number) {
+            number = number.toFixed(2).toString();
+            return number.replace(".", Qt.locale().decimalPoint);
+        }
+
         ColumnLayout {
-            id: main
             spacing: units.gu(1)
             anchors {
-                margins: units.gu(2)
+                leftMargin: units.gu(2)
+                rightMargin: units.gu(2)
                 top: parent.top
                 left: parent.left
                 right: parent.right
             }
 
-            /*
-             * explain how to add a javascript function. First use . for everything (C local), then in the 18n, use
-             * Qt.local.decimalPoint duplication and then factorize
-             */
-            /*
-             * Display number with 2 digits
-             */
-            function displayNum(number) {
-                number = number.toFixed(2).toString();
-                return number.replace(".", Qt.locale().decimalPoint);
+            TextField {
+                id: billName
+                color: UbuntuColors.lightAubergine
+                anchors.left: parent.left
+                anchors.right: parent.right
+                placeholderText: "New bill split"
+                font.pixelSize: units.gu(3)
+                // FIXME: use new styling rules (and don't import old)
+                style: TextFieldStyle {
+                    background: Item {}
+                    color: UbuntuColors.lightAubergine
+                    frameSpacing: 0
+                    overlaySpacing: 0
+                }
             }
 
             /* TODO: add the date only on the archive segment (but before localization) */
             Label {
                 id: dateTime
                 text: new Date().toLocaleDateString(Qt.locale())
-                fontSize: "large"
+                font.pixelSize: units.gu(1.5)
             }
+
+            ThinDivider {}
 
             // normal Row and not RowLayout as we want to not spawn the entire range
             Row {
@@ -194,10 +218,7 @@ MainView {
                 }
             }
 
-            // TODO: add additional top spacing if possible in a nicer way?
-            Item {
-                height: units.gu(2)
-            }
+            ThinDivider {}
 
             RowLayout {
                 id: totalPay
