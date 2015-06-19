@@ -12,7 +12,8 @@ CONF_FILES +=  splitthebill.apparmor \
 
 OTHER_FILES += $${CONF_FILES} \
                $${QML_FILES} \
-    components/AddRemoveInt.qml
+    components/AddRemoveInt.qml \
+    components/BillData.qml
 
 #specify where the qml/js files are installed to
 qml_files.path = /splitthebill

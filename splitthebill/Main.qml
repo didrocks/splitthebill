@@ -14,7 +14,7 @@ import "components"
   - how bindings works (advanced bindings)
   - add input methods (as it won't show keyboard) + tricks
     https://developer.ubuntu.com/en/apps/qml/tutorials/ubuntu-screen-keyboard-tricks/
-  - factorize components in other files and define API
+  - factorize components in other files and define API: first non visual element like BillData, then AddRemoveInt
   - state saver
   - responsive design, portrait mode
   - add styling like the TextField
@@ -57,6 +57,20 @@ MainView {
         function displayNum(number) {
             number = number.toFixed(2).toString();
             return number.replace(".", Qt.locale().decimalPoint);
+        }
+
+        BillData {
+            id: billData
+            bill: {
+                // first return placeholderText, then return real text
+                if (billPrice.text === "")
+                    return parseFloat(billPrice.placeholderText.replace(',', '.'))
+                return parseFloat(billPrice.text.replace(',', '.'));
+            }
+
+            tipShare: tipSlider.value
+            numTotalPeople: numPeople.currentValue
+            numSharePeople: numPeoplePay.currentValue
         }
 
         ColumnLayout {
@@ -167,18 +181,8 @@ MainView {
             ThinDivider {}
 
             RowLayout {
-                id: totalPay
                 height: units.gu(5)
                 width: parent.width
-
-                property double initialBill: {
-                    if (billPrice.text === "")
-                        // first return 0.0, then return placeholderText
-                        return parseFloat(billPrice.placeholderText.replace(',', '.'))
-                    return parseFloat(billPrice.text.replace(',', '.'));
-                }
-                property double tip: initialBill * tipSlider.value / 100
-                property double bill: initialBill + tip
 
                 RowLayout {
                     Layout.preferredWidth: parent.width / 2
@@ -186,22 +190,20 @@ MainView {
                         text: "Total:"
                     }
                     Label {
-                        text: main.displayNum(totalPay.bill) + " $"
+                        text: main.displayNum(billData.totalBill) + " $"
                     }
                 }
                 Label {
                     Layout.preferredWidth: parent.width / 2
-                    text: "(incl. tip: " + main.displayNum(totalPay.tip) + " $)"
+                    text: "(incl. tip: " + main.displayNum(billData.totalTip) + " $)"
                     horizontalAlignment: Text.AlignHCenter
                 }
             }
             RowLayout {
-                id: sharePay
                 height: units.gu(5)
                 width: parent.width
 
                 // TODO: add internal padding (not affecting anchors)
-                property double percentage: numPeoplePay.currentValue / numPeople.currentValue
 
                 RowLayout {
                     height: parent.height
@@ -221,14 +223,14 @@ MainView {
                     }
                     Label {
                         color: UbuntuColors.darkAubergine
-                        text: main.displayNum(sharePay.percentage * totalPay.bill) + " $"
+                        text: main.displayNum(billData.shareBill) + " $"
                         font.pixelSize: units.gu(2)
                         font.weight: Font.Bold
                     }
                 }
                 Label {
                     Layout.preferredWidth: parent.width / 2
-                    text: "(incl. tip: " + main.displayNum(sharePay.percentage * totalPay.tip) + " $)"
+                    text: "(incl. tip: " + main.displayNum(billData.shareTip) + " $)"
                     horizontalAlignment: Text.AlignHCenter
                 }
             }
