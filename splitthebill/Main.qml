@@ -16,6 +16,7 @@ import "components"
     https://developer.ubuntu.com/en/apps/qml/tutorials/ubuntu-screen-keyboard-tricks/
   - factorize components in other files and define API: first non visual element like BillData, then AddRemoveInt
   - state saver (using BillData), app lifecycle management  - responsive design, portrait mode
+    -> insist on avoiding the statesaver breaking data-binding when restoring
   - add styling like the TextField
   - add currency converter (+ fetching from the web)
   - what happen if the app is or become offline or server doesn't respond?
@@ -25,8 +26,6 @@ import "components"
   - save and archive: add Top (textinput + date) and notes at the bottom to be saved
   - add flickable + page stacks…
 */
-
-// TODO: ask how to test statesaver on the desktop
 
 MainView {
     id: mainview
@@ -77,6 +76,7 @@ MainView {
         }
 
         ColumnLayout {
+            id: mainColumn
             spacing: units.gu(1)
             anchors {
                 leftMargin: units.gu(2)
@@ -100,6 +100,7 @@ MainView {
                     frameSpacing: 0
                     overlaySpacing: 0
                 }
+                StateSaver.properties: "text"
             }
 
             /* TODO: add the date only on the archive segment (but before localization) */
@@ -113,6 +114,7 @@ MainView {
 
             // normal Row and not RowLayout as we want to not spawn the entire range
             Row {
+                id: priceRow
                 spacing: units.gu(1)
                 anchors.horizontalCenter: parent.horizontalCenter
 
@@ -132,6 +134,7 @@ MainView {
                     width: units.gu(13)
                     //focus: true -> doesn't work?
                     Component.onCompleted: billPrice.forceActiveFocus()
+                    StateSaver.properties: "text"
                 }
                 Label {
                     text: "$"
@@ -145,6 +148,7 @@ MainView {
                 text: "Number of people:"
                 defaultValue: 2
                 min: 1
+                StateSaver.properties: "currentValue"
             }
 
             AddRemoveInt {
@@ -153,9 +157,11 @@ MainView {
                 defaultValue: 1
                 min: 1
                 max: numPeople.currentValue
+                StateSaver.properties: "currentValue"
             }
 
             RowLayout {
+                id: tipRow
                 spacing: units.gu(1)
                 width: parent.width
                 Label {
@@ -171,6 +177,7 @@ MainView {
                     value: 15
                     live: true
                     Layout.fillWidth: true
+                    StateSaver.properties: "value"
                 }
                 Label {
                     id: labelValueSlider
