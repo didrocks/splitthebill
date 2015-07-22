@@ -61,7 +61,7 @@ MainView {
         }
 
         Bill {
-            id: bill
+            id: model
             title: billName.text
             bill: {
                 // first return placeholderText, then return real text
@@ -200,12 +200,12 @@ MainView {
                         text: "Total:"
                     }
                     Label {
-                        text: main.displayNum(bill.totalBill) + " $"
+                        text: main.displayNum(model.totalBill) + " $"
                     }
                 }
                 Label {
                     Layout.preferredWidth: parent.width / 2
-                    text: "(incl. tip: " + main.displayNum(bill.totalTip) + " $)"
+                    text: "(incl. tip: " + main.displayNum(model.totalTip) + " $)"
                     horizontalAlignment: Text.AlignHCenter
                 }
             }
@@ -233,14 +233,14 @@ MainView {
                     }
                     Label {
                         color: UbuntuColors.darkAubergine
-                        text: main.displayNum(bill.shareBill) + " $"
+                        text: main.displayNum(model.shareBill) + " $"
                         font.pixelSize: units.gu(2)
                         font.weight: Font.Bold
                     }
                 }
                 Label {
                     Layout.preferredWidth: parent.width / 2
-                    text: "(incl. tip: " + main.displayNum(bill.shareTip) + " $)"
+                    text: "(incl. tip: " + main.displayNum(model.shareTip) + " $)"
                     horizontalAlignment: Text.AlignHCenter
                 }
             }
