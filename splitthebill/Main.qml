@@ -14,9 +14,9 @@ import "components"
   - how bindings works (advanced bindings)
   - add input methods (as it won't show keyboard) + tricks
     https://developer.ubuntu.com/en/apps/qml/tutorials/ubuntu-screen-keyboard-tricks/
-  - factorize components in other files and define API: first non visual element like BillData, then AddRemoveInt
-  - state saver (using BillData), app lifecycle management  - responsive design, portrait mode
-    -> insist on avoiding the statesaver breaking data-binding when restoring
+  - factorize components in other files and define API: first non visual element like Bill, then AddRemoveInt
+  - state saver (using Bill), app lifecycle management  - responsive design, portrait mode
+    -> insist on avoiding the statesaver breakingb data-binding when restoring
   - add styling like the TextField
   - add currency converter (+ fetching from the web)
   - what happen if the app is or become offline or server doesn't respond?
@@ -60,8 +60,8 @@ MainView {
             return number.replace(".", Qt.locale().decimalPoint);
         }
 
-        BillData {
-            id: billData
+        Bill {
+            id: bill
             title: billName.text
             bill: {
                 // first return placeholderText, then return real text
@@ -200,12 +200,12 @@ MainView {
                         text: "Total:"
                     }
                     Label {
-                        text: main.displayNum(billData.totalBill) + " $"
+                        text: main.displayNum(bill.totalBill) + " $"
                     }
                 }
                 Label {
                     Layout.preferredWidth: parent.width / 2
-                    text: "(incl. tip: " + main.displayNum(billData.totalTip) + " $)"
+                    text: "(incl. tip: " + main.displayNum(bill.totalTip) + " $)"
                     horizontalAlignment: Text.AlignHCenter
                 }
             }
@@ -233,14 +233,14 @@ MainView {
                     }
                     Label {
                         color: UbuntuColors.darkAubergine
-                        text: main.displayNum(billData.shareBill) + " $"
+                        text: main.displayNum(bill.shareBill) + " $"
                         font.pixelSize: units.gu(2)
                         font.weight: Font.Bold
                     }
                 }
                 Label {
                     Layout.preferredWidth: parent.width / 2
-                    text: "(incl. tip: " + main.displayNum(billData.shareTip) + " $)"
+                    text: "(incl. tip: " + main.displayNum(bill.shareTip) + " $)"
                     horizontalAlignment: Text.AlignHCenter
                 }
             }
