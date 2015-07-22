@@ -1,13 +1,13 @@
 import QtQuick 2.4
 
-Item {
+QtObject {
     property string title
     property string rawBill
     property int tipShare
     property int numTotalPeople
     property int numSharePeople
 
-    property double bill: {
+    readonly property double bill: {
         var value = parseFloat(rawBill.replace(',', '.'));
         /* check if value is NaN, as QMl doesn't support emacsript 6.
            A Nan number isn't equals to itself.
@@ -16,9 +16,9 @@ Item {
             return 0;
         return value;
     }
-    property double totalTip: bill * tipShare / 100
-    property double totalBill: bill + totalTip
-    property double _sharePercent: numSharePeople / numTotalPeople
-    property double shareTip: _sharePercent * totalTip
-    property double shareBill: _sharePercent * totalBill
+    readonly property double totalTip: bill * tipShare / 100
+    readonly property double totalBill: bill + totalTip
+    readonly property double _sharePercent: numSharePeople / numTotalPeople
+    readonly property double shareTip: _sharePercent * totalTip
+    readonly property double shareBill: _sharePercent * totalBill
 }
