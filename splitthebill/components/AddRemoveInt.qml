@@ -32,7 +32,7 @@ Row {
             id: num
             horizontalAlignment: TextInput.AlignHCenter
             text: currentValue
-            property int currentValue: Math.min(max, defaultValue)
+            property int currentValue: { setCurrentValueBinding(); }
             maximumLength: 2
             readOnly: true
             width: units.gu(5)

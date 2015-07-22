@@ -62,17 +62,10 @@ MainView {
 
         Bill {
             id: model
-            title: billName.text
-            bill: {
-                // first return placeholderText, then return real text
-                if (billPrice.text === "")
-                    return parseFloat(billPrice.placeholderText.replace(',', '.'))
-                return parseFloat(billPrice.text.replace(',', '.'));
-            }
-
-            tipShare: tipSlider.value
-            numTotalPeople: numPeople.currentValue
-            numSharePeople: numPeoplePay.currentValue
+            // defining default values (but still holding 2 ways databindings)
+            numSharePeople: 1
+            numTotalPeople: 2
+            tipShare: 15
         }
 
         ColumnLayout {
@@ -91,6 +84,7 @@ MainView {
                 color: UbuntuColors.lightAubergine
                 anchors.left: parent.left
                 anchors.right: parent.right
+                text: model.title
                 placeholderText: "New bill split"
                 font.pixelSize: units.gu(3)
                 // FIXME: use new styling rules (and don't import old)
@@ -99,6 +93,11 @@ MainView {
                     color: UbuntuColors.lightAubergine
                     frameSpacing: 0
                     overlaySpacing: 0
+                }
+                Binding {
+                    target: model
+                    property: "title"
+                    value: billName.text
                 }
                 StateSaver.properties: "text"
             }
@@ -127,6 +126,7 @@ MainView {
                     // TODO: click should select the whole item
                     id: billPrice
                     placeholderText: main.displayNum(0.0)
+                    text: model.rawBill
                     errorHighlight: true
                     validator: DoubleValidator {}
                     maximumLength: 7
@@ -134,6 +134,13 @@ MainView {
                     width: units.gu(13)
                     //focus: true -> doesn't work?
                     Component.onCompleted: billPrice.forceActiveFocus()
+                    Binding {
+                        target: model
+                        property: "rawBill"
+                        value: billPrice.text
+                        when: billPrice.text !== ""
+                    }
+
                     StateSaver.properties: "text"
                 }
                 Label {
@@ -146,17 +153,27 @@ MainView {
             AddRemoveInt {
                 id: numPeople
                 text: "Number of people:"
-                defaultValue: 2
                 min: 1
+                currentValue: model.numTotalPeople
+                Binding {
+                    target: model
+                    property: "numTotalPeople"
+                    value: numPeople.currentValue
+                }
                 StateSaver.properties: "currentValue"
             }
 
             AddRemoveInt {
                 id: numPeoplePay
                 text: "You pay for:"
-                defaultValue: 1
                 min: 1
                 max: numPeople.currentValue
+                currentValue: model.numSharePeople
+                Binding {
+                    target: model
+                    property: "numSharePeople"
+                    value: numPeoplePay.currentValue
+                }
                 StateSaver.properties: "currentValue"
             }
 
@@ -174,9 +191,14 @@ MainView {
                     id: tipSlider
                     minimumValue: 0
                     maximumValue: 30
-                    value: 15
+                    value: model.tipShare
                     live: true
                     Layout.fillWidth: true
+                    Binding {
+                        target: model
+                        property: "tipShare"
+                        value: tipSlider.value
+                    }
                     StateSaver.properties: "value"
                 }
                 Label {
@@ -242,6 +264,14 @@ MainView {
                     Layout.preferredWidth: parent.width / 2
                     text: "(incl. tip: " + main.displayNum(model.shareTip) + " $)"
                     horizontalAlignment: Text.AlignHCenter
+                }
+            }
+
+            /* test for restoring from the model without breaking the 2 way databinding */
+            Button {
+                onClicked: {
+                    console.log("foo");
+                    model.title = "okokokok";
                 }
             }
         }
