@@ -19,6 +19,7 @@ import "components"
     -> insist on avoiding the statesaver breaking data-binding when restoring
   - Add 2 ways databindings to be able to store values on both side + redefining defaults and how to change a value
     afterwards.
+  - Storing values in u1db
   - add styling like the TextField
   - responsive design, portrait mode
   - add currency converter (+ fetching from the web)
