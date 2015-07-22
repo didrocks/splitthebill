@@ -1,7 +1,8 @@
 import QtQuick 2.4
+import QtQuick.Layouts 1.1
 import Ubuntu.Components 1.2
 
-Row {
+RowLayout {
     id: main
     spacing: units.gu(1)
 
@@ -15,7 +16,7 @@ Row {
         id: label
         verticalAlignment: Text.AlignVCenter
         height: parent.height
-        width: units.gu(16) // TODO: fix this for i18n
+        Layout.fillWidth: true
     }
     function setCurrentValueBinding() {
         num.currentValue = Qt.binding(function() { return Math.min(num.currentValue, max) });

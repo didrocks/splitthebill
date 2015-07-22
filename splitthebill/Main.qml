@@ -114,8 +114,7 @@ MainView {
 
             ThinDivider {}
 
-            // normal Row and not RowLayout as we want to not spawn the entire range
-            Row {
+            RowLayout {
                 id: priceRow
                 spacing: units.gu(1)
                 anchors.horizontalCenter: parent.horizontalCenter
@@ -134,7 +133,7 @@ MainView {
                     validator: DoubleValidator {}
                     maximumLength: 7
                     inputMethodHints: Qt.ImhFormattedNumbersOnly
-                    width: units.gu(13)
+                    Layout.maximumWidth: units.gu(13)
                     //focus: true -> doesn't work?
                     Component.onCompleted: billPrice.forceActiveFocus()
                     Binding {
@@ -155,6 +154,8 @@ MainView {
 
             AddRemoveInt {
                 id: numPeople
+                Layout.preferredWidth: parent.width
+                Layout.maximumWidth: parent.width
                 text: "Number of people:"
                 min: 1
                 currentValue: model.numTotalPeople
@@ -168,6 +169,8 @@ MainView {
 
             AddRemoveInt {
                 id: numPeoplePay
+                Layout.preferredWidth: parent.width
+                Layout.maximumWidth: parent.width
                 text: "You pay for:"
                 min: 1
                 max: numPeople.currentValue
@@ -183,7 +186,7 @@ MainView {
             RowLayout {
                 id: tipRow
                 spacing: units.gu(1)
-                width: parent.width
+                Layout.maximumWidth: parent.width
                 Label {
                     id: labelSlider
                     text: "Tip"
@@ -218,31 +221,43 @@ MainView {
             RowLayout {
                 height: units.gu(5)
                 width: parent.width
+                Layout.maximumWidth: parent.width
+                clip: true
 
                 RowLayout {
                     Layout.preferredWidth: parent.width / 2
+                    Layout.maximumWidth: parent.width / 2
+                    clip: true
                     Label {
                         text: "Total:"
                     }
-                    Label {
+                    Text {
                         text: main.displayNum(model.totalBill) + " $"
+                        horizontalAlignment: Text.AlignHCenter
+                        elide: Text.ElideRight
                     }
                 }
-                Label {
+                Text {
                     Layout.preferredWidth: parent.width / 2
+                    Layout.maximumWidth: parent.width / 2
                     text: "(incl. tip: " + main.displayNum(model.totalTip) + " $)"
                     horizontalAlignment: Text.AlignHCenter
+                    elide: Text.ElideRight
                 }
             }
             RowLayout {
                 height: units.gu(5)
                 width: parent.width
+                Layout.maximumWidth: parent.width
+                clip: true
 
                 // TODO: add internal padding (not affecting anchors)
 
                 RowLayout {
                     height: parent.height
                     Layout.preferredWidth: parent.width / 2
+                    Layout.maximumWidth: parent.width / 2
+                    clip: true
 
                     // TODO: UbuntuShape force width == height
                     Rectangle {
@@ -253,20 +268,26 @@ MainView {
                         }
                     }
                     Label {
+                        id: labelPrefix
                         color: "white"
                         text: "You pay:"
                     }
-                    Label {
+                    Text {
                         color: UbuntuColors.darkAubergine
                         text: main.displayNum(model.shareBill) + " $"
                         font.pixelSize: units.gu(2)
                         font.weight: Font.Bold
+                        Layout.maximumWidth: parent.width - labelPrefix.width
+                        elide: Text.ElideRight
                     }
                 }
-                Label {
+                Text {
+                    id: foo
                     Layout.preferredWidth: parent.width / 2
+                    Layout.maximumWidth: parent.width / 2
                     text: "(incl. tip: " + main.displayNum(model.shareTip) + " $)"
                     horizontalAlignment: Text.AlignHCenter
+                    elide: Text.ElideRight
                 }
             }
 
