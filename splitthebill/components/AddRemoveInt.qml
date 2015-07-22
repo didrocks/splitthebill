@@ -22,27 +22,27 @@ RowLayout {
         num.currentValue = Qt.binding(function() { return Math.min(num.currentValue, max) });
     }
 
-    Row {
-        Button {
-            iconName: "remove"
-            width: height
-            enabled: num.text > min
-            onClicked: { num.currentValue--; setCurrentValueBinding(); }
-        }
-        TextField {
-            id: num
-            horizontalAlignment: TextInput.AlignHCenter
-            text: currentValue
-            property int currentValue: { setCurrentValueBinding(); }
-            maximumLength: 2
-            readOnly: true
-            width: units.gu(5)
-        }
-        Button {
-            iconName: "add"
-            width: height
-            enabled: num.text < max
-            onClicked: { num.currentValue++; setCurrentValueBinding(); }
-        }
+    Button {
+        iconName: "remove"
+        enabled: num.text > min
+        onClicked: { num.currentValue--; setCurrentValueBinding(); }
+        // why needed that in RowLayout or not even setting width: height? (No width by default I guess)
+        Layout.maximumWidth: height
+    }
+    TextField {
+        id: num
+        horizontalAlignment: TextInput.AlignHCenter
+        text: currentValue
+        property int currentValue: { setCurrentValueBinding(); }
+        maximumLength: 2
+        readOnly: true
+        Layout.preferredWidth: units.gu(5)
+    }
+    Button {
+        iconName: "add"
+        enabled: num.text < max
+        onClicked: { num.currentValue++; setCurrentValueBinding(); }
+        // why needed that in RowLayout or not even setting width: height? (No width by default I guess)
+        Layout.maximumWidth: height
     }
 }
