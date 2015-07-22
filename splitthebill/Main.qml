@@ -15,9 +15,12 @@ import "components"
   - add input methods (as it won't show keyboard) + tricks
     https://developer.ubuntu.com/en/apps/qml/tutorials/ubuntu-screen-keyboard-tricks/
   - factorize components in other files and define API: first non visual element like Bill, then AddRemoveInt
-  - state saver (using Bill), app lifecycle management  - responsive design, portrait mode
-    -> insist on avoiding the statesaver breakingb data-binding when restoring
+  - state saver (using Bill), app lifecycle management
+    -> insist on avoiding the statesaver breaking data-binding when restoring
+  - Add 2 ways databindings to be able to store values on both side + redefining defaults and how to change a value
+    afterwards.
   - add styling like the TextField
+  - responsive design, portrait mode
   - add currency converter (+ fetching from the web)
   - what happen if the app is or become offline or server doesn't respond?
   - share (email/twitter)
@@ -270,7 +273,6 @@ MainView {
             /* test for restoring from the model without breaking the 2 way databinding */
             Button {
                 onClicked: {
-                    console.log("foo");
                     model.title = "okokokok";
                 }
             }
