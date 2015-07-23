@@ -15,6 +15,7 @@ import "components"
   - add input methods (as it won't show keyboard) + tricks
     https://developer.ubuntu.com/en/apps/qml/tutorials/ubuntu-screen-keyboard-tricks/
   - factorize components in other files and define API: first non visual element like Bill, then AddRemoveInt
+  - more refactoring with the results elements and conditions (like only the orange box for results)
   - state saver (using Bill), app lifecycle management
     -> insist on avoiding the statesaver breaking data-binding when restoring
   - Add 2 ways databindings to be able to store values on both side + redefining defaults and how to change a value
@@ -219,77 +220,17 @@ MainView {
 
             ThinDivider {}
 
-            RowLayout {
-                height: units.gu(5)
-                width: parent.width
-                Layout.maximumWidth: parent.width
-                clip: true
-
-                RowLayout {
-                    Layout.preferredWidth: parent.width / 2
-                    Layout.maximumWidth: parent.width / 2
-                    clip: true
-                    Label {
-                        text: "Total:"
-                    }
-                    Text {
-                        text: main.displayNum(model.totalBill) + " $"
-                        horizontalAlignment: Text.AlignHCenter
-                        elide: Text.ElideRight
-                    }
-                }
-                Text {
-                    Layout.preferredWidth: parent.width / 2
-                    Layout.maximumWidth: parent.width / 2
-                    text: "(incl. tip: " + main.displayNum(model.totalTip) + " $)"
-                    horizontalAlignment: Text.AlignHCenter
-                    elide: Text.ElideRight
-                }
+            Total {
+                label: "Total:"
+                mainValue: model.totalBill
+                tipValue: model.totalTip
             }
-            RowLayout {
-                height: units.gu(5)
-                width: parent.width
-                Layout.maximumWidth: parent.width
-                clip: true
 
-                // TODO: add internal padding (not affecting anchors)
-
-                RowLayout {
-                    height: parent.height
-                    Layout.preferredWidth: parent.width / 2
-                    Layout.maximumWidth: parent.width / 2
-                    clip: true
-
-                    // TODO: UbuntuShape force width == height
-                    Rectangle {
-                        radius: units.gu(1)
-                        gradient: UbuntuColors.orangeGradient
-                        anchors {
-                            fill: parent
-                        }
-                    }
-                    Label {
-                        id: labelPrefix
-                        color: "white"
-                        text: "You pay:"
-                    }
-                    Text {
-                        color: UbuntuColors.darkAubergine
-                        text: main.displayNum(model.shareBill) + " $"
-                        font.pixelSize: units.gu(2)
-                        font.weight: Font.Bold
-                        Layout.maximumWidth: parent.width - labelPrefix.width
-                        elide: Text.ElideRight
-                    }
-                }
-                Text {
-                    id: foo
-                    Layout.preferredWidth: parent.width / 2
-                    Layout.maximumWidth: parent.width / 2
-                    text: "(incl. tip: " + main.displayNum(model.shareTip) + " $)"
-                    horizontalAlignment: Text.AlignHCenter
-                    elide: Text.ElideRight
-                }
+            Total {
+                hilight: true
+                label: "You pay:"
+                mainValue: model.shareBill
+                tipValue: model.shareTip
             }
 
             /* test for restoring from the model without breaking the 2 way databinding */
