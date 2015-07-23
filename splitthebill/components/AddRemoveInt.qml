@@ -12,6 +12,15 @@ RowLayout {
     property alias text: label.text
     property alias currentValue: num.currentValue
 
+    property QtObject modelid
+    property string modelPropertyName
+    Binding on currentValue { value: modelid[modelPropertyName] }
+    Binding {
+        target: modelid
+        property: modelPropertyName
+        value: currentValue
+    }
+
     Label {
         id: label
         verticalAlignment: Text.AlignVCenter

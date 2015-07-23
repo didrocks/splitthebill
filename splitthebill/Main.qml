@@ -101,6 +101,7 @@ MainView {
                     frameSpacing: 0
                     overlaySpacing: 0
                 }
+                Binding on text { value: model.title }
                 Binding {
                     target: model
                     property: "title"
@@ -132,7 +133,6 @@ MainView {
                     // TODO: click should select the whole item
                     id: billPrice
                     placeholderText: main.displayNum(0.0)
-                    text: model.rawBill
                     errorHighlight: true
                     validator: DoubleValidator {}
                     maximumLength: 7
@@ -140,6 +140,8 @@ MainView {
                     Layout.maximumWidth: units.gu(13)
                     //focus: true -> doesn't work?
                     Component.onCompleted: billPrice.forceActiveFocus()
+                    // show first the expanded binding syntax, then the reduced one
+                    Binding on text { value: model.rawBill }
                     Binding {
                         target: model
                         property: "rawBill"
@@ -162,12 +164,9 @@ MainView {
                 Layout.maximumWidth: parent.width
                 text: "Number of people:"
                 min: 1
-                currentValue: model.numTotalPeople
-                Binding {
-                    target: model
-                    property: "numTotalPeople"
-                    value: numPeople.currentValue
-                }
+                // factorize the databinding inside the factorized object
+                modelid: model
+                modelPropertyName: "numTotalPeople"
                 StateSaver.properties: "currentValue"
             }
 
@@ -178,12 +177,8 @@ MainView {
                 text: "You pay for:"
                 min: 1
                 max: numPeople.currentValue
-                currentValue: model.numSharePeople
-                Binding {
-                    target: model
-                    property: "numSharePeople"
-                    value: numPeoplePay.currentValue
-                }
+                modelid: model
+                modelPropertyName: "numSharePeople"
                 StateSaver.properties: "currentValue"
             }
 
@@ -201,9 +196,13 @@ MainView {
                     id: tipSlider
                     minimumValue: 0
                     maximumValue: 30
-                    value: model.tipShare
                     live: true
                     Layout.fillWidth: true
+                    // for the 2 way databindings episod. Changing the slider breaks the databinding + changing a value
+                    // through script and see that it breaks with:
+                    // value: model.tipeShare
+                    // So, then, use double Binding. Show first the expanded binding notation then the reduced one
+                    Binding on value { value: model.tipShare }
                     Binding {
                         target: model
                         property: "tipShare"
