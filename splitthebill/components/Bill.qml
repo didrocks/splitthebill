@@ -6,6 +6,7 @@ QtObject {
     property int tipShare
     property int numTotalPeople
     property int numSharePeople
+    property date date
 
     readonly property double bill: {
         var value = parseFloat(rawBill.replace(',', '.'));

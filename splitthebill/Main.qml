@@ -30,6 +30,7 @@ import "components"
   - changing theme
   - save and archive: add Top (textinput + date) and notes at the bottom to be saved
   - add flickable + page stacks…
+  - change date, pick up calendar/time
 */
 
 MainView {
@@ -71,6 +72,7 @@ MainView {
             numSharePeople: 1
             numTotalPeople: 2
             tipShare: 15
+            date: new Date()
         }
 
         ColumnLayout {
@@ -110,7 +112,7 @@ MainView {
             /* TODO: add the date only on the archive segment (but before localization) */
             Label {
                 id: dateTime
-                text: new Date().toLocaleDateString(Qt.locale())
+                text: model.date.toLocaleDateString(Qt.locale())
                 font.pixelSize: units.gu(1.5)
             }
 
