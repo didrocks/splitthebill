@@ -115,7 +115,7 @@ MainView {
             /* TODO: add the date only on the archive segment (but before localization) */
             Label {
                 id: dateTime
-                text: model.date.toLocaleDateString()
+                text: model.date.toLocaleDateString() + " - " + model.date.toLocaleTimeString()
                 font.pixelSize: units.gu(1.5)
             }
 
