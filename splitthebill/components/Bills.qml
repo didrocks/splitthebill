@@ -9,9 +9,10 @@ Item {
 
     Bill {
         id: currentBill
+
+        Component.onCompleted: reset()
     }
 
-    // NO DOC AT ALL FOR U1DB
     U1db.Database {
         id: db
         path: "bills.u1db"

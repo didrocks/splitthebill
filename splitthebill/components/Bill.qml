@@ -45,5 +45,7 @@ QtObject {
         numSharePeople = 1;
     }
 
-    Component.onCompleted: reset()
+
+    // TODO: add a signal when any value changed (to save the changes)
+
 }

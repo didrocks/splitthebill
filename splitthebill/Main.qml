@@ -20,7 +20,9 @@ import "components"
     -> insist on avoiding the statesaver breaking data-binding when restoring
   - Add 2 ways databindings to be able to store values on both side + redefining defaults and how to change a value
     afterwards.
-  - Storing values in u1db
+  - action bar (for save and reset?) instead of button <- TODO
+  - Storing values in u1db + signal in Bill
+  - Page view with multiple tabs (search view and full view)
   - add styling like the TextField
   - responsive design, portrait mode
   - add currency converter (+ fetching from the web)
@@ -31,7 +33,10 @@ import "components"
   - save and archive: add Top (textinput + date) and notes at the bottom to be saved
   - add flickable + page stacks…
   - change date, pick up calendar/time
+  - upload app to the store, availability
 */
+
+// TODO: add to the state saver what the current view was (and save the billId as well)
 
 MainView {
     id: mainview
