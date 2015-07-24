@@ -14,24 +14,31 @@ RowLayout {
     height: units.gu(5)
     clip: true
 
-    // TODO: UbuntuShape force width == height
-    Rectangle {
-        radius: units.gu(1)
-        gradient: UbuntuColors.orangeGradient
-        anchors {
-            fill: parent
-        }
+    states: State {
+        when: hilight
 
         // do this first, see that the items are not align, so change the opacity
         //visible: hilight
 
         // FIXME: this is a bit of a hack, but didn't find any other way to align the 2 "Total" and "You pay" text
         // opacity: if (!hilight) 0, or opacity: if (!hilight) 0 : opacity
-        // then, show the assign [undefinied] and then the binding loop and use the Binding
-        Binding on opacity {
-            when: !hilight
-            value: 0
+        // then, show the assign [undefinied] and then the binding loop and use the State (inversing the opacity to 1)
+        PropertyChanges { target: hilightRect; opacity: 1 }
+        PropertyChanges { target: labelPrefix; color: "white" }
+        PropertyChanges { target: mainText; color: UbuntuColors.darkAubergine }
+        PropertyChanges { target: mainText; font.pixelSize: units.gu(2) }
+        PropertyChanges { target: mainText; font.weight: Font.Bold }
+    }
+
+    // TODO: UbuntuShape force width == height
+    Rectangle {
+        id: hilightRect
+        radius: units.gu(1)
+        gradient: UbuntuColors.orangeGradient
+        anchors {
+            fill: parent
         }
+        opacity: 0
     }
 
     RowLayout {
@@ -41,25 +48,10 @@ RowLayout {
         clip: true
         Label {
             id: labelPrefix
-            Binding on color {
-                when: hilight
-                value: "white"
-            }
         }
         Text {
+            id: mainText
             Layout.maximumWidth: parent.width - labelPrefix.width
-            Binding on color {
-                when: hilight
-                value: UbuntuColors.darkAubergine
-            }
-            Binding on font.pixelSize {
-                when: hilight
-                value: units.gu(2)
-            }
-            Binding on font.weight {
-                when: hilight
-                value: Font.Bold
-            }
             text: main.displayNum(mainValue) + " $"
             horizontalAlignment: Text.AlignHCenter
             elide: Text.ElideRight
