@@ -7,7 +7,7 @@ import Ubuntu.Components.Themes.Ambiance 1.0
 import "components"
 
 /* Different episods:
-  - project creation, explaining the template, run/deploy on the phone
+  - project creation, explaining the template, run/deploy on the phone. Change the locale to en_US.
   - base layout, grid units, size for phone
   - using icons (for +/-), with first, mistakes in the addition (no relation between numPeoplePay and numTotalPeople)
   - protecting your input (validator)
@@ -115,7 +115,7 @@ MainView {
             /* TODO: add the date only on the archive segment (but before localization) */
             Label {
                 id: dateTime
-                text: model.date.toLocaleDateString(Qt.locale())
+                text: model.date.toLocaleDateString()
                 font.pixelSize: units.gu(1.5)
             }
 

@@ -36,6 +36,7 @@ QtObject {
 
     function reset() {
         title = "";
+        date = new Date();
         rawBill = "";
         tipShare = 15;
         numTotalPeople = 2;
