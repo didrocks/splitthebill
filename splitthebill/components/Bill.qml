@@ -2,11 +2,11 @@ import QtQuick 2.4
 
 QtObject {
     property string title
+    property date date
     property string rawBill
     property int tipShare
     property int numTotalPeople
     property int numSharePeople
-    property date date
 
     readonly property double bill: {
         var value = parseFloat(rawBill.replace(',', '.'));
@@ -22,4 +22,25 @@ QtObject {
     readonly property double _sharePercent: numSharePeople / numTotalPeople
     readonly property double shareTip: _sharePercent * totalTip
     readonly property double shareBill: _sharePercent * totalBill
+
+    function tojson() {
+        return {
+            'title': title,
+            'date': date,
+            'rawBill': rawBill,
+            'tipShare': tipShare,
+            'numTotalPeople': numTotalPeople,
+            'numSharePeople': numSharePeople
+        }
+    }
+
+    function reset() {
+        title = "";
+        rawBill = "";
+        tipShare = 15;
+        numTotalPeople = 2;
+        numSharePeople = 1;
+    }
+
+    Component.onCompleted: reset()
 }

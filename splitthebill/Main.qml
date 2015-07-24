@@ -68,11 +68,13 @@ MainView {
 
         Bill {
             id: model
+
             // defining default values (but still holding 2 ways databindings)
-            numSharePeople: 1
+            // then, removed and moved reset()
+            /*numSharePeople: 1
             numTotalPeople: 2
             tipShare: 15
-            date: new Date()
+            date: new Date()*/
         }
 
         ColumnLayout {
@@ -234,12 +236,33 @@ MainView {
                 tipValue: model.shareTip
             }
 
-            /* test for restoring from the model without breaking the 2 way databinding */
-            Button {
-                onClicked: {
-                    model.title = "okokokok";
+            Item {
+
+                width: parent.width
+
+                Button {
+                    Layout.minimumWidth: units.gu(15)
+                    text: "Reset"
+                    color: UbuntuColors.red
+                    onClicked: model.reset()
+                    /* enable to show anchors */
+                    anchors.left: parent.left
+                }
+
+                /* test for restoring from the model without breaking the 2 way databinding */
+                Button {
+                    // FIXME: adding an icon expand way more than just the icon size. Is this wanted?
+                    //iconName: "add"
+                    Layout.minimumWidth: units.gu(15)
+                    text: "Archive"
+                    color: UbuntuColors.green
+                    onClicked: {
+                        console.log(JSON.stringify(model.tojson()));
+                    }
+                    anchors.right: parent.right
                 }
             }
+
         }
     }
 }
