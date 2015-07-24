@@ -66,15 +66,8 @@ MainView {
             return number.replace(".", Qt.locale().decimalPoint);
         }
 
-        Bill {
+        Bills {
             id: model
-
-            // defining default values (but still holding 2 ways databindings)
-            // then, removed and moved reset()
-            /*numSharePeople: 1
-            numTotalPeople: 2
-            tipShare: 15
-            date: new Date()*/
         }
 
         ColumnLayout {
@@ -93,7 +86,7 @@ MainView {
                 color: UbuntuColors.lightAubergine
                 anchors.left: parent.left
                 anchors.right: parent.right
-                text: model.title
+                text: model.current.title
                 placeholderText: "New bill split"
                 font.pixelSize: units.gu(3)
                 // FIXME: use new styling rules (and don't import old)
@@ -103,9 +96,9 @@ MainView {
                     frameSpacing: 0
                     overlaySpacing: 0
                 }
-                Binding on text { value: model.title }
+                Binding on text { value: model.current.title }
                 Binding {
-                    target: model
+                    target: model.current
                     property: "title"
                     value: billName.text
                 }
@@ -115,7 +108,7 @@ MainView {
             /* TODO: add the date only on the archive segment (but before localization) */
             Label {
                 id: dateTime
-                text: model.date.toLocaleDateString() + " - " + model.date.toLocaleTimeString()
+                text: model.current.date.toLocaleDateString() + " - " + model.current.date.toLocaleTimeString()
                 font.pixelSize: units.gu(1.5)
             }
 
@@ -143,9 +136,9 @@ MainView {
                     //focus: true -> doesn't work?
                     Component.onCompleted: billPrice.forceActiveFocus()
                     // show first the expanded binding syntax, then the reduced one
-                    Binding on text { value: model.rawBill }
+                    Binding on text { value: model.current.rawBill }
                     Binding {
-                        target: model
+                        target: model.current
                         property: "rawBill"
                         value: billPrice.text
                         when: billPrice.text !== ""
@@ -167,7 +160,7 @@ MainView {
                 text: "Number of people:"
                 min: 1
                 // factorize the databinding inside the factorized object
-                modelid: model
+                modelid: model.current
                 modelPropertyName: "numTotalPeople"
                 StateSaver.properties: "currentValue"
             }
@@ -179,7 +172,7 @@ MainView {
                 text: "You pay for:"
                 min: 1
                 max: numPeople.currentValue
-                modelid: model
+                modelid: model.current
                 modelPropertyName: "numSharePeople"
                 StateSaver.properties: "currentValue"
             }
@@ -202,11 +195,11 @@ MainView {
                     Layout.fillWidth: true
                     // for the 2 way databindings episod. Changing the slider breaks the databinding + changing a value
                     // through script and see that it breaks with:
-                    // value: model.tipeShare
+                    // value: model.current.tipeShare (this name is direct binding)
                     // So, then, use double Binding. Show first the expanded binding notation then the reduced one
-                    Binding on value { value: model.tipShare }
+                    Binding on value { value: model.current.tipShare }
                     Binding {
-                        target: model
+                        target: model.current
                         property: "tipShare"
                         value: tipSlider.value
                     }
@@ -225,26 +218,27 @@ MainView {
 
             Total {
                 label: "Total:"
-                mainValue: model.totalBill
-                tipValue: model.totalTip
+                mainValue: model.current.totalBill
+                tipValue: model.current.totalTip
             }
 
             Total {
                 hilight: true
                 label: "You pay:"
-                mainValue: model.shareBill
-                tipValue: model.shareTip
+                mainValue: model.current.shareBill
+                tipValue: model.current.shareTip
             }
 
             Item {
-
+                // TOASK: why needing to set an height?
+                height: childrenRect.height
                 width: parent.width
 
                 Button {
                     Layout.minimumWidth: units.gu(15)
                     text: "Reset"
                     color: UbuntuColors.red
-                    onClicked: model.reset()
+                    onClicked: model.current.reset()
                     /* enable to show anchors */
                     anchors.left: parent.left
                 }

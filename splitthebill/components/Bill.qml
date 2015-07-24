@@ -1,6 +1,7 @@
 import QtQuick 2.4
 
 QtObject {
+    property string billId
     property string title
     property date date
     property string rawBill
@@ -35,6 +36,7 @@ QtObject {
     }
 
     function reset() {
+        billId = "";
         title = "";
         date = new Date();
         rawBill = "";
