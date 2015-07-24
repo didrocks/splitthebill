@@ -251,12 +251,28 @@ MainView {
                     text: "Archive"
                     color: UbuntuColors.green
                     onClicked: {
-                        console.log(JSON.stringify(model.tojson()));
+                        //console.log(JSON.stringify(model.current.tojson()));
+                        model.refreshCurrent();
                     }
                     anchors.right: parent.right
                 }
             }
 
+
+            ListView {
+                model: model.bills
+                width: parent.width
+
+                // TOASK: why needing to set a height?
+                height: units.gu(80)
+
+                delegate: ListItem {
+                    Text {
+                        text: contents.date
+                        Component.onCompleted: { console.log(docId + " " + contents.date) }
+                    }
+                }
+            }
         }
     }
 }
