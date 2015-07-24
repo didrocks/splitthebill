@@ -258,20 +258,14 @@ MainView {
                 }
             }
 
+            UbuntuListView{
 
-            ListView {
-                model: model.bills
+                // TASK: why needing to set a height and width?
+                height: units.gu(80)
                 width: parent.width
 
-                // TOASK: why needing to set a height?
-                height: units.gu(80)
-
-                delegate: ListItem {
-                    Text {
-                        text: contents.date
-                        Component.onCompleted: { console.log(docId + " " + contents.date) }
-                    }
-                }
+                model: model.bills
+                delegate: BillListItem { }
             }
         }
     }

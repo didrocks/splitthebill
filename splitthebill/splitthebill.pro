@@ -15,7 +15,8 @@ OTHER_FILES += $${CONF_FILES} \
     components/AddRemoveInt.qml \
     components/Bills.qml \
     components/Bill.qml \
-    components/Total.qml
+    components/Total.qml \
+    components/BillListItem.qml
 
 #specify where the qml/js files are installed to
 qml_files.path = /splitthebill
