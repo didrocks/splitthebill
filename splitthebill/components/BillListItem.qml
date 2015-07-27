@@ -37,5 +37,4 @@ ListItem {
         text: "Press me" + bill.billId
     }
 
-    onClicked: console.log("clicked on ListItem with leadingActions set")
 }

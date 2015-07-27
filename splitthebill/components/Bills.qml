@@ -24,6 +24,10 @@ Item {
         expression: ["date"]
     }
 
+    /*
+     * Use a query instead of getDocs() or directly use the db of model as deleted docs would still be listed otherwise.
+     * See bug https://bugs.launchpad.net/u1db-qt/+bug/1219862
+     */
     U1db.Query
     {
         id: all
