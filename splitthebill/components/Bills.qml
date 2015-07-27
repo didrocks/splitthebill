@@ -3,12 +3,11 @@ import U1db 1.0 as U1db
 
 Item {
 
-    property alias current: currentBill
-    // will replace by a query later on
-    property alias bills: db
+    property alias current: current
+    property alias all: all
 
     Bill {
-        id: currentBill
+        id: current
 
         Component.onCompleted: reset()
     }
@@ -18,29 +17,42 @@ Item {
         path: "bills.u1db"
     }
 
+    U1db.Index
+    {
+        database: db
+        id: dateIndex
+        expression: ["date"]
+    }
+
+    U1db.Query
+    {
+        id: all
+        index: dateIndex
+    }
+
     function refreshCurrent() {
         // create a new docID if not saved already
-        if (!currentBill.billId)
-            currentBill.billId = Date.now();
+        if (!current.billId)
+            current.billId = Date.now();
         // TODO: handle error
-        var result = db.putDoc(currentBill.tojson(), currentBill.billId);
+        var result = db.putDoc(current.tojson(), current.billId);
     }
 
     function deleteCurrent() {
-        if (!currentBill.billId) {
+        if (!current.billId) {
             // TODO: show error in a toast
             console.log("Error, not saved yet");
             return;
         }
-        currentBill.delete(currentBill.billID);
+        current.delete(current.billID);
     }
 
     function deleteBill(docId) {
         db.deleteDoc(docId);
 
         // if current Bill as well, reset it
-        if (currentBill.billId === docId)
-            currentBill.reset();
+        if (current.billId === docId)
+            current.reset();
     }
 
 }

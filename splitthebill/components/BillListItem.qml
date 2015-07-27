@@ -21,6 +21,7 @@ ListItem {
         actions: [
             Action {
                 iconName: "delete"
+                onTriggered: bills.deleteBill(bill.billId)
             }
         ]
     }
