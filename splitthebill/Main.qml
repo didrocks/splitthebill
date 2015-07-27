@@ -25,13 +25,15 @@ import "pages"
   - responsive design, portrait mode
   - add currency converter (+ fetching from the web)
   - what happen if the app is or become offline or server doesn't respond?
-  - share (email/twitter)
+  - share (email/twitter) (loader with like contenthubloader in address-book-app)
+  - importing bills
   - add i18n
   - changing theme
   - save and archive: add Top (textinput + date) and notes at the bottom to be saved
   - add flickable + page stacks…
   - change date, pick up calendar/time
   - upload app to the store, availability
+  - adding flickable, animations to switch between sections (look at reboot weather app)
 */
 
 // TODO: add to the state saver what the current view was (and save the billId as well)
