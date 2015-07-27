@@ -194,13 +194,4 @@ ColumnLayout {
             anchors.right: parent.right
         }
     }
-
-    UbuntuListView{
-        // TASK: why needing to set a height and width?
-        height: units.gu(80)
-        width: parent.width
-
-        model: billsHandler.all
-        delegate: BillListItem { bills: billsHandler /* it doesn't like the "model" keyword here */ }
-    }
 }
