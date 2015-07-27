@@ -3,7 +3,7 @@ import Ubuntu.Components 1.2
 
 ListItem {
 
-    property QtObject bills
+    property QtObject billsHandler
 
     // bound to compute the current values summary via direct binding
     Bill {
@@ -21,7 +21,7 @@ ListItem {
         actions: [
             Action {
                 iconName: "delete"
-                onTriggered: bills.deleteBill(bill.billId)
+                onTriggered: billsHandler.deleteBill(bill.billId)
             }
         ]
     }

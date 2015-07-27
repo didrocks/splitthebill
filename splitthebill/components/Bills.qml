@@ -8,8 +8,13 @@ Item {
 
     Bill {
         id: current
+        StateSaver.properties: "date"
 
-        Component.onCompleted: reset()
+        // Only reset if not restored (and so, if date isn't attributed)
+        Component.onCompleted: {
+            if (!date.getDate())
+                reset();
+        }
     }
 
     U1db.Database {
