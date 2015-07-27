@@ -37,4 +37,9 @@ ListItem {
         text: "Press me" + bill.billId
     }
 
+    onClicked: {
+        console.log("one clicked");
+        page.toogleDetails();
+    }
+
 }
