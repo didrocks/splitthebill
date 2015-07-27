@@ -2,6 +2,8 @@ import QtQuick 2.0
 import QtQuick.Layouts 1.1
 import Ubuntu.Components 1.2
 
+import "../tools.js" as Tools
+
 RowLayout {
 
     property bool hilight: false
@@ -52,7 +54,7 @@ RowLayout {
         Text {
             id: mainText
             Layout.maximumWidth: parent.width - labelPrefix.width
-            text: main.displayNum(mainValue) + " $"
+            text: Tools.displayNum(mainValue) + " $"
             horizontalAlignment: Text.AlignHCenter
             elide: Text.ElideRight
         }
@@ -60,7 +62,7 @@ RowLayout {
     Text {
         Layout.preferredWidth: parent.width / 2
         Layout.maximumWidth: parent.width / 2
-        text: "(incl. tip: " + main.displayNum(tipValue) + " $)"
+        text: "(incl. tip: " + Tools.displayNum(tipValue) + " $)"
         horizontalAlignment: Text.AlignHCenter
         elide: Text.ElideRight
     }
