@@ -3,7 +3,6 @@ import QtQuick.Layouts 1.1
 import Ubuntu.Components 1.2
 
 RowLayout {
-    id: main
     spacing: units.gu(1)
 
     property int defaultValue
