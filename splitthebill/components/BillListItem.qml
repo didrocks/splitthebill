@@ -3,7 +3,9 @@ import Ubuntu.Components 1.2
 
 ListItem {
 
-    // bound to compute the current values summary
+    property QtObject bills
+
+    // bound to compute the current values summary via direct binding
     Bill {
         id: bill
         billId: docId

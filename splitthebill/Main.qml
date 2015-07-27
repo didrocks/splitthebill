@@ -72,7 +72,7 @@ MainView {
         }
 
         Bills {
-            id: model
+            id: billsHandler
         }
 
         ColumnLayout {
@@ -91,7 +91,7 @@ MainView {
                 color: UbuntuColors.lightAubergine
                 anchors.left: parent.left
                 anchors.right: parent.right
-                text: model.current.title
+                text: billsHandler.current.title
                 placeholderText: "New bill split"
                 font.pixelSize: units.gu(3)
                 // FIXME: use new styling rules (and don't import old)
@@ -101,9 +101,9 @@ MainView {
                     frameSpacing: 0
                     overlaySpacing: 0
                 }
-                Binding on text { value: model.current.title }
+                Binding on text { value: billsHandler.current.title }
                 Binding {
-                    target: model.current
+                    target: billsHandler.current
                     property: "title"
                     value: billName.text
                 }
@@ -113,7 +113,7 @@ MainView {
             /* TODO: add the date only on the archive segment (but before localization) */
             Label {
                 id: dateTime
-                text: model.current.date.toLocaleDateString() + " - " + model.current.date.toLocaleTimeString()
+                text: billsHandler.current.date.toLocaleDateString() + " - " + billsHandler.current.date.toLocaleTimeString()
                 font.pixelSize: units.gu(1.5)
             }
 
@@ -141,9 +141,9 @@ MainView {
                     //focus: true -> doesn't work?
                     Component.onCompleted: billPrice.forceActiveFocus()
                     // show first the expanded binding syntax, then the reduced one
-                    Binding on text { value: model.current.rawBill }
+                    Binding on text { value: billsHandler.current.rawBill }
                     Binding {
-                        target: model.current
+                        target: billsHandler.current
                         property: "rawBill"
                         value: billPrice.text
                         when: billPrice.text !== ""
@@ -165,7 +165,7 @@ MainView {
                 text: "Number of people:"
                 min: 1
                 // factorize the databinding inside the factorized object
-                modelid: model.current
+                modelid: billsHandler.current
                 modelPropertyName: "numTotalPeople"
                 StateSaver.properties: "currentValue"
             }
@@ -177,7 +177,7 @@ MainView {
                 text: "You pay for:"
                 min: 1
                 max: numPeople.currentValue
-                modelid: model.current
+                modelid: billsHandler.current
                 modelPropertyName: "numSharePeople"
                 StateSaver.properties: "currentValue"
             }
@@ -200,11 +200,11 @@ MainView {
                     Layout.fillWidth: true
                     // for the 2 way databindings episod. Changing the slider breaks the databinding + changing a value
                     // through script and see that it breaks with:
-                    // value: model.current.tipeShare (this name is direct binding)
+                    // value: billsHandler.current.tipeShare (this name is direct binding)
                     // So, then, use double Binding. Show first the expanded binding notation then the reduced one
-                    Binding on value { value: model.current.tipShare }
+                    Binding on value { value: billsHandler.current.tipShare }
                     Binding {
-                        target: model.current
+                        target: billsHandler.current
                         property: "tipShare"
                         value: tipSlider.value
                     }
@@ -223,15 +223,15 @@ MainView {
 
             Total {
                 label: "Total:"
-                mainValue: model.current.totalBill
-                tipValue: model.current.totalTip
+                mainValue: billsHandler.current.totalBill
+                tipValue: billsHandler.current.totalTip
             }
 
             Total {
                 hilight: true
                 label: "You pay:"
-                mainValue: model.current.shareBill
-                tipValue: model.current.shareTip
+                mainValue: billsHandler.current.shareBill
+                tipValue: billsHandler.current.shareTip
             }
 
             Item {
@@ -243,7 +243,7 @@ MainView {
                     Layout.minimumWidth: units.gu(15)
                     text: "Reset"
                     color: UbuntuColors.red
-                    onClicked: model.current.reset()
+                    onClicked: billsHandler.current.reset()
                     /* enable to show anchors */
                     anchors.left: parent.left
                 }
@@ -256,21 +256,20 @@ MainView {
                     text: "Archive"
                     color: UbuntuColors.green
                     onClicked: {
-                        //console.log(JSON.stringify(model.current.tojson()));
-                        model.refreshCurrent();
+                        //console.log(JSON.stringify(billsHandler.current.tojson()));
+                        billsHandler.refreshCurrent();
                     }
                     anchors.right: parent.right
                 }
             }
 
             UbuntuListView{
-
                 // TASK: why needing to set a height and width?
                 height: units.gu(80)
                 width: parent.width
 
-                model: model.bills
-                delegate: BillListItem { }
+                model: billsHandler.all
+                delegate: BillListItem { bills: billsHandler /* it doesn't like the "model" keyword here */ }
             }
         }
     }
