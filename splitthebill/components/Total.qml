@@ -37,9 +37,7 @@ RowLayout {
         id: hilightRect
         radius: units.gu(1)
         gradient: UbuntuColors.orangeGradient
-        anchors {
-            fill: parent
-        }
+        anchors.fill: parent
         opacity: 0
     }
 

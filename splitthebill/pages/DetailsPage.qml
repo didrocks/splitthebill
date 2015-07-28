@@ -21,8 +21,8 @@ Column {
     TextField {
         id: billName
         color: UbuntuColors.lightAubergine
-        // we want to expand on full Column width (ZSOMBI: the height is set based on children TextField is not a layout element?)
-        width: parent.width
+        // use anchors instead of width: parent.width (more performant as don't go to through the binding system)
+        anchors { left: parent.left; right: parent.right }
         text: billsHandler.current.title
         placeholderText: "New bill split"
         font.pixelSize: units.gu(3)
@@ -44,35 +44,33 @@ Column {
 
     /* TODO: add the date only on the archive segment (but before localization) */
     Label {
-        // ZSOMBI: same, no height set, same reasonning than for TextField?
         id: dateTime
         text: billsHandler.current.date.toLocaleDateString() + " - " + billsHandler.current.date.toLocaleTimeString()
         font.pixelSize: units.gu(1.5)
     }
 
-    ThinDivider {} // ZSOMBI: I guess the height is hardcoded in ThinDivider?
+    ThinDivider {}
 
-    RowLayout {
+    Row {
         id: priceRow
+
         spacing: units.gu(1)
         anchors.horizontalCenter: parent.horizontalCenter
 
-        // ZSOMBI: I didn't set any Height to any children, so, how the height is set based on children? I thought
-        // you had to set it explicitely for positioner?
-
         Label {
             text: "Bill:"
+            height: parent.height
             verticalAlignment: Text.AlignVCenter
         }
         TextField {
             // TODO: click should select the whole item
             id: billPrice
+            width: units.gu(13)
             placeholderText: Tools.displayNum(0.0)
             errorHighlight: true
             validator: DoubleValidator {}
             maximumLength: 7
             inputMethodHints: Qt.ImhFormattedNumbersOnly
-            Layout.maximumWidth: units.gu(13)
             //focus: true -> doesn't work?
             Component.onCompleted: billPrice.forceActiveFocus()
             // show first the expanded binding syntax, then the reduced one
@@ -87,15 +85,14 @@ Column {
         }
         Label {
             text: "$"
+            height: parent.height
             verticalAlignment: Text.AlignVCenter
         }
     }
 
     AddRemoveInt {
         id: numPeople
-        // ZSOMBI: none of the children element have an height, the height is set thanks to the label/button?
-        // so, that means that the height of this RowLayout is implicit set by the max(children.width)?
-        width: parent.width
+        anchors { left: parent.left; right: parent.right }
         text: "Number of people:"
         min: 1
         // factorize the databinding inside the factorized object
@@ -106,7 +103,7 @@ Column {
 
     AddRemoveInt {
         id: numPeoplePay
-        width: parent.width
+        anchors { left: parent.left; right: parent.right }
         text: "You pay for:"
         min: 1
         max: numPeople.currentValue
@@ -118,7 +115,7 @@ Column {
     RowLayout {
         id: tipRow
         spacing: units.gu(1)
-        width: parent.width
+        anchors { left: parent.left; right: parent.right }
         Label {
             id: labelSlider
             text: "Tip"
@@ -153,14 +150,14 @@ Column {
     ThinDivider {}
 
     Total {
-        width: parent.width
+        anchors { left: parent.left; right: parent.right }
         label: "Total:"
         mainValue: billsHandler.current.totalBill
         tipValue: billsHandler.current.totalTip
     }
 
     Total {
-        width: parent.width
+        anchors { left: parent.left; right: parent.right }
         hilight: true
         label: "You pay:"
         mainValue: billsHandler.current.shareBill
@@ -168,10 +165,8 @@ Column {
     }
 
     Item {
-        // ZSOMBI: I guess we need to set a height to this one because it's not a positioner nor a Layout
-        // like RowLayout, so it doesn't get any implicitHeight from its children
         height: childrenRect.height
-        width: parent.width
+        anchors { left: parent.left; right: parent.right }
 
         Button {
             text: "Reset"
