@@ -5,7 +5,6 @@ import Ubuntu.Components 1.2
 RowLayout {
     spacing: units.gu(1)
 
-    property int defaultValue
     property int min: 0
     property int max: 99
     property alias text: label.text
@@ -25,26 +24,22 @@ RowLayout {
         verticalAlignment: Text.AlignVCenter
         Layout.fillWidth: true
     }
-    function setCurrentValueBinding() {
-        num.currentValue = Qt.binding(function() { return Math.min(num.currentValue, max) });
-    }
 
-    // use case: total number of people on another component is decreased twice
-    // (and QUESTION: max doesn't seem to be the binding here, but the value)
+    // use case: avoid binding loop and interfering with two ways data-binding above
     // good introduced on property changed
-    onMaxChanged: setCurrentValueBinding();
+    onMaxChanged: { num.currentValue = Math.min(num.currentValue, max) }
 
     Button {
         iconName: "remove"
         enabled: num.text > min
-        onClicked: { num.currentValue--; setCurrentValueBinding(); }
+        onClicked: { num.currentValue-- }
         Layout.maximumWidth: height
     }
     TextField {
         id: num
         horizontalAlignment: TextInput.AlignHCenter
         text: currentValue
-        property int currentValue: { setCurrentValueBinding(); }
+        property int currentValue
         maximumLength: 2
         readOnly: true
         Layout.preferredWidth: units.gu(5)
@@ -52,7 +47,7 @@ RowLayout {
     Button {
         iconName: "add"
         enabled: num.text < max
-        onClicked: { num.currentValue++; setCurrentValueBinding(); }
+        onClicked: { num.currentValue++ }
         Layout.maximumWidth: height
     }
 }
