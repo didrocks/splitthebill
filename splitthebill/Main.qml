@@ -19,7 +19,8 @@ import "pages"
   - Add 2 ways databindings to be able to store values on both side + redefining defaults and how to change a value
     afterwards.
   - action bar (for save and reset?) instead of button <- TODO
-  - Storing values in u1db + signal in Bill
+  - Storing values in u1db
+  - signal example (in Bill) on value changed
   - Page view with multiple tabs (search view and full view)
   - add styling like the TextField
   - responsive design, portrait mode

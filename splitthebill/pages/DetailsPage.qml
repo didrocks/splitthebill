@@ -183,7 +183,7 @@ Column {
             color: UbuntuColors.green
             onClicked: {
                 //console.log(JSON.stringify(billsHandler.current.tojson()));
-                billsHandler.refreshCurrent();
+                billsHandler.saveCurrent();
             }
             anchors.right: parent.right
         }

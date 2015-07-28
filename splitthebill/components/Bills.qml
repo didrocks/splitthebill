@@ -9,13 +9,16 @@ Item {
 
     Bill {
         id: current
-        //StateSaver.properties: "date"
+        StateSaver.properties: "billId date"
 
         // Only reset if not restored (and so, if date isn't attributed)
         Component.onCompleted: {
             if (!date.getDate())
                 reset();
         }
+
+        // save modified value if it was already registered
+        onValueChanged: { if (current.billId) saveCurrent(); }
     }
 
     U1db.Database {
@@ -40,7 +43,7 @@ Item {
         index: dateIndex
     }
 
-    function refreshCurrent() {
+    function saveCurrent() {
         // create a new docID if not saved already
         if (!current.billId)
             current.billId = Date.now();

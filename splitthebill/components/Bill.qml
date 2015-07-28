@@ -8,6 +8,8 @@ QtObject {
     property int tipShare
     property int numTotalPeople
     property int numSharePeople
+    // signal example
+    signal valueChanged
 
     readonly property double bill: {
         var value = parseFloat(rawBill.replace(',', '.'));
@@ -46,6 +48,10 @@ QtObject {
     }
 
 
-    // TODO: add a signal when any value changed (to save the changes)
-
+    onTitleChanged: valueChanged()
+    onDateChanged: valueChanged()
+    onRawBillChanged: valueChanged()
+    onTipShareChanged: valueChanged()
+    onNumTotalPeopleChanged: valueChanged()
+    onNumSharePeopleChanged: valueChanged()
 }
