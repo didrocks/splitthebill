@@ -9,6 +9,12 @@ UbuntuListView{
     // TASK: why needing to set a height and width?
     height: units.gu(80)
 
+    anchors {
+        leftMargin: units.gu(2)
+        rightMargin: units.gu(2)
+        fill: parent
+    }
+
     model: billsHandler.all
     delegate: BillListItem {
         billsHandler: billsHandler

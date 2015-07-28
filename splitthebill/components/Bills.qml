@@ -8,7 +8,7 @@ Item {
 
     Bill {
         id: current
-        StateSaver.properties: "date"
+        //StateSaver.properties: "date"
 
         // Only reset if not restored (and so, if date isn't attributed)
         Component.onCompleted: {

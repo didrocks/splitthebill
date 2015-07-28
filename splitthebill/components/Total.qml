@@ -12,8 +12,7 @@ RowLayout {
     property double mainValue
     property double tipValue
 
-    width: parent.width
-    Layout.maximumWidth: parent.width
+    // set a higher height than the one from the children
     height: units.gu(5)
     clip: true
 

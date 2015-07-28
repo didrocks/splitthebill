@@ -36,7 +36,6 @@ import "pages"
   - adding flickable, animations to switch between sections (look at reboot weather app)
 */
 
-// TODO: add to the state saver what the current view was (and save the billId as well)
 
 MainView {
     id: mainview
@@ -60,6 +59,8 @@ MainView {
         id: page
         title: "Split the bill"
         StateSaver.properties: "currentPage"
+
+        // ZSOMBI: no size provided. Why does it fill the remaining size (-header) then?
 
         // an alias is another way of doing 2 way databindings
         property alias currentPage: sections.selectedIndex

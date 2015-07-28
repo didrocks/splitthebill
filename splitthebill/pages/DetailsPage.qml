@@ -7,13 +7,13 @@ import Ubuntu.Components.Themes.Ambiance 1.0
 import "../components"
 import "../tools.js" as Tools
 
-ColumnLayout {
+Column {
     id: mainColumn
     spacing: units.gu(1)
     anchors {
         leftMargin: units.gu(2)
         rightMargin: units.gu(2)
-        top: parent.top
+        // force the column to match page width
         left: parent.left
         right: parent.right
     }
@@ -21,8 +21,8 @@ ColumnLayout {
     TextField {
         id: billName
         color: UbuntuColors.lightAubergine
-        anchors.left: parent.left
-        anchors.right: parent.right
+        // we want to expand on full Column width (ZSOMBI: the height is set based on children TextField is not a layout element?)
+        width: parent.width
         text: billsHandler.current.title
         placeholderText: "New bill split"
         font.pixelSize: units.gu(3)
@@ -44,22 +44,25 @@ ColumnLayout {
 
     /* TODO: add the date only on the archive segment (but before localization) */
     Label {
+        // ZSOMBI: same, no height set, same reasonning than for TextField?
         id: dateTime
         text: billsHandler.current.date.toLocaleDateString() + " - " + billsHandler.current.date.toLocaleTimeString()
         font.pixelSize: units.gu(1.5)
     }
 
-    ThinDivider {}
+    ThinDivider {} // ZSOMBI: I guess the height is hardcoded in ThinDivider?
 
     RowLayout {
         id: priceRow
         spacing: units.gu(1)
         anchors.horizontalCenter: parent.horizontalCenter
 
+        // ZSOMBI: I didn't set any Height to any children, so, how the height is set based on children? I thought
+        // you had to set it explicitely for positioner?
+
         Label {
             text: "Bill:"
             verticalAlignment: Text.AlignVCenter
-            height: parent.height
         }
         TextField {
             // TODO: click should select the whole item
@@ -80,20 +83,19 @@ ColumnLayout {
                 value: billPrice.text
                 when: billPrice.text !== ""
             }
-
             StateSaver.properties: "text"
         }
         Label {
             text: "$"
             verticalAlignment: Text.AlignVCenter
-            height: parent.height
         }
     }
 
     AddRemoveInt {
         id: numPeople
-        Layout.preferredWidth: parent.width
-        Layout.maximumWidth: parent.width
+        // ZSOMBI: none of the children element have an height, the height is set thanks to the label/button?
+        // so, that means that the height of this RowLayout is implicit set by the max(children.width)?
+        width: parent.width
         text: "Number of people:"
         min: 1
         // factorize the databinding inside the factorized object
@@ -104,8 +106,7 @@ ColumnLayout {
 
     AddRemoveInt {
         id: numPeoplePay
-        Layout.preferredWidth: parent.width
-        Layout.maximumWidth: parent.width
+        width: parent.width
         text: "You pay for:"
         min: 1
         max: numPeople.currentValue
@@ -117,12 +118,11 @@ ColumnLayout {
     RowLayout {
         id: tipRow
         spacing: units.gu(1)
-        Layout.maximumWidth: parent.width
+        width: parent.width
         Label {
             id: labelSlider
             text: "Tip"
             verticalAlignment: Text.AlignVCenter
-            height: parent.height
         }
         Slider {
             id: tipSlider
@@ -147,19 +147,20 @@ ColumnLayout {
             text: tipSlider.value.toFixed() + "%"
             verticalAlignment: Text.AlignVCenter
             font.weight: Font.Light
-            height: parent.height
         }
     }
 
     ThinDivider {}
 
     Total {
+        width: parent.width
         label: "Total:"
         mainValue: billsHandler.current.totalBill
         tipValue: billsHandler.current.totalTip
     }
 
     Total {
+        width: parent.width
         hilight: true
         label: "You pay:"
         mainValue: billsHandler.current.shareBill
@@ -167,12 +168,12 @@ ColumnLayout {
     }
 
     Item {
-        // TOASK: why needing to set an height?
+        // ZSOMBI: I guess we need to set a height to this one because it's not a positioner nor a Layout
+        // like RowLayout, so it doesn't get any implicitHeight from its children
         height: childrenRect.height
         width: parent.width
 
         Button {
-            Layout.minimumWidth: units.gu(15)
             text: "Reset"
             color: UbuntuColors.red
             onClicked: billsHandler.current.reset()
@@ -180,11 +181,9 @@ ColumnLayout {
             anchors.left: parent.left
         }
 
-        /* test for restoring from the model without breaking the 2 way databinding */
         Button {
-            // FIXME: adding an icon expand way more than just the icon size. Is this wanted?
+            // ZSOMBI: adding the iconName expands way more than just the icon size. Is this wanted?
             //iconName: "add"
-            Layout.minimumWidth: units.gu(15)
             text: "Archive"
             color: UbuntuColors.green
             onClicked: {

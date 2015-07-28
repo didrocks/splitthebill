@@ -23,7 +23,6 @@ RowLayout {
     Label {
         id: label
         verticalAlignment: Text.AlignVCenter
-        height: parent.height
         Layout.fillWidth: true
     }
     function setCurrentValueBinding() {
@@ -34,7 +33,8 @@ RowLayout {
         iconName: "remove"
         enabled: num.text > min
         onClicked: { num.currentValue--; setCurrentValueBinding(); }
-        // FIXME: why needed that in RowLayout or not even setting width: height? (No width by default I guess)
+        // ZSOMBI: The button, even with an icon has no layout width by default (but a height?), so we need to set
+        // it?
         Layout.maximumWidth: height
     }
     TextField {
@@ -44,14 +44,14 @@ RowLayout {
         property int currentValue: { setCurrentValueBinding(); }
         maximumLength: 2
         readOnly: true
-        // FIXME: same with TextField, it needs a width or preferredWidth?
         Layout.preferredWidth: units.gu(5)
     }
     Button {
         iconName: "add"
         enabled: num.text < max
         onClicked: { num.currentValue++; setCurrentValueBinding(); }
-        // FIXME: why needed that in RowLayout or not even setting width: height? (No width by default I guess)
+        // ZSOMBI: The button, even with an icon has no layout width by default (but a height?), so we need to set
+        // it?
         Layout.maximumWidth: height
     }
 }
