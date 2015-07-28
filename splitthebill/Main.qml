@@ -66,7 +66,8 @@ MainView {
         head {
             sections {
                 id: sections
-                model: ["Details", "All"]
+                model: ["All", "Details"]
+                selectedIndex: 1
             }
         }
 
@@ -79,17 +80,17 @@ MainView {
             id: billsHandler
         }
 
-        DetailsPage {
-            id: detailspage
+        BillsListPage {
+            id: billsPage
             visible: page.currentPage === 0
         }
-        /*BillsListPage {
-            id: billsPage
+        DetailsPage {
+            id: detailspage
             visible: page.currentPage === 1
-        }*/
+        }
 
         function toogleDetails() {
-            page.currentPage = 0;
+            page.currentPage = 1;
         }
 
     }

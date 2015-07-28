@@ -1,5 +1,6 @@
 import QtQuick 2.4
 import U1db 1.0 as U1db
+import Ubuntu.Components 1.2
 
 Item {
 

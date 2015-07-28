@@ -6,13 +6,13 @@ import Ubuntu.Components.Themes.Ambiance 1.0
 import "../components"
 
 UbuntuListView{
-    // TASK: why needing to set a height and width?
-    height: units.gu(80)
 
+    height: units.gu(100)
     anchors {
         leftMargin: units.gu(2)
         rightMargin: units.gu(2)
-        fill: parent
+        left: parent.left
+        right: parent.right
     }
 
     model: billsHandler.all
