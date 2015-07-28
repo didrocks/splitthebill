@@ -39,6 +39,8 @@ RowLayout {
         id: num
         horizontalAlignment: TextInput.AlignHCenter
         text: currentValue
+        // maybe use this as a good example of erased databinding?
+        // property int currentValue: { Math.min(num.currentValue, max)}
         property int currentValue
         maximumLength: 2
         readOnly: true
