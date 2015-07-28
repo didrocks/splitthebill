@@ -83,6 +83,7 @@ MainView {
 
         BillsListPage {
             id: billsPage
+            billsHandler: billsHandler
             visible: page.currentPage === 0
         }
         DetailsPage {

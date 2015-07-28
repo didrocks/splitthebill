@@ -29,8 +29,11 @@ Item {
     U1db.Index
     {
         database: db
-        id: dateIndex
-        expression: ["date"]
+        id: allIndex
+        /* You have to specify in the index all fields you want to retrieve
+           The query should return the whole document, not just indexed fields
+           https://bugs.launchpad.net/u1db-qt/+bug/1271973 */
+        expression: ["title", "date", "rawBill", "tipShare", "numTotalPeople", "numSharePeople"]
     }
 
     /*
@@ -40,7 +43,7 @@ Item {
     U1db.Query
     {
         id: all
-        index: dateIndex
+        index: allIndex
     }
 
     function saveCurrent() {

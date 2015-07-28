@@ -7,6 +7,9 @@ import "../components"
 
 UbuntuListView{
 
+    id: billsList
+    property QtObject billsHandler
+
     height: units.gu(100)
     anchors {
         leftMargin: units.gu(2)
@@ -17,7 +20,8 @@ UbuntuListView{
 
     model: billsHandler.all
     delegate: BillListItem {
-        billsHandler: billsHandler
+        // QUESTION: it doesn't like billsHandler: billsHandler in a delegate
+        billsHandler: billsList.billsHandler
     }
 }
 

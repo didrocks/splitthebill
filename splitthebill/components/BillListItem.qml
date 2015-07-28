@@ -9,12 +9,12 @@ ListItem {
     Bill {
         id: bill
         billId: docId
-        title: title
-        date: date
-        rawBill: rawBill
-        tipShare: tipShare
-        numTotalPeople: numTotalPeople
-        numSharePeople: numSharePeople
+        title: contents.title
+        date: contents.date
+        rawBill: contents.rawBill
+        tipShare: contents.tipShare
+        numTotalPeople: contents.numTotalPeople
+        numSharePeople: contents.numSharePeople
     }
 
     leadingActions: ListItemActions {
@@ -34,11 +34,23 @@ ListItem {
     }
 
     Button {
-        text: "Press me" + bill.billId
+        text: bill.title
     }
 
     onClicked: {
-        console.log("one clicked");
+        var currentBill = billsHandler.current;
+        // disable autosave
+        currentBill.billId = "";
+        // assign all properties from this element
+        currentBill.title = bill.title;
+        currentBill.date = bill.date;
+        currentBill.rawBill = bill.rawBill;
+        currentBill.tipShare = bill.tipShare;
+        currentBill.numTotalPeople = bill.numTotalPeople;
+        currentBill.numSharePeople = bill.numSharePeople;
+        // reenable ready for saving
+        currentBill.billId = bill.billId;
+
         page.toogleDetails();
     }
 
