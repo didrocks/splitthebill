@@ -60,8 +60,6 @@ MainView {
         title: "Split the bill"
         StateSaver.properties: "currentPage"
 
-        // ZSOMBI: no size provided. Why does it fill the remaining size (-header) then?
-
         // an alias is another way of doing 2 way databindings
         property alias currentPage: sections.selectedIndex
 

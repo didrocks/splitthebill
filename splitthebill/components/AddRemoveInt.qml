@@ -33,8 +33,6 @@ RowLayout {
         iconName: "remove"
         enabled: num.text > min
         onClicked: { num.currentValue--; setCurrentValueBinding(); }
-        // ZSOMBI: The button, even with an icon has no layout width by default (but a height?), so we need to set
-        // it?
         Layout.maximumWidth: height
     }
     TextField {
@@ -50,8 +48,6 @@ RowLayout {
         iconName: "add"
         enabled: num.text < max
         onClicked: { num.currentValue++; setCurrentValueBinding(); }
-        // ZSOMBI: The button, even with an icon has no layout width by default (but a height?), so we need to set
-        // it?
         Layout.maximumWidth: height
     }
 }
