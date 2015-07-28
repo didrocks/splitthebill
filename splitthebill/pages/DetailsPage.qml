@@ -177,7 +177,7 @@ Column {
         }
 
         Button {
-            // ZSOMBI: adding the iconName expands way more than just the icon size. Is this wanted?
+            // Bug https://launchpad.net/bugs/1478839: adding the iconName expands way more than just the icon size
             //iconName: "add"
             text: "Archive"
             color: UbuntuColors.green
