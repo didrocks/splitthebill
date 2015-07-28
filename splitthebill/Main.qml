@@ -72,11 +72,6 @@ MainView {
             }
         }
 
-        /* introducing event */
-        onCurrentPageChanged: {
-            console.log("foo");
-        }
-
         Bills {
             id: billsHandler
         }
