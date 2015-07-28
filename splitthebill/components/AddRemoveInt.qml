@@ -29,6 +29,11 @@ RowLayout {
         num.currentValue = Qt.binding(function() { return Math.min(num.currentValue, max) });
     }
 
+    // use case: total number of people on another component is decreased twice
+    // (and QUESTION: max doesn't seem to be the binding here, but the value)
+    // good introduced on property changed
+    onMaxChanged: setCurrentValueBinding();
+
     Button {
         iconName: "remove"
         enabled: num.text > min
