@@ -13,15 +13,17 @@ import "pages"
   - add input methods (as it won't show keyboard) + tricks
     https://developer.ubuntu.com/en/apps/qml/tutorials/ubuntu-screen-keyboard-tricks/
   - factorize components in other files and define API: first non visual element like Bill, then AddRemoveInt
-  - more refactoring with the results elements and conditions (like only the orange box for results)
+  - more refactoring with the Total elements and conditions (like only the orange box for results)
   - state saver (using Bill), app lifecycle management
     -> insist on avoiding the statesaver breaking data-binding when restoring
   - Add 2 ways databindings to be able to store values on both side + redefining defaults and how to change a value
     afterwards.
-  - action bar (for save and reset?) instead of button <- TODO
   - Storing values in u1db
   - signal example (in Bill) on value changed
-  - Page view with multiple tabs (search view and full view)
+  - Page view with PageWithBottomEdge… copy. Then fix the warning and versions
+  - Then, talking about community components.
+  - action bar (for save and reset?) instead of button <- TODO
+  - search view and full view
   - add styling like the TextField
   - responsive design, portrait mode
   - add currency converter (+ fetching from the web)
@@ -31,10 +33,16 @@ import "pages"
   - add i18n
   - changing theme
   - save and archive: add Top (textinput + date) and notes at the bottom to be saved
-  - add flickable + page stacks…
+  - add page stacks and bottom edge
   - change date, pick up calendar/time
   - upload app to the store, availability
+  - adding transitions for removing elements
+  - first user experience when the app is empty (show a new bill, and so on)
+    introduce Timer thanks to it.
   - adding flickable, animations to switch between sections (look at reboot weather app)
+  - animations for expanding listitem content
+  - default property?
+  - error handling (with popup or small noitification window)
 */
 
 
