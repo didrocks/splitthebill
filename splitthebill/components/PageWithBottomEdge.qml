@@ -89,8 +89,13 @@ Page {
 
     function showBottomEdgePage(source, properties)
     {
-        edgeLoader.setSource(source, properties)
-        _showEdgePageWhenReady = true
+        // ensure we can force showing bottom edge from existing component
+        if (!source)
+            bottomEdge.state = "expanded"
+        else {
+            edgeLoader.setSource(source, properties)
+            _showEdgePageWhenReady = true
+        }
     }
 
     function setBottomEdgePage(source, properties)
