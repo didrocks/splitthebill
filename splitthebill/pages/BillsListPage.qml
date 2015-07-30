@@ -31,6 +31,29 @@ PageWithBottomEdge {
         }
     }
 
+    Item {
+        anchors.fill: parent
+        visible: billsHandler.all.len !== 0
+
+        Icon {
+            id: emptyStateIcon
+            anchors.fill: parent
+            anchors.horizontalCenter: emptyStateLabel.horizontalCenter
+            opacity: 0.3
+            name: "notebook"
+        }
+        Label {
+            id: emptyStateLabel
+            anchors.fill: parent
+            text: "No bills have been archived"
+            color: "#5d5d5d"
+            fontSize: "x-large"
+            wrapMode: Text.WordWrap
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+        }
+    }
+
     bottomEdgeTitle: "Add new"
     bottomEdgePageComponent: BillEditPage {
         id: billEditPage
