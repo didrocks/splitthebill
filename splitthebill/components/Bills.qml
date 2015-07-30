@@ -15,9 +15,6 @@ Item {
             if (!date.getDate())
                 reset();
         }
-
-        // save modified value if it was already registered
-        onValueChanged: { if (current.billId) saveCurrent(); }
     }
 
     U1db.Database {

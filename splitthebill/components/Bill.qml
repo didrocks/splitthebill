@@ -8,8 +8,6 @@ QtObject {
     property int tipShare
     property int numTotalPeople
     property int numSharePeople
-    // signal example
-    signal valueChanged
 
     readonly property double bill: {
         var value = parseFloat(rawBill.replace(',', '.'));
@@ -29,17 +27,14 @@ QtObject {
     /* load from json or dictionary compatible objects */
     // this show that qml property can be accessed with object["name"] or object.name
     function loadFromJson(billJson) {
-        /* disable any autosave if object is recycled */
-        billId = "";
         // assign all properties from this element
+        billId = billJson["billId"];
         title = billJson["title"];
         date = billJson["date"];
         rawBill = billJson["rawBill"];
         tipShare = billJson["tipShare"];
         numTotalPeople = billJson["numTotalPeople"];
         numSharePeople = billJson["numSharePeople"];
-        // set billId (which reenable autosaving on modification)
-        billId = billJson["billId"];
     }
 
     function toJson() {
@@ -63,11 +58,4 @@ QtObject {
         numTotalPeople = 2;
         numSharePeople = 1;
     }
-
-    onTitleChanged: valueChanged()
-    onDateChanged: valueChanged()
-    onRawBillChanged: valueChanged()
-    onTipShareChanged: valueChanged()
-    onNumTotalPeopleChanged: valueChanged()
-    onNumSharePeopleChanged: valueChanged()
 }
