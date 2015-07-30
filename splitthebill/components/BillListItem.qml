@@ -32,14 +32,19 @@ ListItem {
             },
             Action {
                 iconName: "edit"
-                onTriggered: {
-                    billsHandler.current.loadFromJson(bill);
-                    mainview.editCurrentBill();
-                }
+                onTriggered: edit()
             }
         ]
     }
 
+    function edit() {
+        billsHandler.current.loadFromJson(bill);
+        mainview.editCurrentBill();
+    }
+
     Label { text: bill.title }
+
+    onClicked: console.log("foo")
+    onPressAndHold: edit();
 
 }
