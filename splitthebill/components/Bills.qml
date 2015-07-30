@@ -3,7 +3,6 @@ import U1db 1.0 as U1db
 import Ubuntu.Components 1.2
 
 Item {
-
     property alias current: current
     property alias all: all
 
@@ -51,7 +50,7 @@ Item {
         if (!current.billId)
             current.billId = Date.now();
         // TODO: handle error
-        var result = db.putDoc(current.tojson(), current.billId);
+        var result = db.putDoc(current.toJson(), current.billId);
     }
 
     function deleteCurrent() {
@@ -70,5 +69,4 @@ Item {
         if (current.billId === docId)
             current.reset();
     }
-
 }

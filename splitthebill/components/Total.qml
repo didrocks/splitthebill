@@ -31,14 +31,13 @@ Item {
     // TODO: UbuntuShape force width == height
     Rectangle {
         id: hilightRect
-        radius: units.gu(1)
-        gradient: UbuntuColors.orangeGradient
         anchors.fill: parent
         visible: false
+        radius: units.gu(1)
+        gradient: UbuntuColors.orangeGradient
     }
 
     RowLayout {
-
         anchors {
             fill: parent
             leftMargin: units.gu(1)
@@ -49,21 +48,22 @@ Item {
             Layout.preferredWidth: parent.width / 2
             Layout.maximumWidth: parent.width / 2
             clip: true
-            Label {
-                id: labelPrefix
-            }
+
+            Label { id: labelPrefix }
+
             Text {
                 id: mainText
-                text: Tools.displayNum(mainValue) + " $"
                 horizontalAlignment: Text.AlignHCenter
+                text: Tools.displayNum(mainValue) + " $"
                 elide: Text.ElideRight
             }
         }
+
         Text {
             Layout.preferredWidth: parent.width / 2
             Layout.maximumWidth: parent.width / 2
-            text: "(incl. tip: " + Tools.displayNum(tipValue) + " $)"
             horizontalAlignment: Text.AlignHCenter
+            text: "(incl. tip: " + Tools.displayNum(tipValue) + " $)"
             elide: Text.ElideRight
         }
     }

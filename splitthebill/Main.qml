@@ -72,10 +72,8 @@ MainView {
         billsHandler: billsHandler
     }
 
-
     PageStack {
         id: mainStack
-
         // HACK for bug where bottomEdgePage is going over the top
         onCurrentPageChanged: {
             if (currentPage === billsPage.bottomEdgePage)

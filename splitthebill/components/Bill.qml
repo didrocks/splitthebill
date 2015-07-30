@@ -42,7 +42,7 @@ QtObject {
         billId = billJson["billId"];
     }
 
-    function tojson() {
+    function toJson() {
         return {
             'title': title,
             'date': date,
@@ -63,7 +63,6 @@ QtObject {
         numTotalPeople = 2;
         numSharePeople = 1;
     }
-
 
     onTitleChanged: valueChanged()
     onDateChanged: valueChanged()

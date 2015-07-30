@@ -7,19 +7,17 @@ import "../components"
 PageWithBottomEdge {
     id: billsList
     property QtObject billsHandler
-    property bool animationEnded: false
 
     title: "Split the bill"
     reloadBottomEdgePage: false
 
-    // don't show elements under the header
-    clip: true
-
     // reset current bottom edge Bill on released
     onBottomEdgeDismissed: { billsHandler.current.reset(); }
 
-    UbuntuListView {
+    // don't show elements under the header
+    clip: true
 
+    UbuntuListView {
         height: parent.height
         anchors {
             leftMargin: units.gu(2)
@@ -45,15 +43,17 @@ PageWithBottomEdge {
             opacity: 0.3
             name: "notebook"
         }
+
         Label {
             id: emptyStateLabel
             anchors.fill: parent
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+
             text: "No bills have been archived"
             color: "#5d5d5d"
             fontSize: "x-large"
             wrapMode: Text.WordWrap
-            horizontalAlignment: Text.AlignHCenter
-            verticalAlignment: Text.AlignVCenter
         }
     }
 

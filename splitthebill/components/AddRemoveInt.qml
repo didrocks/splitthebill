@@ -35,21 +35,24 @@ RowLayout {
         onClicked: { num.currentValue-- }
         Layout.maximumWidth: height
     }
+
     TextField {
         id: num
+        Layout.preferredWidth: units.gu(5)
         horizontalAlignment: TextInput.AlignHCenter
+
         text: currentValue
         // maybe use this as a good example of erased databinding?
         // property int currentValue: { Math.min(num.currentValue, max)}
         property int currentValue
         maximumLength: 2
         readOnly: true
-        Layout.preferredWidth: units.gu(5)
     }
+
     Button {
         iconName: "add"
+        Layout.maximumWidth: height
         enabled: num.text < max
         onClicked: { num.currentValue++ }
-        Layout.maximumWidth: height
     }
 }

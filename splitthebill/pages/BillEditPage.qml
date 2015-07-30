@@ -185,10 +185,7 @@ Page {
                 //iconName: "add"
                 text: "Archive"
                 color: UbuntuColors.green
-                onClicked: {
-                    //console.log(JSON.stringify(billsHandler.current.tojson()));
-                    billsHandler.saveCurrent();
-                }
+                onClicked: { billsHandler.saveCurrent(); }
                 anchors.right: parent.right
             }
         }

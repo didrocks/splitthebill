@@ -2,7 +2,6 @@ import QtQuick 2.0
 import Ubuntu.Components 1.2
 
 ListItem {
-
     property QtObject billsHandler
 
     // bound to compute the current values summary via direct binding
@@ -25,6 +24,7 @@ ListItem {
             }
         ]
     }
+
     trailingActions: ListItemActions {
         actions: [
             Action {
@@ -33,13 +33,10 @@ ListItem {
         ]
     }
 
-    Button {
-        text: bill.title
-    }
+    Button { text: bill.title }
 
     onClicked: {
         billsHandler.current.loadFromJson(bill);
         mainview.editCurrentBill();
     }
-
 }
