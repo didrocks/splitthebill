@@ -50,15 +50,6 @@ Item {
         var result = db.putDoc(current.toJson(), current.billId);
     }
 
-    function deleteCurrent() {
-        if (!current.billId) {
-            // TODO: show error in a toast
-            console.log("Error, not saved yet");
-            return;
-        }
-        current.delete(current.billID);
-    }
-
     function deleteBill(docId) {
         db.deleteDoc(docId);
 

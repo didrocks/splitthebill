@@ -11,6 +11,26 @@ Page {
     id: page
     property QtObject billsHandler
 
+    property bool _isEditMode: billsHandler.current.billId
+
+    head.backAction: Action {
+        iconName: "close"
+        onTriggered: { page.pageStack.pop(); }
+    }
+
+    head.actions: [
+        // COMMENT: no reset/delete here, (too close from ok -> destructive action)
+        Action {
+            iconName: "share"
+            onTriggered: { /* TODO */ }
+        },
+        Action {
+            iconName: "ok"
+            enabled: billsHandler.current.title !== ""
+            onTriggered: { billsHandler.saveCurrent(); page.pageStack.pop() }
+        }
+    ]
+
     Column {
         id: mainColumn
 
@@ -168,25 +188,24 @@ Page {
             tipValue: billsHandler.current.shareTip
         }
 
-        Item {
-            height: childrenRect.height
+        ThinDivider {}
+
+        Button {
+            text: "Reset"
             anchors { left: parent.left; right: parent.right }
+            visible: !_isEditMode
+            color: UbuntuColors.red
+            onClicked: billsHandler.current.reset()
+        }
 
-            Button {
-                text: "Reset"
-                color: UbuntuColors.red
-                onClicked: billsHandler.current.reset()
-                /* enable to show anchors */
-                anchors.left: parent.left
-            }
-
-            Button {
-                // Bug https://launchpad.net/bugs/1478839: adding the iconName expands way more than just the icon size
-                //iconName: "add"
-                text: "Archive"
-                color: UbuntuColors.green
-                onClicked: { billsHandler.saveCurrent(); }
-                anchors.right: parent.right
+        Button {
+            text: "Delete"
+            anchors { left: parent.left; right: parent.right }
+            visible: _isEditMode
+            color: UbuntuColors.red
+            onClicked: {
+                billsHandler.deleteBill(billsHandler.current.billId);
+                page.pageStack.pop();
             }
         }
     }
