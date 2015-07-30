@@ -29,14 +29,17 @@ ListItem {
         actions: [
             Action {
                 iconName: "share"
+            },
+            Action {
+                iconName: "edit"
+                onTriggered: {
+                    billsHandler.current.loadFromJson(bill);
+                    mainview.editCurrentBill();
+                }
             }
         ]
     }
 
-    Button { text: bill.title }
+    Label { text: bill.title }
 
-    onClicked: {
-        billsHandler.current.loadFromJson(bill);
-        mainview.editCurrentBill();
-    }
 }
