@@ -55,41 +55,26 @@ MainView {
     width: units.gu(40)
     height: units.gu(75)
 
+    BillsListPage {
+        id: billsPage
+        billsHandler: billsHandler
+    }
 
-    Page {
-        id: page
-        title: "Split the bill"
-        StateSaver.properties: "currentPage"
 
-        // an alias is another way of doing 2 way databindings
-        property alias currentPage: sections.selectedIndex
+    PageStack {
+        id: mainStack
 
-        head {
-            sections {
-                id: sections
-                model: ["All", "Details"]
-                selectedIndex: 1
-            }
+        function editCurrentBill() {
+            billsPage.showBottomEdgePage();
         }
+    }
 
-        Bills {
-            id: billsHandler
-        }
+    Bills {
+        id: billsHandler
+    }
 
-        BillsListPage {
-            id: billsPage
-            billsHandler: billsHandler
-            visible: page.currentPage === 0
-        }
-        DetailsPage {
-            id: detailspage
-            visible: page.currentPage === 1
-        }
-
-        function toogleDetails() {
-            page.currentPage = 1;
-        }
-
+    Component.onCompleted: {
+        mainStack.push(billsPage);
     }
 }
 
