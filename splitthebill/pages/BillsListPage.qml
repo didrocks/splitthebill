@@ -60,7 +60,7 @@ PageWithBottomEdge {
     bottomEdgeTitle: "Add new"
     bottomEdgePageComponent: BillEditPage {
         id: billEditPage
-        title: "New/Edit bill"
+        title: billsHandler.current.billId ? "Edit bill" : "New bill"
         billsHandler: billsList.billsHandler
     }
 }
