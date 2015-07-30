@@ -54,6 +54,7 @@ QtObject {
     }
 
     function reset() {
+        // this disable autosave first
         billId = "";
         title = "";
         date = new Date();
