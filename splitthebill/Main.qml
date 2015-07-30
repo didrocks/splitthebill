@@ -63,6 +63,10 @@ MainView {
     width: units.gu(40)
     height: units.gu(75)
 
+    function editCurrentBill() {
+        billsPage.showBottomEdgePage();
+    }
+
     BillsListPage {
         id: billsPage
         billsHandler: billsHandler
@@ -76,10 +80,6 @@ MainView {
         onCurrentPageChanged: {
             if (currentPage === billsPage.bottomEdgePage)
                 billsPage.bottomEdgePage.y = billsPage.header.height
-        }
-
-        function editCurrentBill() {
-            billsPage.showBottomEdgePage();
         }
     }
 

@@ -38,20 +38,8 @@ ListItem {
     }
 
     onClicked: {
-        var currentBill = billsHandler.current;
-        // disable autosave
-        currentBill.billId = "";
-        // assign all properties from this element
-        currentBill.title = bill.title;
-        currentBill.date = bill.date;
-        currentBill.rawBill = bill.rawBill;
-        currentBill.tipShare = bill.tipShare;
-        currentBill.numTotalPeople = bill.numTotalPeople;
-        currentBill.numSharePeople = bill.numSharePeople;
-        // reenable ready for saving
-        currentBill.billId = bill.billId;
-
-        page.toogleDetails();
+        billsHandler.current.loadFromJson(bill);
+        mainview.editCurrentBill();
     }
 
 }

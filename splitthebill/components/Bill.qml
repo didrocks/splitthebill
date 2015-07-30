@@ -26,6 +26,22 @@ QtObject {
     readonly property double shareTip: _sharePercent * totalTip
     readonly property double shareBill: _sharePercent * totalBill
 
+    /* load from json or dictionary compatible objects */
+    // this show that qml property can be accessed with object["name"] or object.name
+    function loadFromJson(billJson) {
+        /* disable any autosave if object is recycled */
+        billId = "";
+        // assign all properties from this element
+        title = billJson["title"];
+        date = billJson["date"];
+        rawBill = billJson["rawBill"];
+        tipShare = billJson["tipShare"];
+        numTotalPeople = billJson["numTotalPeople"];
+        numSharePeople = billJson["numSharePeople"];
+        // set billId (which reenable autosaving on modification)
+        billId = billJson["billId"];
+    }
+
     function tojson() {
         return {
             'title': title,
