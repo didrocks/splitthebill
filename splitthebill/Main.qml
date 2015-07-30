@@ -79,8 +79,17 @@ MainView {
         id: billsHandler
     }
 
+    Timer {
+        id: newBillTimer
+        interval: 1000 // let 1000ms by default after page pushed
+        onTriggered: billsPage.showBottomEdgePage()
+    }
+
     Component.onCompleted: {
         mainStack.push(billsPage);
+        // If there is no document on start, show in new Bill page
+        if (billsHandler.all.documents.len === 0)
+            newBillTimer.running = true;
     }
 }
 
