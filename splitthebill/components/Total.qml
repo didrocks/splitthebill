@@ -54,7 +54,6 @@ Item {
             }
             Text {
                 id: mainText
-                Layout.preferredWidth: parent.width - labelPrefix.width
                 text: Tools.displayNum(mainValue) + " $"
                 horizontalAlignment: Text.AlignHCenter
                 elide: Text.ElideRight
