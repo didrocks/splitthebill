@@ -15,6 +15,9 @@ PageWithBottomEdge {
     // don't show elements under the header
     clip: true
 
+    // reset current bottom edge Bill on released
+    onBottomEdgeDismissed: { billsHandler.current.reset(); }
+
     UbuntuListView {
 
         height: parent.height
