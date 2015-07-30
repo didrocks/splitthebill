@@ -16,6 +16,8 @@ ListItem {
         numSharePeople: contents.numSharePeople
     }
 
+    // the design constraints are allowing a maximum of 1 action on leading- and a maximum of
+    // 3 actions on trailing side of the ListItem.
     leadingActions: ListItemActions {
         actions: [
             Action {

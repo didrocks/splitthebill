@@ -46,7 +46,7 @@ Item {
         // create a new docID if not saved already
         if (!current.billId)
             current.billId = Date.now();
-        // TODO: handle error
+        // TODO: show error in toast
         var result = db.putDoc(current.toJson(), current.billId);
     }
 

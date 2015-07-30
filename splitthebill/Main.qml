@@ -79,6 +79,8 @@ MainView {
             if (currentPage === billsPage.bottomEdgePage)
                 billsPage.bottomEdgePage.y = billsPage.header.height
         }
+
+        // TODO: save current page view
     }
 
     Bills {
