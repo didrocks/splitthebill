@@ -6,13 +6,13 @@ ListItem {
     // bound to compute the current values summary via direct binding
     Bill {
         id: bill
-        billId: docId
-        title: contents.title
-        date: contents.date
-        rawBill: contents.rawBill
-        tipShare: contents.tipShare
-        numTotalPeople: contents.numTotalPeople
-        numSharePeople: contents.numSharePeople
+        billId: model.billId
+        title: model.title
+        date: model.date
+        rawBill: model.rawBill
+        tipShare: model.tipShare
+        numTotalPeople: model.numTotalPeople
+        numSharePeople: model.numSharePeople
     }
 
     Label { text: bill.title }

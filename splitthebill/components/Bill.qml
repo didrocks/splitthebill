@@ -39,6 +39,7 @@ QtObject {
 
     function toJson() {
         return {
+            'billId': billId,
             'title': title,
             'date': date,
             'rawBill': rawBill,

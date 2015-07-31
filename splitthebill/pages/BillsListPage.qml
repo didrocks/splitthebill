@@ -20,7 +20,7 @@ PageWithBottomEdge {
 
     /* change current page */
     function editBill(index) {
-        billsHandler.current.loadFromJson(Tools.u1dbElemToBillJson(currentmodel.get(index)));
+        billsHandler.current.loadFromJson(currentmodel.get(index));
         mainview.editCurrentBill();
     }
 
@@ -31,7 +31,7 @@ PageWithBottomEdge {
         actions: [
             Action {
                 iconName: "delete"
-                onTriggered: billsHandler.deleteBill(currentmodel.get(value)['docId'])
+                onTriggered: billsHandler.deleteBill(currentmodel.get(value)['billId'])
             }
         ]
     }
