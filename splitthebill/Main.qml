@@ -96,7 +96,7 @@ MainView {
     Component.onCompleted: {
         mainStack.push(billsPage);
         // If there is no document on start, show in new Bill page
-        if (billsHandler.all.documents.len === 0)
+        if (billsHandler.all.results.length === 0)
             newBillTimer.running = true;
     }
 }
