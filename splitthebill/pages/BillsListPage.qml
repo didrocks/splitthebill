@@ -3,6 +3,7 @@ import QtQuick.Layouts 1.1
 import Ubuntu.Components 1.2
 
 import "../components"
+import "../tools.js" as Tools
 
 PageWithBottomEdge {
     id: billsList
@@ -17,7 +18,44 @@ PageWithBottomEdge {
     // don't show elements under the header
     clip: true
 
+    /* change current page */
+    function editBill(index) {
+        billsHandler.current.loadFromJson(Tools.u1dbElemToBillJson(currentmodel.get(index)));
+        mainview.editCurrentBill();
+    }
+
+    // the design constraints are allowing a maximum of 1 action on leading- and a maximum of
+    // 3 actions on trailing side of the ListItem.
+    ListItemActions {
+        id: leading
+        actions: [
+            Action {
+                iconName: "delete"
+                onTriggered: billsHandler.deleteBill(currentmodel.get(value)['docId'])
+            }
+        ]
+    }
+
+    ListItemActions {
+        id: trailing
+        actions: [
+            Action {
+                iconName: "share"
+            },
+            Action {
+                iconName: "edit"
+                onTriggered: editBill(value)
+            }
+        ]
+    }
+
+    SortFilterModel {
+        id: currentmodel
+        model: billsHandler.all
+    }
+
     UbuntuListView {
+        id: listview
         height: parent.height
         anchors {
             leftMargin: units.gu(2)
@@ -26,9 +64,10 @@ PageWithBottomEdge {
             right: parent.right
         }
 
-        model: billsHandler.all
+        model: currentmodel
         delegate: BillListItem {
-            billsHandler: billsList.billsHandler
+            leadingActions: leading
+            trailingActions: trailing
         }
     }
 

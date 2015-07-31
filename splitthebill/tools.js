@@ -9,3 +9,12 @@ function displayNum(number) {
     number = number.toFixed(2).toString();
     return number.replace(".", Qt.locale().decimalPoint);
 }
+
+/*
+ * return a Bill Json element from an u1db query result
+ */
+function u1dbElemToBillJson(u1dbElem) {
+    var jsonElem = u1dbElem.contents;
+    jsonElem['billId'] = u1dbElem.docId;
+    return jsonElem;
+}
