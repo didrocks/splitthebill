@@ -49,11 +49,21 @@ PageWithBottomEdge {
         ]
     }
 
+    /*
+     * we only filter on the name element as u1db nor filtermodel enable to filter on multiple elements with "or".
+     * Future tuts on C++ to filter this model?
+     * TODO: open a bug on this
+     */
     SortFilterModel {
         id: currentmodel
         model: billsHandler.billsResults
         sort.property: "billId"
         sort.order: Qt.DescendingOrder
+        // TODO: bug to open: doesn't filter on subproperty like contents.title
+        // this seems ot be linked to https://code.launchpad.net/~kalikiana/u1db-qt/indexRoles/+merge/211771
+        //filter.property: 'contents.title'
+        //filter.pattern: /BAR/
+        //-> Using ListModel and Repeater meanwhile
     }
 
     UbuntuListView {

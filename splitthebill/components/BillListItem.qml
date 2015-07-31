@@ -19,5 +19,4 @@ ListItem {
 
     onClicked: console.log("foo")
     onPressAndHold: billsList.editBill(index);
-
 }
