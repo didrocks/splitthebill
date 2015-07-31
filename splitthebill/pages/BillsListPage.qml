@@ -52,6 +52,8 @@ PageWithBottomEdge {
     SortFilterModel {
         id: currentmodel
         model: billsHandler.all
+        sort.property: "docId"
+        sort.order: Qt.DescendingOrder
     }
 
     UbuntuListView {
