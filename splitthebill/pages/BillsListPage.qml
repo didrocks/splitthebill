@@ -51,8 +51,8 @@ PageWithBottomEdge {
 
     SortFilterModel {
         id: currentmodel
-        model: billsHandler.all
-        sort.property: "docId"
+        model: billsHandler.billsResults
+        sort.property: "billId"
         sort.order: Qt.DescendingOrder
     }
 

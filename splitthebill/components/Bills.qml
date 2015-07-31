@@ -3,8 +3,14 @@ import U1db 1.0 as U1db
 import Ubuntu.Components 1.2
 
 Item {
+    id: handler
+
     property alias current: current
     property alias all: all
+    property alias billsResults: billsResults
+    property string query: ""
+
+    onQueryChanged: billsResults.refresh()
 
     Bill {
         id: current
@@ -23,24 +29,57 @@ Item {
         path: "bills.u1db"
     }
 
-    U1db.Index
-    {
+    U1db.Index {
         database: db
         id: allIndex
         /* You have to specify in the index all fields you want to retrieve
            The query should return the whole document, not just indexed fields
            https://bugs.launchpad.net/u1db-qt/+bug/1271973 */
-        expression: ["title", "date", "rawBill", "tipShare", "numTotalPeople", "numSharePeople"]
+        expression: ["billId", "title", "date", "rawBill", "tipShare", "numTotalPeople", "numSharePeople"]
     }
 
     /*
      * Use a query instead of getDocs() or directly use the db of model as deleted docs would still be listed otherwise.
      * See bug https://bugs.launchpad.net/u1db-qt/+bug/1219862
      */
-    U1db.Query
-    {
+    U1db.Query {
         id: all
         index: allIndex
+        onResultsChanged: billsResults.refresh()
+    }
+
+    /*
+     * Create a new model with filter capability as
+     * This is not optimized, but it's a QML workaround for now as Query can't match multiple "or" elements or
+     * search with *foo (only foo* is supported) and FilterSortItem doesn't support filter.property = "contents.title"
+     * on a subelement
+     */
+    ListModel {
+        id: billsResults
+
+        function refresh() {
+            billsResults.clear();
+            // docID isn't part of results(), that's why we added billId.
+            for (var index in all.results) {
+                // if there is a query, search on all fields to decide or not to include the elem
+                var currentElem = all.results[index];
+                if (handler.query) {
+                    var include = false;
+                    var regex = new RegExp(handler.query, 'i')
+                    for (var prop in all.results[index]) {
+                        if (prop === "BillId")
+                            continue;
+                        if (currentElem[prop].toString().match(regex)) {
+                            include = true;
+                            break;
+                        }
+                    }
+                    if(!include)
+                        continue;
+                }
+                billsResults.append(currentElem);
+            }
+        }
     }
 
     function saveCurrent() {
