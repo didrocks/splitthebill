@@ -129,7 +129,29 @@ PageWithBottomEdge {
             leadingActions: leading
             trailingActions: trailing
         }
+
+        section.property: "monthSection"
+        section.criteria: ViewSection.FullString
+        section.delegate: sectionHeading
     }
+
+    Component {
+        id: sectionHeading
+        Rectangle {
+            anchors.left: parent.left
+            anchors.right: parent.right
+            height: childrenRect.height
+            color: UbuntuColors.warmGrey
+            Label {
+                anchors.right: parent.right
+                text: section
+                font.bold: true
+                color: "black"
+                fontSize: "large"
+            }
+        }
+    }
+
 
     Item {
         anchors.fill: parent

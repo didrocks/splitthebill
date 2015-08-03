@@ -78,6 +78,11 @@ Item {
                     if(!include)
                         continue;
                 }
+                // add as well helpers for section:
+                var elemDate = new Date(currentElem.date);
+                currentElem['monthSection'] = elemDate.toLocaleString(Qt.locale(),  "MMMM yyyy");
+                currentElem['yearSection'] = elemDate.getFullYear();
+
                 billsResults.append(currentElem);
             }
         }
