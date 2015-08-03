@@ -25,6 +25,7 @@ import "pages"
   - action bar (for save and reset?) instead of button <- TODO
   - search view and full view
   - add styling like the TextField
+  - when working on listView: add format.arg() concept + changing height + animation on changing height
   - responsive design, portrait mode
   - add currency converter (+ fetching from the web)
   - what happen if the app is or become offline or server doesn't respond?
