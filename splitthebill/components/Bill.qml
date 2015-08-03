@@ -25,6 +25,7 @@ QtObject {
     readonly property double _sharePercent: numSharePeople / numTotalPeople
     readonly property double shareTip: _sharePercent * totalTip
     readonly property double shareBill: _sharePercent * totalBill
+    readonly property string formattedDate: date.toLocaleDateString() + " - " + date.toLocaleTimeString()
 
     /* load from json or dictionary compatible objects */
     // this show that qml property can be accessed with object["name"] or object.name

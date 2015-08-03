@@ -78,7 +78,7 @@ Page {
         /* TODO: add the date only on the archive segment (but before localization) */
         Label {
             id: dateTime
-            text: billsHandler.current.date.toLocaleDateString() + " - " + billsHandler.current.date.toLocaleTimeString()
+            text: billsHandler.current.formattedDate
             font.pixelSize: units.gu(1.5)
         }
 
