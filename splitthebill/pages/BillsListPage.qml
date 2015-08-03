@@ -24,6 +24,54 @@ PageWithBottomEdge {
         showBottomEdgePage();
     }
 
+    state: "default"
+    states: [
+        PageHeadState {
+            name: "default"
+            head: billsListPage.head
+            actions: [
+                Action {
+                    text: "Search"
+                    iconName: "search"
+                    visible: !billsHandler.isEmpty
+                    onTriggered: {
+                        billsListPage.state = "search";
+                        textsearch.forceActiveFocus();
+                    }
+                },
+                Action {
+                    text: i18n.tr("Settings")
+                    iconName: "settings"
+                    onTriggered: console.log("settings page")
+                }
+            ]
+        },
+        PageHeadState {
+            name: "search"
+            head: billsListPage.head
+            backAction: Action {
+                text: "Cancel"
+                iconName: "back"
+                onTriggered: {
+                    textsearch.text = "";
+                    billsListPage.state = "default";
+                    listview.forceActiveFocus();
+                }
+            }
+            contents: TextField {
+                id: textsearch
+                anchors {
+                    left: parent ? parent.left : undefined
+                    right: parent ? parent.right: undefined
+                    rightMargin: units.gu(2)
+                }
+                inputMethodHints: Qt.ImhNoPredictiveText
+                placeholderText: "Search…"
+                onTextChanged: billsHandler.query = Tools.normalizeNum(text)
+            }
+        }
+    ]
+
     // the design constraints are allowing a maximum of 1 action on leading- and a maximum of
     // 3 actions on trailing side of the ListItem.
     ListItemActions {
