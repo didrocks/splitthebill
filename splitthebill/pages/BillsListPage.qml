@@ -13,7 +13,7 @@ PageWithBottomEdge {
     reloadBottomEdgePage: false
 
     // reset current bottom edge Bill on released
-    onBottomEdgeDismissed: { billsHandler.current.reset(); }
+    onBottomEdgeDismissed: billsHandler.current.reset()
 
     // don't show elements under the header
     clip: true
@@ -88,7 +88,6 @@ PageWithBottomEdge {
         visible: billsHandler.isEmpty
 
         Icon {
-            id: emptyStateIcon
             anchors.fill: parent
             anchors.horizontalCenter: emptyStateLabel.horizontalCenter
             opacity: 0.3
