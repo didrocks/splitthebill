@@ -8,6 +8,7 @@ Item {
     property alias current: current
     property alias all: all
     property alias billsResults: billsResults
+    readonly property bool isEmpty: (all.results.length === 0)
     property string query: ""
 
     onQueryChanged: billsResults.refresh()

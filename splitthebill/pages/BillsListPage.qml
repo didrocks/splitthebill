@@ -85,7 +85,7 @@ PageWithBottomEdge {
 
     Item {
         anchors.fill: parent
-        visible: billsHandler.all.results.length === 0
+        visible: billsHandler.isEmpty
 
         Icon {
             id: emptyStateIcon
