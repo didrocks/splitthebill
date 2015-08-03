@@ -9,7 +9,7 @@ ListItem {
     Behavior on height {
         SmoothedAnimation {
             duration: UbuntuAnimation.FastDuration
-            easing.type: Easing.OutBounce
+            easing: UbuntuAnimation.StandardEasing
         }
     }
 
