@@ -23,7 +23,7 @@ import "pages"
   - Page view with PageWithBottomEdge… copy. Then fix the warning and versions
   - Then, talking about community components.
   - action bar (for save and reset?) instead of button <- TODO
-  - search view and full view
+  - search view and full view (introducing states)
   - add styling like the TextField
   - when working on listView: add format.arg() concept + changing height + animation on changing height
   - responsive design, portrait mode
