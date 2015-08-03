@@ -63,10 +63,6 @@ MainView {
     width: units.gu(40)
     height: units.gu(75)
 
-    function editCurrentBill() {
-        billsPage.showBottomEdgePage();
-    }
-
     BillsListPage {
         id: billsPage
         billsHandler: billsHandler

@@ -21,7 +21,7 @@ PageWithBottomEdge {
     /* change current page */
     function editBill(index) {
         billsHandler.current.loadFromJson(currentmodel.get(index));
-        mainview.editCurrentBill();
+        showBottomEdgePage();
     }
 
     // the design constraints are allowing a maximum of 1 action on leading- and a maximum of
