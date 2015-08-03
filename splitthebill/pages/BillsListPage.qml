@@ -6,7 +6,7 @@ import "../components"
 import "../tools.js" as Tools
 
 PageWithBottomEdge {
-    id: billsList
+    id: billsListPage
     property QtObject billsHandler
 
     title: "Split the bill"
@@ -112,6 +112,6 @@ PageWithBottomEdge {
     bottomEdgePageComponent: BillEditPage {
         id: billEditPage
         title: billsHandler.current.billId ? "Edit bill" : "New bill"
-        billsHandler: billsList.billsHandler
+        billsHandler: billsListPage.billsHandler
     }
 }

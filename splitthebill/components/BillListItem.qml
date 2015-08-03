@@ -18,5 +18,5 @@ ListItem {
     Label { text: bill.title }
 
     onClicked: console.log("foo")
-    onPressAndHold: billsList.editBill(index);
+    onPressAndHold: billsListPage.editBill(index);
 }
