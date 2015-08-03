@@ -13,6 +13,14 @@ Page {
 
     property bool _isEditMode: billsHandler.current.billId
 
+    function activate() {
+        // focus the name if in edit mode, otherwise, focus the price (not sure someone wants to edit a name)
+        if (_isEditMode)
+            billName.forceActiveFocus();
+        else
+            billPrice.forceActiveFocus();
+    }
+
     head.backAction: Action {
         iconName: "close"
         onTriggered: { page.pageStack.pop(); }
@@ -95,8 +103,8 @@ Page {
                 validator: DoubleValidator {}
                 maximumLength: 7
                 inputMethodHints: Qt.ImhFormattedNumbersOnly
-                //focus: true -> doesn't work?
-                Component.onCompleted: billPrice.forceActiveFocus()
+                // replace after a while with activate() when polishing
+                //Component.onCompleted: billPrice.forceActiveFocus()
                 // show first the expanded binding syntax, then the reduced one
                 Binding on text { value: billsHandler.current.rawBill }
                 Binding {

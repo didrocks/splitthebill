@@ -43,6 +43,7 @@ import "pages"
   - animations for expanding listitem content
   - default property?
   - error handling (with popup or small noitification window)
+  - general polish (focus and so on)
 */
 
 
@@ -73,8 +74,10 @@ MainView {
         // HACK for bug where bottomEdgePage is going over the top
         // TODO: open a bug on this
         onCurrentPageChanged: {
-            if (currentPage === billsPage.bottomEdgePage)
+            if (currentPage === billsPage.bottomEdgePage) {
                 billsPage.bottomEdgePage.y = billsPage.header.height
+                billsPage.bottomEdgePage.activate();
+            }
         }
 
         // TODO: save current page view
