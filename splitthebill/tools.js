@@ -9,3 +9,8 @@ function displayNum(number) {
     number = number.toFixed(2).toString();
     return number.replace(".", Qt.locale().decimalPoint);
 }
+
+/* replace optional "," with "." unconditionnally */
+function normalizeNum(input) {
+    return input.replace(',', '.')
+}

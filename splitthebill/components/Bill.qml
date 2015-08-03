@@ -1,5 +1,7 @@
 import QtQuick 2.4
 
+import "../tools.js" as Tools
+
 QtObject {
     property string billId
     property string title
@@ -10,7 +12,7 @@ QtObject {
     property int numSharePeople
 
     readonly property double bill: {
-        var value = parseFloat(rawBill.replace(',', '.'));
+        var value = parseFloat(Tools.normalizeNum(rawBill));
         /* check if value is NaN, as QMl doesn't support emacsript 6.
            A Nan number isn't equals to itself.
            More info at http://adripofjavascript.com/blog/drips/the-problem-with-testing-for-nan-in-javascript.html */
