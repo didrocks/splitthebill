@@ -9,7 +9,7 @@ PageWithBottomEdge {
     id: billsListPage
     property QtObject billsHandler
 
-    title: "Split the bill"
+    title: i18n.tr("Split the bill")
     reloadBottomEdgePage: false
 
     // reset current bottom edge Bill on released
@@ -31,7 +31,7 @@ PageWithBottomEdge {
             head: billsListPage.head
             actions: [
                 Action {
-                    text: "Search"
+                    text: i18n.tr("Search")
                     iconName: "search"
                     visible: !billsHandler.isEmpty
                     onTriggered: {
@@ -50,7 +50,7 @@ PageWithBottomEdge {
             name: "search"
             head: billsListPage.head
             backAction: Action {
-                text: "Cancel"
+                text: i18n.tr("Cancel")
                 iconName: "back"
                 onTriggered: {
                     textsearch.text = "";
@@ -66,7 +66,7 @@ PageWithBottomEdge {
                     rightMargin: units.gu(2)
                 }
                 inputMethodHints: Qt.ImhNoPredictiveText
-                placeholderText: "Search…"
+                placeholderText: i18n.tr("Search…")
                 onTextChanged: billsHandler.query = Tools.normalizeNum(text)
             }
         }
@@ -176,7 +176,9 @@ PageWithBottomEdge {
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
 
-            text: "No bills have been archived"
+            /* COMMENT: present translators comment in i18n */
+            // TRANSLATORS: Presented when no bills were saved
+            text: i18n.tr("No bills have been archived")
             color: "#5d5d5d"
             fontSize: "x-large"
             wrapMode: Text.WordWrap
@@ -186,7 +188,7 @@ PageWithBottomEdge {
     bottomEdgeTitle: "Add new"
     bottomEdgePageComponent: BillEditPage {
         id: billEditPage
-        title: billsHandler.current.billId ? "Edit bill" : "New bill"
+        title: billsHandler.current.billId ? i18n.tr("Edit bill") : i18n.tr("New bill")
         billsHandler: billsListPage.billsHandler
     }
 }

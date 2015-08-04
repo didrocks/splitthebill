@@ -32,7 +32,7 @@ import "pages"
   - what happen if the app is or become offline or server doesn't respond?
   - share (email/twitter) (loader with like contenthubloader in address-book-app)
   - importing bills
-  - add i18n
+  - add i18n (show currency, build pot, po and mo files). Also switch order: xxx € for $xxx for instance
   - changing theme
   - save and archive: add Top (textinput + date) and notes at the bottom to be saved
   - add page stacks and bottom edge

@@ -54,7 +54,8 @@ Item {
             Text {
                 id: mainText
                 horizontalAlignment: Text.AlignHCenter
-                text: Tools.displayNum(mainValue) + " $"
+                // COMMENT: note that we don't use toLocaleCurrencyString here as we transform the number to a fix 2 digits
+                text: Tools.displayNum(mainValue, true)
                 elide: Text.ElideRight
             }
         }
@@ -63,7 +64,8 @@ Item {
             Layout.preferredWidth: parent.width / 2
             Layout.maximumWidth: parent.width / 2
             horizontalAlignment: Text.AlignHCenter
-            text: "(incl. tip: " + Tools.displayNum(tipValue) + " $)"
+            // TRANSLATORS: %1 is paid tip in locale currency
+            text: i18n.tr("(incl. tip: %1)").arg(Tools.displayNum(tipValue, true))
             elide: Text.ElideRight
         }
     }

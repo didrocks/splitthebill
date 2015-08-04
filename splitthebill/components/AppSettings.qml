@@ -16,9 +16,12 @@ Item {
     }
     QtObject {
       id: separationTypeName
-      property string month: "Month"
-      property string year: "Year"
-      property string none: "None"
+      // TRANSLATORS: separation bills string
+      property string month: i18n.tr("Month")
+      // TRANSLATORS: separation bills string
+      property string year: i18n.tr("Year")
+      // TRANSLATORS: separation bills string
+      property string none: i18n.tr("None")
     }
 
     Settings {

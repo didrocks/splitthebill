@@ -57,7 +57,7 @@ Page {
             // use anchors instead of width: parent.width (more performant as don't go to through the binding system)
             anchors { left: parent.left; right: parent.right }
             text: billsHandler.current.title
-            placeholderText: "New bill split"
+            placeholderText: i18n.tr("New bill split")
             font.pixelSize: units.gu(3)
             // FIXME: use new styling rules (and don't import old)
             style: TextFieldStyle {
@@ -89,8 +89,15 @@ Page {
             spacing: units.gu(1)
             anchors.horizontalCenter: parent.horizontalCenter
 
+            // COMMENT: RTL isn't respected, this is left as an exercise for the reader :)
             Label {
-                text: "Bill:"
+                text: i18n.tr("Bill:")
+                height: parent.height
+                verticalAlignment: Text.AlignVCenter
+            }
+            Label {
+                // COMMENT: i18n is not only about translations! It's currency as well.
+                text: Qt.locale().currencySymbol()
                 height: parent.height
                 verticalAlignment: Text.AlignVCenter
             }
@@ -115,17 +122,12 @@ Page {
                 }
                 StateSaver.properties: "text"
             }
-            Label {
-                text: "$"
-                height: parent.height
-                verticalAlignment: Text.AlignVCenter
-            }
         }
 
         AddRemoveInt {
             id: numPeople
             anchors { left: parent.left; right: parent.right }
-            text: "Number of people:"
+            text: i18n.tr("Number of people:")
             min: 1
             // factorize the databinding inside the factorized object
             modelid: billsHandler.current
@@ -136,7 +138,7 @@ Page {
         AddRemoveInt {
             id: numPeoplePay
             anchors { left: parent.left; right: parent.right }
-            text: "You pay for:"
+            text: i18n.tr("You pay for:")
             min: 1
             max: numPeople.currentValue
             modelid: billsHandler.current
@@ -150,7 +152,7 @@ Page {
             anchors { left: parent.left; right: parent.right }
             Label {
                 id: labelSlider
-                text: "Tip"
+                text: i18n.tr("Tip")
                 verticalAlignment: Text.AlignVCenter
             }
             Slider {
@@ -173,7 +175,8 @@ Page {
             }
             Label {
                 id: labelValueSlider
-                text: tipSlider.value.toFixed() + "%"
+                // TRANSLATORS: tip share in %
+                text: i18n.tr("%1%").arg(tipSlider.value.toFixed())
                 verticalAlignment: Text.AlignVCenter
                 font.weight: Font.Light
             }
@@ -183,7 +186,7 @@ Page {
 
         Total {
             anchors { left: parent.left; right: parent.right }
-            label: "Total:"
+            label: i18n.tr("Total:")
             mainValue: billsHandler.current.totalBill
             tipValue: billsHandler.current.totalTip
         }
@@ -191,7 +194,7 @@ Page {
         Total {
             anchors { left: parent.left; right: parent.right }
             hilight: true
-            label: "You pay:"
+            label: i18n.tr("You pay:")
             mainValue: billsHandler.current.shareBill
             tipValue: billsHandler.current.shareTip
         }
@@ -199,7 +202,7 @@ Page {
         ThinDivider {}
 
         Button {
-            text: "Reset"
+            text: i18n.tr("Reset")
             anchors { left: parent.left; right: parent.right }
             visible: !_isEditMode
             color: UbuntuColors.red
@@ -207,7 +210,7 @@ Page {
         }
 
         Button {
-            text: "Delete"
+            text: i18n.tr("Delete")
             anchors { left: parent.left; right: parent.right }
             visible: _isEditMode
             color: UbuntuColors.red

@@ -39,7 +39,7 @@ Page {
             // TO ASK: why?
             OptionSelector {
                 id: separatorSelector
-                text: "Separation:"
+                text: i18n.tr("Divide on:")
                 model: [AppSettings.sSEPARATIONTYPENAME.month, AppSettings.sSEPARATIONTYPENAME.year,
                         AppSettings.sSEPARATIONTYPENAME.none]
                 Binding on selectedIndex { value: AppSettings.billSeparationType }

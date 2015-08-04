@@ -5,9 +5,11 @@
 /*
  * Display number with 2 digits
  */
-function displayNum(number) {
-    number = number.toFixed(2).toString();
-    return number.replace(".", Qt.locale().decimalPoint);
+function displayNum(number, currency) {
+    number = parseFloat(number.toFixed(2));
+    if (currency)
+        number = number.toLocaleCurrencyString(Qt.locale());
+    return number.toString().replace(".", Qt.locale().decimalPoint);
 }
 
 /* replace optional "," with "." unconditionnally */

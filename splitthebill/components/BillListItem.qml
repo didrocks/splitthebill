@@ -47,13 +47,9 @@ ListItem {
                 fontSize: "small"
             }
             Label {
-                text: bill.shareBill
+                text: bill.shareBill.toLocaleCurrencyString(Qt.locale())
                 fontSize: "small"
                 color: UbuntuColors.lightAubergine
-            }
-            Label {
-                text: "$"
-                fontSize: "small"
             }
         }
 
@@ -75,12 +71,15 @@ ListItem {
         Label {
             // mandatory for wordWrap (setting a width)
             anchors { left: parent.left; right: parent.right }
-            text: "You paid for %1 out of %2 persons.".arg(bill.numSharePeople).arg(bill.numTotalPeople)
+            // COMMENT: here is how to handle plural form
+            text: i18n.tr("You paid for %1 out of %2 person.", "You paid for %1 out of %2 persons.",
+                          bill.numTotalPeople).arg(bill.numSharePeople).arg(bill.numTotalPeople)
             wrapMode: Text.WordWrap
         }
         Label {
             anchors { left: parent.left; right: parent.right }
-            text: "Total price was: %1 $, with %2% tip.".arg(bill.totalBill).arg(bill.tipShare)
+            text: i18n.tr("Total price was: %1, with %2% tip.").arg(bill.totalBill.toLocaleCurrencyString(Qt.locale()))
+                                                               .arg(bill.tipShare)
             wrapMode: Text.WordWrap
         }
     }
