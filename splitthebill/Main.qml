@@ -25,6 +25,7 @@ import "pages"
   - action bar (for save and reset?) instead of button <- TODO
   - search view and full view (introducing states)
   - add styling like the TextField
+  - Settings page, store backend settings, singleton and enums
   - when working on listView: add format.arg() concept + changing height + animation on changing height
   - responsive design, portrait mode
   - add currency converter (+ fetching from the web)

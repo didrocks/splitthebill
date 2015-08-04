@@ -42,7 +42,7 @@ PageWithBottomEdge {
                 Action {
                     text: i18n.tr("Settings")
                     iconName: "settings"
-                    onTriggered: console.log("settings page")
+                    onTriggered: mainStack.push(Qt.createComponent("SettingsPage.qml"))
                 }
             ]
         },
@@ -130,7 +130,13 @@ PageWithBottomEdge {
             trailingActions: trailing
         }
 
-        section.property: "monthSection"
+        section.property: {
+            if (AppSettings.billSeparationType === AppSettings.sSEPARATIONTYPE.month)
+                return "monthSection";
+            else if (AppSettings.billSeparationType === AppSettings.sSEPARATIONTYPE.year)
+                return "yearSection";
+            return ""
+        }
         section.criteria: ViewSection.FullString
         section.delegate: sectionHeading
     }

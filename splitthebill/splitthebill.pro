@@ -20,7 +20,9 @@ OTHER_FILES += $${CONF_FILES} \
     tools.js \
     pages/BillsListPage.qml \
     components/PageWithBottomEdge.qml \
-    pages/BillEditPage.qml
+    pages/BillEditPage.qml \
+    pages/SettingsPage.qml \
+    components/AppSettings.qml
 
 #specify where the qml/js files are installed to
 qml_files.path = /splitthebill
