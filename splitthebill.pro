@@ -21,8 +21,8 @@ UBUNTU_TRANSLATION_DOMAIN="splitthebill.didrocks"
 # template is created in po/template.pot, to create a
 # translation copy the template to e.g. de.po and edit the sources
 UBUNTU_TRANSLATION_SOURCES+= \
-    $$files(app/*.qml,true) \
-    $$files(app/*.js,true)
+    $$files(*.qml,true) \
+    $$files(*.js,true)
 
 # specifies all translations files and makes sure they are
 # compiled and installed into the right place in the click package
