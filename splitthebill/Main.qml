@@ -22,17 +22,19 @@ import "pages"
   - signal example (in Bill) on value changed
   - Page view with PageWithBottomEdge… copy. Then fix the warning and versions
   - Then, talking about community components.
-  - action bar (for save and reset?) instead of button <- TODO
+  - action bar (for save and reset?) instead of button
   - search view and full view (introducing states)
   - add styling like the TextField
   - Settings page, store backend settings, singleton and enums
   - when working on listView: add format.arg() concept + changing height + animation on changing height
+  - animations for expanding listitem content
   - responsive design, portrait mode
   - add currency converter (+ fetching from the web)
   - what happen if the app is or become offline or server doesn't respond?
   - share (email/twitter) (loader with like contenthubloader in address-book-app)
   - importing bills
-  - add i18n (show currency, build pot, po and mo files). Also switch order: xxx € for $xxx for instance
+  - add i18n (show currency, build pot, po and mo files). Also switch order: xxx € for $xxx for instance for currency
+    fix it as well for existing module bug.
   - changing theme
   - save and archive: add Top (textinput + date) and notes at the bottom to be saved
   - add page stacks and bottom edge
@@ -42,10 +44,11 @@ import "pages"
   - first user experience when the app is empty (show a new bill, and so on)
     introduce Timer thanks to it.
   - adding flickable, animations to switch between sections (look at reboot weather app)
-  - animations for expanding listitem content
   - default property?
   - error handling (with popup or small noitification window)
   - general polish (focus and so on)
+
+  NEXT: fix when there is no search match, error handling with popup/toast, share, theme, additional note, attachements
 */
 
 

@@ -111,7 +111,6 @@ PageWithBottomEdge {
         // this seems ot be linked to https://code.launchpad.net/~kalikiana/u1db-qt/indexRoles/+merge/211771
         //filter.property: 'contents.title'
         //filter.pattern: /BAR/
-        //-> Using ListModel and Repeater meanwhile
     }
 
     UbuntuListView {
