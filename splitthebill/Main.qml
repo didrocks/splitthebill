@@ -46,9 +46,9 @@ import "pages"
   - adding flickable, animations to switch between sections (look at reboot weather app)
   - default property?
   - error handling (with popup or small noitification window)
-  - general polish (focus and so on)
+  - general polish (no search match, focus and so on)
 
-  NEXT: fix when there is no search match, error handling with popup/toast, share, theme, additional note, attachements
+  NEXT: fix when there is error handling with popup/toast, share, theme, additional note, attachements
 */
 
 

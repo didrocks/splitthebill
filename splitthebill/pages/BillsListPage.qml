@@ -160,7 +160,7 @@ PageWithBottomEdge {
 
     Item {
         anchors.fill: parent
-        visible: billsHandler.isEmpty
+        visible: billsHandler.isEmpty || billsHandler.noResults
 
         Icon {
             anchors.fill: parent
@@ -177,7 +177,13 @@ PageWithBottomEdge {
 
             /* COMMENT: present translators comment in i18n */
             // TRANSLATORS: Presented when no bills were saved
-            text: i18n.tr("No bills have been archived")
+            text: {
+                if (billsHandler.isEmpty)
+                    return i18n.tr("No bills have been archived")
+                else if (billsHandler.noResults)
+                    return i18n.tr("No results for your query")
+                return ""
+            }
             color: "#5d5d5d"
             fontSize: "x-large"
             wrapMode: Text.WordWrap
