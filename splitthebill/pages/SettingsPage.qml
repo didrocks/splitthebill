@@ -16,27 +16,17 @@ Page {
     Flickable {
         id: settingsFlickable
         anchors.fill: parent
-        contentHeight: layout.height
+        contentHeight: childrenRect.height
 
         clip: true
 
         Column {
-            id: layout
-            spacing: units.gu(3)
-            height: childrenRect.height
             anchors {
                 left: parent.left
                 right: parent.right
                 margins: units.gu(2)
             }
 
-            // bug without Label height: childrenRect.height doesn't work for flickable
-            Label {
-                id: label1
-                text: "foo"
-            }
-
-            // TO ASK: why?
             OptionSelector {
                 id: separatorSelector
                 text: i18n.tr("Divide on:")
@@ -49,63 +39,12 @@ Page {
                     value: separatorSelector.selectedIndex
                     when: _readyBindSettings
                 }
-            }            /*
-            OptionSelector {
-                text: i18n.tr("Label")
-                model: [i18n.tr("Value 1"),
-                        i18n.tr("Value 2"),
-                        i18n.tr("Value 3"),
-                        i18n.tr("Value 4")]
             }
-            OptionSelector {
-                text: i18n.tr("Label")
-                model: [i18n.tr("Value 1"),
-                        i18n.tr("Value 2"),
-                        i18n.tr("Value 3"),
-                        i18n.tr("Value 4")]
+
+            /* workaround for https://launchpad.net/bugs/1481624 */
+            Label {
+                text: " "
             }
-            OptionSelector {
-                text: i18n.tr("Label")
-                model: [i18n.tr("Value 1"),
-                        i18n.tr("Value 2"),
-                        i18n.tr("Value 3"),
-                        i18n.tr("Value 4")]
-            }
-            OptionSelector {
-                text: i18n.tr("Label")
-                model: [i18n.tr("Value 1"),
-                        i18n.tr("Value 2"),
-                        i18n.tr("Value 3"),
-                        i18n.tr("Value 4")]
-            }
-            OptionSelector {
-                text: i18n.tr("Label")
-                model: [i18n.tr("Value 1"),
-                        i18n.tr("Value 2"),
-                        i18n.tr("Value 3"),
-                        i18n.tr("Value 4")]
-            }
-            OptionSelector {
-                text: i18n.tr("Label")
-                model: [i18n.tr("Value 1"),
-                        i18n.tr("Value 2"),
-                        i18n.tr("Value 3"),
-                        i18n.tr("Value 4")]
-            }
-            OptionSelector {
-                text: i18n.tr("Label")
-                model: [i18n.tr("Value 1"),
-                        i18n.tr("Value 2"),
-                        i18n.tr("Value 3"),
-                        i18n.tr("Value 4")]
-            }
-            OptionSelector {
-                text: i18n.tr("Label")
-                model: [i18n.tr("Value 1"),
-                        i18n.tr("Value 2"),
-                        i18n.tr("Value 3"),
-                        i18n.tr("Value 4")]
-            }*/
         }
     }
     // only bind settings now as the OptionSelector is setting default and retrigger binding
