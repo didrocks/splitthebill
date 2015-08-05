@@ -48,7 +48,7 @@ import "pages"
   - error handling (with popup or small noitification window)
   - general polish (no search match, focus and so on)
 
-  NEXT: fix when there is error handling with popup/toast, share, theme, additional note, attachements
+  NEXT: share, theme, additional note, attachements
 */
 
 

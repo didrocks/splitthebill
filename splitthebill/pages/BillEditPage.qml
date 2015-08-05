@@ -3,6 +3,7 @@ import QtQuick.Layouts 1.1
 import Ubuntu.Components 1.2
 import Ubuntu.Components.ListItems 1.0
 import Ubuntu.Components.Themes.Ambiance 1.0
+import Ubuntu.Components.Popups 1.0
 
 import "../components"
 import "../tools.js" as Tools
@@ -35,9 +36,19 @@ Page {
         Action {
             iconName: "ok"
             enabled: billsHandler.current.title !== ""
-            onTriggered: { billsHandler.saveCurrent(); page.pageStack.pop() }
+            onTriggered: {
+                if (!billsHandler.saveCurrent())
+                    PopupUtils.open(errorDisplay, page, {"title": i18n.tr("Couldn't save bill"),
+                                    "text": i18n.tr("An error happened while trying to save your bill. Please retry saving it.")});
+                else
+                    page.pageStack.pop()
+            }
         }
     ]
+
+    ErrorDialog {
+        id: errorDisplay
+    }
 
     Column {
         id: mainColumn

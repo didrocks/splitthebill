@@ -93,8 +93,7 @@ Item {
         // create a new docID if not saved already
         if (!current.billId)
             current.billId = Date.now();
-        // TODO: show error in toast
-        var result = db.putDoc(current.toJson(), current.billId);
+        return db.putDoc(current.toJson(), current.billId) !== "-1";
     }
 
     function deleteBill(docId) {
