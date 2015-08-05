@@ -37,7 +37,7 @@ Item {
         /* You have to specify in the index all fields you want to retrieve
            The query should return the whole document, not just indexed fields
            https://bugs.launchpad.net/u1db-qt/+bug/1271973 */
-        expression: ["billId", "title", "date", "rawBill", "tipShare", "numTotalPeople", "numSharePeople"]
+        expression: current.billSavedProperties
     }
 
     /*

@@ -3,6 +3,8 @@ import QtQuick 2.4
 import "../tools.js" as Tools
 
 QtObject {
+    id: self
+
     property string billId
     property string title
     property date date
@@ -10,6 +12,9 @@ QtObject {
     property int tipShare
     property int numTotalPeople
     property int numSharePeople
+
+    property var billSavedProperties: ["billId", "title", "date", "rawBill", "tipShare", "numTotalPeople",
+                                       "numSharePeople"]
 
     readonly property double bill: {
         var value = parseFloat(Tools.normalizeNum(rawBill));
@@ -31,25 +36,21 @@ QtObject {
     // this show that qml property can be accessed with object["name"] or object.name
     function loadFromJson(billJson) {
         // assign all properties from this element
-        billId = billJson["billId"];
-        title = billJson["title"];
-        date = billJson["date"];
-        rawBill = billJson["rawBill"];
-        tipShare = billJson["tipShare"];
-        numTotalPeople = billJson["numTotalPeople"];
-        numSharePeople = billJson["numSharePeople"];
+        for (var index in billSavedProperties) {
+            var prop = billSavedProperties[index]
+            // COMMENT: be future proof when we add new properties
+            if (billJson[prop])
+                self[prop] = billJson[prop];
+        }
     }
 
     function toJson() {
-        return {
-            'billId': billId,
-            'title': title,
-            'date': date,
-            'rawBill': rawBill,
-            'tipShare': tipShare,
-            'numTotalPeople': numTotalPeople,
-            'numSharePeople': numSharePeople
+        var returnJson = {};
+        for (var index in billSavedProperties) {
+            var prop = billSavedProperties[index];
+            returnJson[prop] = self[prop];
         }
+        return returnJson;
     }
 
     function reset() {
