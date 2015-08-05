@@ -67,7 +67,6 @@ Page {
             color: UbuntuColors.lightAubergine
             // use anchors instead of width: parent.width (more performant as don't go to through the binding system)
             anchors { left: parent.left; right: parent.right }
-            text: billsHandler.current.title
             placeholderText: i18n.tr("New bill split")
             font.pixelSize: units.gu(3)
             // FIXME: use new styling rules (and don't import old)
