@@ -212,6 +212,23 @@ Page {
 
         ThinDivider {}
 
+        TextArea {
+            id: commentsText
+            placeholderText: i18n.tr("Additional notes")
+            anchors { left: parent.left; right: parent.right }
+            autoSize: true
+            maximumLineCount: 4
+            Binding on text { value: billsHandler.current.comments }
+            Binding {
+                target: billsHandler.current
+                property: "comments"
+                value: commentsText.text
+            }
+            StateSaver.properties: "comments"
+        }
+
+        ThinDivider {}
+
         Button {
             text: i18n.tr("Reset")
             anchors { left: parent.left; right: parent.right }

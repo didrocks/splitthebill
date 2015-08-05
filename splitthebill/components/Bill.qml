@@ -12,9 +12,10 @@ QtObject {
     property int tipShare
     property int numTotalPeople
     property int numSharePeople
+    property string comments
 
     property var billSavedProperties: ["billId", "title", "date", "rawBill", "tipShare", "numTotalPeople",
-                                       "numSharePeople"]
+                                       "numSharePeople", "comments"]
 
     readonly property double bill: {
         var value = parseFloat(Tools.normalizeNum(rawBill));
@@ -62,5 +63,6 @@ QtObject {
         tipShare = 15;
         numTotalPeople = 2;
         numSharePeople = 1;
+        comments = "";
     }
 }

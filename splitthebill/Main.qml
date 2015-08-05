@@ -36,7 +36,9 @@ import "pages"
   - add i18n (show currency, build pot, po and mo files). Also switch order: xxx € for $xxx for instance for currency
     fix it as well for existing module bug.
   - changing theme
-  - save and archive: add Top (textinput + date) and notes at the bottom to be saved
+  - save and archive: add notes + photo at the bottom to be saved. Ensure to refactor there to only list properties
+    to be saved as few as possible
+  - change the date with a time + date picker
   - add page stacks and bottom edge
   - change date, pick up calendar/time
   - upload app to the store, availability
