@@ -29,7 +29,7 @@ Page {
 
             OptionSelector {
                 id: separatorSelector
-                text: i18n.tr("Divide on:")
+                text: i18n.tr("Divide list on:")
                 model: [AppSettings.sSEPARATIONTYPENAME.month, AppSettings.sSEPARATIONTYPENAME.year,
                         AppSettings.sSEPARATIONTYPENAME.none]
                 Binding on selectedIndex { value: AppSettings.billSeparationType }
