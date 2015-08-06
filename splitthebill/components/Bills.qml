@@ -69,7 +69,7 @@ Item {
                     var include = false;
                     var regex = new RegExp(handler.query, 'i')
                     for (var prop in all.results[index]) {
-                        if (prop === "BillId")
+                        if (prop === "billId")
                             continue;
                         if (currentElem[prop].toString().match(regex)) {
                             include = true;
