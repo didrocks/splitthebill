@@ -79,10 +79,11 @@ Item {
                     if(!include)
                         continue;
                 }
-                // add as well helpers for section:
+                // add as well helpers for section and sorting:
                 var elemDate = new Date(currentElem.date);
                 currentElem['monthSection'] = elemDate.toLocaleString(Qt.locale(),  "MMMM yyyy");
                 currentElem['yearSection'] = elemDate.getFullYear();
+                currentElem['timestamp'] = elemDate.getTime();
 
                 billsResults.append(currentElem);
             }

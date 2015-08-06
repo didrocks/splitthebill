@@ -85,7 +85,7 @@ Page {
             StateSaver.properties: "text"
         }
 
-        /* TODO: add the date only on the archive segment (but before localization) */
+        /* TODO: be able to change the date and time. */
         Label {
             id: dateTime
             text: billsHandler.current.formattedDate
