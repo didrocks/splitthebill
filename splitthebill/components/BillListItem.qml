@@ -23,6 +23,7 @@ ListItem {
         tipShare: model.tipShare
         numTotalPeople: model.numTotalPeople
         numSharePeople: model.numSharePeople
+        comments: model.comments
     }
 
     Column {
@@ -81,6 +82,12 @@ ListItem {
             text: i18n.tr("Total price was: %1, with %2% tip.").arg(bill.totalBill.toLocaleCurrencyString(Qt.locale()))
                                                                .arg(bill.tipShare)
             wrapMode: Text.WordWrap
+        }
+        Label {
+            anchors { left: parent.left; right: parent.right; }
+            text: bill.comments
+            wrapMode: Text.WordWrap
+            fontSize: "small"
         }
     }
 
