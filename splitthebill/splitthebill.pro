@@ -23,7 +23,8 @@ OTHER_FILES += $${CONF_FILES} \
     pages/BillEditPage.qml \
     pages/SettingsPage.qml \
     components/AppSettings.qml \
-    components/ErrorDialog.qml
+    components/ErrorDialog.qml \
+    components/DateTimeDialog.qml
 
 #specify where the qml/js files are installed to
 qml_files.path = /splitthebill

@@ -85,11 +85,22 @@ Page {
             StateSaver.properties: "text"
         }
 
+        DateTimeDialog {
+            id: dateTimeDialog
+        }
+
         /* TODO: be able to change the date and time. */
         Label {
             id: dateTime
             text: billsHandler.current.formattedDate
             font.pixelSize: units.gu(1.5)
+
+            // COMMENT: present MouseArea and pressed signal (as well are return accepted, looking at documentation)
+            MouseArea {
+                anchors.fill: parent
+                // TODO: to check: click event transposed to a press in touch?
+                onClicked: { PopupUtils.open(dateTimeDialog, dateTime) }
+                }
         }
 
 

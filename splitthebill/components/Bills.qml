@@ -94,6 +94,14 @@ Item {
         // create a new docID if not saved already
         if (!current.billId)
             current.billId = Date.now();
+
+        var tosave = current.toJson();
+
+        // WORKAROUND FOR: https://launchpad.net/bugs/1482504
+        // We shift the date by the time difference so that the date is directly in UTC
+        // (which is what is saved by putDoc)
+        tosave["date"] = new Date(tosave["date"].getTime() + tosave["date"].getTimezoneOffset() * 60000)
+
         return db.putDoc(current.toJson(), current.billId) !== "-1";
     }
 

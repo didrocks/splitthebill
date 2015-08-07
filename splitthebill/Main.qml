@@ -38,9 +38,9 @@ import "pages"
   - changing theme
   - save and archive: add notes + photo at the bottom to be saved. Ensure to refactor there to only list properties
     to be saved as few as possible
-  - change the date with a time + date picker
+  - change the date with a time + date picker, define new components, explain limits and timezone. Use that to present
+    MouseArea as well.
   - add page stacks and bottom edge
-  - change date, pick up calendar/time
   - upload app to the store, availability
   - adding transitions for removing elements
   - first user experience when the app is empty (show a new bill, and so on)
