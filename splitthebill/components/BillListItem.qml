@@ -23,7 +23,8 @@ ListItem {
         tipShare: model.tipShare
         numTotalPeople: model.numTotalPeople
         numSharePeople: model.numSharePeople
-        comments: model.comments
+        // be future-proof when adding new properties
+        comments: model.comments ? model.comments: ""
     }
 
     Column {
