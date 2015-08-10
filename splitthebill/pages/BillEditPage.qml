@@ -37,9 +37,15 @@ Page {
             iconName: "ok"
             enabled: billsHandler.current.title !== ""
             onTriggered: {
-                if (!billsHandler.saveCurrent())
+                if (!billsHandler.saveCurrent()) {
+                    // TO ASK: why this doesn't work?
+                    // file:///usr/lib/x86_64-linux-gnu/qt5/qml/Ubuntu/Components/Popups/popupUtils.js:59: Error: Function.prototype.connect: target is not a function
+                    //var errorDisplay = Qt.createComponent("../components/ErrorDialog.qml");
+                    //PopupUtils.open(errorDisplay, page, {"title": i18n.tr("Couldn't save bill"),
+                    //                "text": i18n.tr("An error happened while trying to save your bill. Please retry saving it.")});
                     PopupUtils.open(errorDisplay, page, {"title": i18n.tr("Couldn't save bill"),
                                     "text": i18n.tr("An error happened while trying to save your bill. Please retry saving it.")});
+                }
                 else
                     page.pageStack.pop()
             }

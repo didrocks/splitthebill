@@ -47,10 +47,15 @@ import "pages"
     introduce Timer thanks to it.
   - adding flickable, animations to switch between sections (look at reboot weather app)
   - default property?
-  - error handling (with popup or small noitification window)
+  - error handling (with popup or small notification window)
   - general polish (no search match, focus and so on)
 
   NEXT: share, theme, additional note, attachements
+
+  attachements enables to introduce:
+  - contenthub
+  - file management (as we have to remove files)
+  - link to other apps (intents?) to open the files.
 */
 
 
