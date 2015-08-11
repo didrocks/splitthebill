@@ -25,7 +25,8 @@ OTHER_FILES += $${CONF_FILES} \
     components/AppSettings.qml \
     components/ErrorDialog.qml \
     components/DateTimeDialog.qml \
-    components/NewListModel.qml
+    components/NewListModel.qml \
+    components/ContentHubImport.qml
 
 #specify where the qml/js files are installed to
 qml_files.path = /splitthebill
