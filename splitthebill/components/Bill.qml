@@ -45,7 +45,7 @@ Item {
     function loadFromJson(billJson) {
         // assign all properties from this element
         for (var index in billSavedProperties) {
-            var prop = billSavedProperties[index]
+            var prop = billSavedProperties[index];
             // COMMENT: be future proof when removing properties
             if (billJson[prop])
                 self[prop] = billJson[prop];

@@ -102,7 +102,7 @@ Item {
         // (which is what is saved by putDoc)
         tosave["date"] = new Date(tosave["date"].getTime() + tosave["date"].getTimezoneOffset() * 60000)
 
-        return db.putDoc(current.toJson(), current.billId) !== "-1";
+        return db.putDoc(tosave, current.billId) !== "-1";
     }
 
     function deleteBill(docId) {
