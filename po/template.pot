@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-05 16:00+0200\n"
+"POT-Creation-Date: 2015-08-11 11:59+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,14 +33,14 @@ msgstr ""
 msgid "None"
 msgstr ""
 
-#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/components/BillListItem.qml:75
+#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/components/BillListItem.qml:82
 #, qt-format
 msgid "You paid for %1 out of %2 person."
 msgid_plural "You paid for %1 out of %2 persons."
 msgstr[0] ""
 msgstr[1] ""
 
-#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/components/BillListItem.qml:81
+#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/components/BillListItem.qml:88
 #, qt-format
 msgid "Total price was: %1, with %2% tip."
 msgstr ""
@@ -51,58 +51,62 @@ msgstr ""
 msgid "(incl. tip: %1)"
 msgstr ""
 
-#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/pages/BillEditPage.qml:41
+#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/pages/BillEditPage.qml:52
 msgid "Couldn't save bill"
 msgstr ""
 
-#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/pages/BillEditPage.qml:42
+#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/pages/BillEditPage.qml:53
 msgid ""
 "An error happened while trying to save your bill. Please retry saving it."
 msgstr ""
 
-#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/pages/BillEditPage.qml:70
+#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/pages/BillEditPage.qml:82
 msgid "New bill split"
 msgstr ""
 
-#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/pages/BillEditPage.qml:104
+#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/pages/BillEditPage.qml:127
 msgid "Bill:"
 msgstr ""
 
-#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/pages/BillEditPage.qml:140
+#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/pages/BillEditPage.qml:163
 msgid "Number of people:"
 msgstr ""
 
-#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/pages/BillEditPage.qml:151
+#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/pages/BillEditPage.qml:174
 msgid "You pay for:"
 msgstr ""
 
-#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/pages/BillEditPage.qml:165
+#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/pages/BillEditPage.qml:188
 msgid "Tip"
 msgstr ""
 
 #. TRANSLATORS: tip share in %
-#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/pages/BillEditPage.qml:189
+#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/pages/BillEditPage.qml:212
 #, qt-format
 msgid "%1%"
 msgstr ""
 
-#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/pages/BillEditPage.qml:199
+#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/pages/BillEditPage.qml:222
 msgid "Total:"
 msgstr ""
 
-#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/pages/BillEditPage.qml:207
+#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/pages/BillEditPage.qml:230
 msgid "You pay:"
 msgstr ""
 
-#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/pages/BillEditPage.qml:216
+#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/pages/BillEditPage.qml:263
+msgid "Add attachments"
+msgstr ""
+
+#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/pages/BillEditPage.qml:271
 msgid "Additional notes"
 msgstr ""
 
-#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/pages/BillEditPage.qml:232
+#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/pages/BillEditPage.qml:287
 msgid "Reset"
 msgstr ""
 
-#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/pages/BillEditPage.qml:240
+#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/pages/BillEditPage.qml:295
 msgid "Delete"
 msgstr ""
 
