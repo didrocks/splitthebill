@@ -59,6 +59,7 @@ Item {
             /* WORKAROUND:
              * assigning a list of anything as a property in a model makes it a QMLListModel. We want for our
              * Bill object to still have a list of json objects for storing in u1db
+             * https://bugs.launchpad.net/ubuntu/+source/u1db-qt/+bug/1483614
              */
             if (self[prop].toString().indexOf("QQmlListModel") === 0) {
                 var listResult = [];
