@@ -4,6 +4,7 @@ import Ubuntu.Components 1.2
 import Ubuntu.Components.ListItems 1.0
 import Ubuntu.Components.Themes.Ambiance 1.0
 import Ubuntu.Components.Popups 1.0
+import Ubuntu.Content 1.1
 
 import "../components"
 import "../tools.js" as Tools
@@ -11,6 +12,50 @@ import "../tools.js" as Tools
 Page {
     id: page
     property QtObject billsHandler
+
+    property var activeTransfer
+
+    Connections {
+        target: activeTransfer
+        onStateChanged: {
+            if (activeTransfer.state === ContentTransfer.Charged) {
+                var importItems = activeTransfer.items;
+                for (var i = 0; i < importItems.length; i++) {
+                    console.log("Original URL: " + importItems[i].url);
+                    importItems[i].move("/home/didrocks/.cache/com.ubuntu.developer.didrocks.hub-importer/blah");
+                    console.log ("Final URL: " + importItems[i].url);
+                    // this forces to do a copy of the string (otherwise, the object isn't referenced anymore
+                    // move to destination (in a well known path), only reference by keyname
+
+                    // TODO: file manipulation?
+                    billsHandler.current.attachments.append({"url": importItems[i].url.toString()});
+                }
+            }
+        }
+    }
+
+    ContentTransferHint {
+        anchors.fill: parent
+        activeTransfer: page.activeTransfer
+    }
+
+
+    Page {
+        id: picker
+        visible: false
+        ContentPeerPicker {
+            id: peerPicker
+            handler: ContentHandler.Source
+            // TO ASK: if we want to import Pictures OR Documents (but in one shot)?
+            contentType: ContentType.Pictures
+            onPeerSelected: {
+                peer.selectionType = ContentTransfer.Multiple;
+                activeTransfer = peer.request();
+                pageStack.pop();
+            }
+        }
+    }
+
 
     property bool _isEditMode: billsHandler.current.billId
 
@@ -227,6 +272,39 @@ Page {
         }
 
         ThinDivider {}
+
+        Column {
+            anchors { left: parent.left; right: parent.right }
+            Repeater {
+                model: billsHandler.current.attachments
+                Text {
+                    width: 50
+                    text: url;
+                }
+
+                /*UbuntuShape {
+                    id: resImage
+                    width: image.width
+                    height: 100
+                    image: Image {
+                        source: modelData
+                        sourceSize.height: parent.height
+                        height: parent.height
+                        fillMode: Image.PreserveAspectFit
+                        smooth: true
+                    }
+                }*/
+            }
+        }
+
+        Button {
+            anchors { left: parent.left }
+            text: i18n.tr("Add attachments")
+            onClicked: {
+                peerPicker.contentType = ContentType.Pictures;
+                pageStack.push(picker);
+            }
+        }
 
         TextArea {
             id: commentsText
