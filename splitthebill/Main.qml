@@ -49,13 +49,15 @@ import "pages"
   - default property?
   - error handling (with popup or small notification window)
   - general polish (no search match, focus and so on)
-
-  NEXT: share, theme, additional note, attachements
-
   attachements enables to introduce:
-  - contenthub
+  - contenthub import
   - file management (as we have to remove files)
-  - link to other apps (intents?) to open the files.
+  - contenthub export to other apps.
+
+  - adding C++ binding: remove files (attachements)
+
+  NEXT: share, theme
+
 */
 
 

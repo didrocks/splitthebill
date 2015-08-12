@@ -4,7 +4,6 @@ import Ubuntu.Components 1.2
 import Ubuntu.Components.ListItems 1.0
 import Ubuntu.Components.Themes.Ambiance 1.0
 import Ubuntu.Components.Popups 1.0
-import Ubuntu.Content 1.1
 
 import "../components"
 import "../tools.js" as Tools
@@ -234,27 +233,26 @@ Page {
 
         ThinDivider {}
 
-        Column {
+        // COMMENT: explain grid vs Flow
+        Flow {
             anchors { left: parent.left; right: parent.right }
+            spacing: units.gu(1)
+
             Repeater {
                 model: billsHandler.current.attachments
-                Text {
-                    width: 50
-                    text: url;
-                }
 
-                /*UbuntuShape {
+                UbuntuShape {
                     id: resImage
                     width: image.width
-                    height: 100
+                    height: units.gu(14)
                     image: Image {
-                        source: modelData
+                        source: url
                         sourceSize.height: parent.height
                         height: parent.height
                         fillMode: Image.PreserveAspectFit
                         smooth: true
                     }
-                }*/
+                }
             }
         }
 

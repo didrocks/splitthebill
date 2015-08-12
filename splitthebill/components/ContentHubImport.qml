@@ -55,7 +55,7 @@ Item {
 
     Page {
         id: picker
-        visible: true
+        visible: false
         ContentPeerPicker {
             id: peerPicker
             handler: ContentHandler.Source
