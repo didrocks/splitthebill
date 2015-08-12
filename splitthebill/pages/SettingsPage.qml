@@ -17,7 +17,7 @@ Page {
         id: settingsFlickable
         anchors.fill: parent
         contentHeight: childrenRect.height
-
+        // COMMENT: show clip
         clip: true
 
         Column {

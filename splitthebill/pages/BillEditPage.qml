@@ -61,11 +61,11 @@ Page {
         id: errorDisplay
     }
 
+    // COMMENT: non fixed headerbar
     Flickable {
         anchors.fill: parent
         // TODO: open bug childrenRect isn't updated when adding images by the repeater
         contentHeight: mainColumn.height
-
         clip: true
 
         Column {
