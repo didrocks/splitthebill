@@ -4,6 +4,7 @@ import Ubuntu.Components 1.2
 import Ubuntu.Components.ListItems 1.0
 import Ubuntu.Components.Themes.Ambiance 1.0
 import Ubuntu.Components.Popups 1.0
+import Ubuntu.Content 1.1
 
 import "../components"
 import "../tools.js" as Tools
@@ -17,6 +18,10 @@ Page {
     ContentHubImport {
         id: contentHubImport
         billsHandler: page.billsHandler
+    }
+
+    ContentHubOut {
+        id: contentHubOut
     }
 
     function activate() {
@@ -258,6 +263,10 @@ Page {
                             height: parent.height
                             fillMode: Image.PreserveAspectFit
                             smooth: true
+                        }
+                        MouseArea {
+                            anchors.fill: parent
+                            onClicked: { contentHubOut.open(url, ContentType.Pictures) }
                         }
                     }
                 }
