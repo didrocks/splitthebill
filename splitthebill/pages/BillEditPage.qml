@@ -61,242 +61,250 @@ Page {
         id: errorDisplay
     }
 
-    Column {
-        id: mainColumn
+    Flickable {
+        anchors.fill: parent
+        // TODO: open bug childrenRect isn't updated when adding images by the repeater
+        contentHeight: mainColumn.height
 
-        spacing: units.gu(1)
-        anchors {
-            leftMargin: units.gu(2)
-            rightMargin: units.gu(2)
-            // force the column to match page width
-            left: parent.left
-            right: parent.right
-        }
+        clip: true
 
-        TextField {
-            id: billName
-            color: UbuntuColors.lightAubergine
-            // use anchors instead of width: parent.width (more performant as don't go to through the binding system)
-            anchors { left: parent.left; right: parent.right }
-            placeholderText: i18n.tr("New bill split")
-            font.pixelSize: units.gu(3)
-            // FIXME: use new styling rules (and don't import old)
-            style: TextFieldStyle {
-                background: Item {}
-                color: UbuntuColors.lightAubergine
-                frameSpacing: 0
-                overlaySpacing: 0
-            }
-            Binding on text { value: billsHandler.current.title }
-            Binding {
-                target: billsHandler.current
-                property: "title"
-                value: billName.text
-            }
-            StateSaver.properties: "text"
-        }
-
-        DateTimeDialog {
-            id: dateTimeDialog
-        }
-
-        /* TODO: be able to change the date and time. */
-        Label {
-            id: dateTime
-            text: billsHandler.current.formattedDate
-            font.pixelSize: units.gu(1.5)
-
-            // COMMENT: present MouseArea and pressed signal (as well are return accepted, looking at documentation)
-            MouseArea {
-                anchors.fill: parent
-                // TODO: to check: click event transposed to a press in touch?
-                onClicked: { PopupUtils.open(dateTimeDialog, dateTime) }
-                }
-        }
-
-
-        Row {
-            id: priceRow
+        Column {
+            id: mainColumn
 
             spacing: units.gu(1)
-            anchors.horizontalCenter: parent.horizontalCenter
+            anchors {
+                leftMargin: units.gu(2)
+                rightMargin: units.gu(2)
+                // force the column to match page width
+                left: parent.left
+                right: parent.right
+            }
 
-            // COMMENT: RTL isn't respected, this is left as an exercise for the reader :)
-            Label {
-                text: i18n.tr("Bill:")
-                height: parent.height
-                verticalAlignment: Text.AlignVCenter
-            }
-            Label {
-                // COMMENT: i18n is not only about translations! It's currency as well.
-                text: Qt.locale().currencySymbol()
-                height: parent.height
-                verticalAlignment: Text.AlignVCenter
-            }
             TextField {
-                // TODO: click should select the whole item
-                id: billPrice
-                width: units.gu(13)
-                placeholderText: Tools.displayNum(0.0)
-                errorHighlight: true
-                validator: DoubleValidator {}
-                maximumLength: 7
-                inputMethodHints: Qt.ImhFormattedNumbersOnly
-                // replace after a while with activate() when polishing
-                //Component.onCompleted: billPrice.forceActiveFocus()
-                // show first the expanded binding syntax, then the reduced one
-                Binding on text { value: billsHandler.current.rawBill }
+                id: billName
+                color: UbuntuColors.lightAubergine
+                // use anchors instead of width: parent.width (more performant as don't go to through the binding system)
+                anchors { left: parent.left; right: parent.right }
+                placeholderText: i18n.tr("New bill split")
+                font.pixelSize: units.gu(3)
+                // FIXME: use new styling rules (and don't import old)
+                style: TextFieldStyle {
+                    background: Item {}
+                    color: UbuntuColors.lightAubergine
+                    frameSpacing: 0
+                    overlaySpacing: 0
+                }
+                Binding on text { value: billsHandler.current.title }
                 Binding {
                     target: billsHandler.current
-                    property: "rawBill"
-                    value: billPrice.text
-                    when: billPrice.text !== ""
+                    property: "title"
+                    value: billName.text
                 }
                 StateSaver.properties: "text"
             }
-        }
 
-        AddRemoveInt {
-            id: numPeople
-            anchors { left: parent.left; right: parent.right }
-            text: i18n.tr("Number of people:")
-            min: 1
-            // factorize the databinding inside the factorized object
-            modelid: billsHandler.current
-            modelPropertyName: "numTotalPeople"
-            StateSaver.properties: "currentValue"
-        }
-
-        AddRemoveInt {
-            id: numPeoplePay
-            anchors { left: parent.left; right: parent.right }
-            text: i18n.tr("You pay for:")
-            min: 1
-            max: numPeople.currentValue
-            modelid: billsHandler.current
-            modelPropertyName: "numSharePeople"
-            StateSaver.properties: "currentValue"
-        }
-
-        RowLayout {
-            id: tipRow
-            spacing: units.gu(1)
-            anchors { left: parent.left; right: parent.right }
-            Label {
-                id: labelSlider
-                text: i18n.tr("Tip")
-                verticalAlignment: Text.AlignVCenter
+            DateTimeDialog {
+                id: dateTimeDialog
             }
-            Slider {
-                id: tipSlider
-                minimumValue: 0
-                maximumValue: 30
-                live: true
-                Layout.fillWidth: true
-                // for the 2 way databindings episod. Changing the slider breaks the databinding + changing a value
-                // through script and see that it breaks with:
-                // value: billsHandler.current.tipeShare (this name is direct binding)
-                // So, then, use double Binding. Show first the expanded binding notation then the reduced one
-                Binding on value { value: billsHandler.current.tipShare }
-                Binding {
-                    target: billsHandler.current
-                    property: "tipShare"
-                    value: tipSlider.value
+
+            /* TODO: be able to change the date and time. */
+            Label {
+                id: dateTime
+                text: billsHandler.current.formattedDate
+                font.pixelSize: units.gu(1.5)
+
+                // COMMENT: present MouseArea and pressed signal (as well are return accepted, looking at documentation)
+                MouseArea {
+                    anchors.fill: parent
+                    // TODO: to check: click event transposed to a press in touch?
+                    onClicked: { PopupUtils.open(dateTimeDialog, dateTime) }
+                    }
+            }
+
+
+            Row {
+                id: priceRow
+
+                spacing: units.gu(1)
+                anchors.horizontalCenter: parent.horizontalCenter
+
+                // COMMENT: RTL isn't respected, this is left as an exercise for the reader :)
+                Label {
+                    text: i18n.tr("Bill:")
+                    height: parent.height
+                    verticalAlignment: Text.AlignVCenter
                 }
-                StateSaver.properties: "value"
+                Label {
+                    // COMMENT: i18n is not only about translations! It's currency as well.
+                    text: Qt.locale().currencySymbol()
+                    height: parent.height
+                    verticalAlignment: Text.AlignVCenter
+                }
+                TextField {
+                    // TODO: click should select the whole item
+                    id: billPrice
+                    width: units.gu(13)
+                    placeholderText: Tools.displayNum(0.0)
+                    errorHighlight: true
+                    validator: DoubleValidator {}
+                    maximumLength: 7
+                    inputMethodHints: Qt.ImhFormattedNumbersOnly
+                    // replace after a while with activate() when polishing
+                    //Component.onCompleted: billPrice.forceActiveFocus()
+                    // show first the expanded binding syntax, then the reduced one
+                    Binding on text { value: billsHandler.current.rawBill }
+                    Binding {
+                        target: billsHandler.current
+                        property: "rawBill"
+                        value: billPrice.text
+                        when: billPrice.text !== ""
+                    }
+                    StateSaver.properties: "text"
+                }
             }
-            Label {
-                id: labelValueSlider
-                // TRANSLATORS: tip share in %
-                text: i18n.tr("%1%").arg(tipSlider.value.toFixed())
-                verticalAlignment: Text.AlignVCenter
-                font.weight: Font.Light
+
+            AddRemoveInt {
+                id: numPeople
+                anchors { left: parent.left; right: parent.right }
+                text: i18n.tr("Number of people:")
+                min: 1
+                // factorize the databinding inside the factorized object
+                modelid: billsHandler.current
+                modelPropertyName: "numTotalPeople"
+                StateSaver.properties: "currentValue"
             }
-        }
 
-        ThinDivider {}
+            AddRemoveInt {
+                id: numPeoplePay
+                anchors { left: parent.left; right: parent.right }
+                text: i18n.tr("You pay for:")
+                min: 1
+                max: numPeople.currentValue
+                modelid: billsHandler.current
+                modelPropertyName: "numSharePeople"
+                StateSaver.properties: "currentValue"
+            }
 
-        Total {
-            anchors { left: parent.left; right: parent.right }
-            label: i18n.tr("Total:")
-            mainValue: billsHandler.current.totalBill
-            tipValue: billsHandler.current.totalTip
-        }
+            RowLayout {
+                id: tipRow
+                spacing: units.gu(1)
+                anchors { left: parent.left; right: parent.right }
+                Label {
+                    id: labelSlider
+                    text: i18n.tr("Tip")
+                    verticalAlignment: Text.AlignVCenter
+                }
+                Slider {
+                    id: tipSlider
+                    minimumValue: 0
+                    maximumValue: 30
+                    live: true
+                    Layout.fillWidth: true
+                    // for the 2 way databindings episod. Changing the slider breaks the databinding + changing a value
+                    // through script and see that it breaks with:
+                    // value: billsHandler.current.tipeShare (this name is direct binding)
+                    // So, then, use double Binding. Show first the expanded binding notation then the reduced one
+                    Binding on value { value: billsHandler.current.tipShare }
+                    Binding {
+                        target: billsHandler.current
+                        property: "tipShare"
+                        value: tipSlider.value
+                    }
+                    StateSaver.properties: "value"
+                }
+                Label {
+                    id: labelValueSlider
+                    // TRANSLATORS: tip share in %
+                    text: i18n.tr("%1%").arg(tipSlider.value.toFixed())
+                    verticalAlignment: Text.AlignVCenter
+                    font.weight: Font.Light
+                }
+            }
 
-        Total {
-            anchors { left: parent.left; right: parent.right }
-            hilight: true
-            label: i18n.tr("You pay:")
-            mainValue: billsHandler.current.shareBill
-            tipValue: billsHandler.current.shareTip
-        }
+            ThinDivider {}
 
-        ThinDivider {}
+            Total {
+                anchors { left: parent.left; right: parent.right }
+                label: i18n.tr("Total:")
+                mainValue: billsHandler.current.totalBill
+                tipValue: billsHandler.current.totalTip
+            }
 
-        // COMMENT: explain grid vs Flow
-        Flow {
-            anchors { left: parent.left; right: parent.right }
-            spacing: units.gu(1)
+            Total {
+                anchors { left: parent.left; right: parent.right }
+                hilight: true
+                label: i18n.tr("You pay:")
+                mainValue: billsHandler.current.shareBill
+                tipValue: billsHandler.current.shareTip
+            }
 
-            Repeater {
-                model: billsHandler.current.attachments
+            ThinDivider {}
 
-                UbuntuShape {
-                    id: resImage
-                    width: image.width
-                    height: units.gu(14)
-                    image: Image {
-                        source: url
-                        sourceSize.height: parent.height
-                        height: parent.height
-                        fillMode: Image.PreserveAspectFit
-                        smooth: true
+            // COMMENT: explain grid vs Flow
+            Flow {
+                anchors { left: parent.left; right: parent.right }
+                spacing: units.gu(1)
+
+                Repeater {
+                    model: billsHandler.current.attachments
+
+                    UbuntuShape {
+                        id: resImage
+                        width: image.width
+                        height: units.gu(14)
+                        image: Image {
+                            source: url
+                            sourceSize.height: parent.height
+                            height: parent.height
+                            fillMode: Image.PreserveAspectFit
+                            smooth: true
+                        }
                     }
                 }
             }
-        }
 
-        Button {
-            anchors { left: parent.left }
-            text: i18n.tr("Add attachments")
-            onClicked: {
-                contentHubImport.pick()
+            Button {
+                anchors { left: parent.left }
+                text: i18n.tr("Add attachments")
+                onClicked: {
+                    contentHubImport.pick()
+                }
             }
-        }
 
-        TextArea {
-            id: commentsText
-            placeholderText: i18n.tr("Additional notes")
-            anchors { left: parent.left; right: parent.right }
-            autoSize: true
-            maximumLineCount: 4
-            Binding on text { value: billsHandler.current.comments }
-            Binding {
-                target: billsHandler.current
-                property: "comments"
-                value: commentsText.text
+            TextArea {
+                id: commentsText
+                placeholderText: i18n.tr("Additional notes")
+                anchors { left: parent.left; right: parent.right }
+                autoSize: true
+                maximumLineCount: 4
+                Binding on text { value: billsHandler.current.comments }
+                Binding {
+                    target: billsHandler.current
+                    property: "comments"
+                    value: commentsText.text
+                }
+                StateSaver.properties: "comments"
             }
-            StateSaver.properties: "comments"
-        }
 
-        ThinDivider {}
+            ThinDivider {}
 
-        Button {
-            text: i18n.tr("Reset")
-            anchors { left: parent.left; right: parent.right }
-            visible: !_isEditMode
-            color: UbuntuColors.red
-            onClicked: billsHandler.current.reset()
-        }
+            Button {
+                text: i18n.tr("Reset")
+                anchors { left: parent.left; right: parent.right }
+                visible: !_isEditMode
+                color: UbuntuColors.red
+                onClicked: billsHandler.current.reset()
+            }
 
-        Button {
-            text: i18n.tr("Delete")
-            anchors { left: parent.left; right: parent.right }
-            visible: _isEditMode
-            color: UbuntuColors.red
-            onClicked: {
-                billsHandler.deleteBill(billsHandler.current.billId);
-                page.pageStack.pop();
+            Button {
+                text: i18n.tr("Delete")
+                anchors { left: parent.left; right: parent.right }
+                visible: _isEditMode
+                color: UbuntuColors.red
+                onClicked: {
+                    billsHandler.deleteBill(billsHandler.current.billId);
+                    page.pageStack.pop();
+                }
             }
         }
     }
