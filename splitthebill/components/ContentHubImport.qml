@@ -5,7 +5,7 @@ import Ubuntu.Content 1.1
 Item {
     id: root
 
-    property var activeTransfer
+    property var activeTransfer: null
     property QtObject billsHandler
 
     function pick() {
