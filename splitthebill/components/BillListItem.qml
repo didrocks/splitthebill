@@ -78,9 +78,7 @@ ListItem {
         Label {
             // mandatory for wordWrap (setting a width)
             anchors { left: parent.left; right: parent.right }
-            // COMMENT: here is how to handle plural form
-            text: i18n.tr("You paid for %1 out of %2 person.", "You paid for %1 out of %2 persons.",
-                          bill.numTotalPeople).arg(bill.numSharePeople).arg(bill.numTotalPeople)
+            text: bill.summary
             wrapMode: Text.WordWrap
         }
         Label {

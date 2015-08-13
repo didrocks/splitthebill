@@ -35,6 +35,10 @@ Item {
     readonly property double shareTip: _sharePercent * totalTip
     readonly property double shareBill: _sharePercent * totalBill
     readonly property string formattedDate: date.toLocaleDateString() + " - " + date.toLocaleTimeString()
+    // COMMENT: here is how to handle plural form
+    readonly property string summary: i18n.tr("You paid the totally (1 person).",
+                                              "You paid for %1 out of %2 persons.".arg(numSharePeople).arg(numTotalPeople),
+                                              numTotalPeople)
     readonly property string shortSummaryShare: i18n.tr("I paid the totally (1 person) for $%1 on the %2".arg(shareBill).arg(formattedDate),
                                                         "I paid for %1 out of %2 persons for $%3 on the %4".arg(numSharePeople).arg(numTotalPeople).arg(shareBill).arg(formattedDate),
                                                         numTotalPeople)
