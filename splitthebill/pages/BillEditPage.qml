@@ -17,7 +17,6 @@ Page {
 
     ContentHubHandler {
         id: contentHubHandler
-        billsHandler: page.billsHandler
     }
 
     function activate() {
@@ -37,7 +36,7 @@ Page {
         // COMMENT: no reset/delete here, (too close from ok -> destructive action)
         Action {
             iconName: "share"
-            onTriggered: { /* TODO */ }
+            onTriggered: { contentHubHandler.share(billsHandler.current) }
         },
         Action {
             iconName: "ok"
@@ -271,7 +270,7 @@ Page {
             Button {
                 anchors { left: parent.left }
                 text: i18n.tr("Add attachments")
-                onClicked: { contentHubHandler.importFrom(ContentType.Pictures) }
+                onClicked: { contentHubHandler.importFrom(billsHandler.current, ContentType.Pictures) }
             }
 
             TextArea {

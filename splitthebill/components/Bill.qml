@@ -35,6 +35,17 @@ Item {
     readonly property double shareTip: _sharePercent * totalTip
     readonly property double shareBill: _sharePercent * totalBill
     readonly property string formattedDate: date.toLocaleDateString() + " - " + date.toLocaleTimeString()
+    readonly property string shortSummaryShare: i18n.tr("I paid the totally (1 person) for $%1 on the %2".arg(shareBill).arg(formattedDate),
+                                                        "I paid for %1 out of %2 persons for $%3 on the %4".arg(numSharePeople).arg(numTotalPeople).arg(shareBill).arg(formattedDate),
+                                                        numTotalPeople)
+
+    readonly property string summaryShare: i18n.tr("Date: %1\n").arg(formattedDate) +
+                                           i18n.tr("I paid the totally (1 person)\n",
+                                                   "I paid for %1 out of %2 persons\n".arg(numSharePeople).arg(numTotalPeople),
+                                                   numTotalPeople) +
+                                           i18n.tr("Paid: $%1\n").arg(shareBill) +
+                                           i18n.tr("Tip: %1%\n\n").arg(tipShare) +
+                                           (comments ? i18n.tr("Additional notes: %1").arg(comments) : '');
 
     NewListModel {
         id: newListModel

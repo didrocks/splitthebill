@@ -5,23 +5,28 @@ import Ubuntu.Content 1.1
 Item {
     id: root
 
-    property QtObject billsHandler
-
     property alias _url: picker.url
     property alias _to: picker.to
     property alias _contentStore: picker.contentStore
+    property alias _currentBill: picker.currentBill
 
+    property var _currentPeer
     property var _activeTransfer: null
 
     function open(url, contentType) {
-        // TODO: open in default application
         pageStack.push(picker, {"url": url, "to": ContentHandler.Destination, "contentType": contentType,
                                 "selectionType": ContentTransfer.Single, "contentStore": null});
     }
 
-    function importFrom(contentType) {
-        pageStack.push(picker, {"to": ContentHandler.Source, "contentType":  contentType,
+    function importFrom(currentBill, contentType) {
+        pageStack.push(picker, {"currentBill": currentBill, "to": ContentHandler.Source, "contentType":  contentType,
                                 "selectionType": ContentTransfer.Multiple, "contentStore": appContentStore});
+    }
+
+    function share(currentBill) {
+        // TOASK: share an email with an attachement?
+        pageStack.push(picker, {"currentBill": currentBill, "to": ContentHandler.Share, "contentType": ContentType.Text,
+                                "selectionType": ContentTransfer.Single, "contentStore": null});
     }
 
     Page {
@@ -29,6 +34,7 @@ Item {
         visible: false
 
         property var url
+        property var currentBill
         property var to
         property var contentType
         property var selectionType
@@ -39,6 +45,7 @@ Item {
             handler: picker.to
             contentType: picker.contentType
             onPeerSelected: {
+                root._currentPeer = peer;
                 peer.selectionType = picker.selectionType;
                 root._activeTransfer = peer.request(root._contentStore);
                 pageStack.pop();
@@ -75,7 +82,7 @@ Item {
                  */
                 if (_activeTransfer.state === ContentTransfer.Charged) {
                     var uri = "%1/attachments/%2".arg(_contentStore.uri.toString().substring(0, _contentStore.uri.toString().lastIndexOf("/")))
-                                                 .arg(billsHandler.current.billId);
+                                                 .arg(_currentBill.billId);
                     var importItems = _activeTransfer.items;
                     for (var i = 0; i < importItems.length; i++) {
                         /* Have to save the full absolute path for rerence (see last line of description in
@@ -87,12 +94,23 @@ Item {
                             j++;
                             filename = "attach%1.%2".arg(j).arg(ext);
                         }
-                        billsHandler.current.attachments.append({"url": importItems[i].url.toString()});
+                        _currentBill.attachments.append({"url": importItems[i].url.toString()});
                     }
                 }
             } else if (_to === ContentHandler.Destination) {
                 if (_activeTransfer.state === ContentTransfer.InProgress) {
                     root._activeTransfer.items = [resultComponent.createObject(root, {"url": _url})];
+                    root._activeTransfer.state = ContentTransfer.Charged;
+                }
+            } else if (_to === ContentHandler.Share) {
+                if (_activeTransfer.state === ContentTransfer.InProgress) {
+                    // we share short message if the destination is twitter or constraint string, larger otherwise
+                    var msg = ""
+                    if (root._currentPeer.name.indexOf('twitter') !== -1)
+                        msg = root._currentBill.shortSummaryShare;
+                    else
+                        msg = root._currentBill.summaryShare;
+                    root._activeTransfer.items = [resultComponent.createObject(root, {"text": msg})];
                     root._activeTransfer.state = ContentTransfer.Charged;
                 }
             }
