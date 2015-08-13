@@ -89,12 +89,21 @@ PageWithBottomEdge {
         actions: [
             Action {
                 iconName: "share"
+                onTriggered: {
+                    billToShare.loadFromJson(currentmodel.get(value));
+                    contentHubHandler.share(billToShare);
+                }
             },
             Action {
                 iconName: "edit"
                 onTriggered: editBill(value)
             }
         ]
+    }
+
+    Bill {
+        // bill used only for sharing
+        id: billToShare
     }
 
     /*
@@ -157,6 +166,9 @@ PageWithBottomEdge {
         }
     }
 
+    ContentHubHandler {
+        id: contentHubHandler
+    }
 
     Item {
         anchors.fill: parent
