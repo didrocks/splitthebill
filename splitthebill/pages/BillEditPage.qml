@@ -15,13 +15,9 @@ Page {
 
     property bool _isEditMode: billsHandler.current.billId
 
-    ContentHubImport {
-        id: contentHubImport
+    ContentHubHandler {
+        id: contentHubHandler
         billsHandler: page.billsHandler
-    }
-
-    ContentHubOut {
-        id: contentHubOut
     }
 
     function activate() {
@@ -266,7 +262,7 @@ Page {
                         }
                         MouseArea {
                             anchors.fill: parent
-                            onClicked: { contentHubOut.open(url, ContentType.Pictures) }
+                            onClicked: { contentHubHandler.open(url, ContentType.Pictures) }
                         }
                     }
                 }
@@ -275,9 +271,7 @@ Page {
             Button {
                 anchors { left: parent.left }
                 text: i18n.tr("Add attachments")
-                onClicked: {
-                    contentHubImport.pick()
-                }
+                onClicked: { contentHubHandler.importFrom(ContentType.Pictures) }
             }
 
             TextArea {
