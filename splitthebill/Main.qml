@@ -56,8 +56,7 @@ import "pages"
 
   - adding C++ binding: remove files (attachements)
 
-  NEXT: share, theme
-
+  NEXT: theme, C++ binding for removing files, look at strings, localization for currency, save current page, timezone
 */
 
 
@@ -93,7 +92,6 @@ MainView {
                 billsPage.bottomEdgePage.activate();
             }
         }
-
         // TODO: save current page view
     }
 
