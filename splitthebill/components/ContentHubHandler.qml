@@ -107,7 +107,6 @@ Item {
                  * destination name. We can't save it directly to it aborts the transfer if we already have a file with the
                  * same file name (even with different content), and thus, doesn't give a chance for us to even rename it.
                  * https://bugs.launchpad.net/ubuntu/+source/content-hub/+bug/1483589
-                 * TODO: how to clean old files?????
                  */
                 if (_activeTransfer.state === ContentTransfer.Charged) {
                     var importItems = _activeTransfer.items;
@@ -119,6 +118,16 @@ Item {
                             _activeTransfer.state = ContentTransfer.Aborted;
                         _currentBill.attachments.append({"url": attachmentStore.billUri + "/" + filename});
                     }
+
+                    // cleanup of unlinked attachments
+                    var attachementsUri = []
+                    for (i = 0; i < _currentBill.attachments.count; i++)
+                        attachementsUri.push(_currentBill.attachments.get(i).url)
+                    /*
+                     * we softly ignore cleanup issues for now, we can imagine having a collecter warning if the size is
+                     * too large after a while
+                     */
+                    attachmentStore.cleanup(attachementsUri);
                 }
             } else if (_to === ContentHandler.Destination) {
                 if (_activeTransfer.state === ContentTransfer.InProgress) {

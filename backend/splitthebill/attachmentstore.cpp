@@ -47,3 +47,35 @@ QString AttachmentStore::nextBillAttachRef(QString filenameUri) {
 
     return currentBillAttachRef;
 }
+
+bool AttachmentStore::cleanup(QList<QString> attachmentsUri) {
+    bool success = true;
+
+    if (m_billId.isEmpty()) {
+        qWarning() << "Can not be called without having a billId associated";
+        return false;
+    }
+
+    QDir curdir = QDir(billUri());
+    QFileInfoList list = curdir.entryInfoList();
+
+    for (int i = 0; i < list.size(); i++) {
+        QFileInfo fileInfo = list.at(i);
+
+        // we don't want to delete . or ..
+        if (curdir.absolutePath().contains(fileInfo.absoluteFilePath()))
+            continue;
+
+        if (!attachmentsUri.contains(fileInfo.absoluteFilePath())) {
+            if (!remove(fileInfo))
+                success = false;
+        }
+    }
+    return success;
+}
+
+bool AttachmentStore::remove(QFileInfo fileInfo) {
+    if (fileInfo.isFile())
+        return QFile(fileInfo.absoluteFilePath()).remove();
+    return QDir(fileInfo.absoluteFilePath()).removeRecursively();
+}
