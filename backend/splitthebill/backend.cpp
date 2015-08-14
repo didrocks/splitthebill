@@ -1,7 +1,7 @@
 #include <QtQml>
 #include <QtQml/QQmlContext>
 #include "backend.h"
-#include "mytype.h"
+#include "attachmentstore.h"
 
 
 void BackendPlugin::registerTypes(const char *uri)
@@ -9,7 +9,7 @@ void BackendPlugin::registerTypes(const char *uri)
     Q_ASSERT(uri == QLatin1String("splitthebill"));
 
     // add new C++ types to export to QML here
-    qmlRegisterType<MyType>(uri, 1, 0, "MyType");
+    qmlRegisterType<AttachmentStore>(uri, 1, 0, "AttachmentStore");
 }
 
 void BackendPlugin::initializeEngine(QQmlEngine *engine, const char *uri)

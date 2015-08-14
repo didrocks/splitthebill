@@ -1,6 +1,9 @@
 import QtQuick 2.4
 import Ubuntu.Components 1.2
 import Ubuntu.Content 1.1
+import Ubuntu.Components.Popups 1.0
+
+import splitthebill 1.0
 
 Item {
     id: root
@@ -12,6 +15,9 @@ Item {
 
     property var _currentPeer
     property var _activeTransfer: null
+
+    // workaround for transfer not aborted
+    property bool _cancelled: false
 
     function open(url, contentType) {
         pageStack.push(picker, {"url": url, "to": ContentHandler.Destination, "contentType": contentType,
@@ -47,6 +53,7 @@ Item {
             onPeerSelected: {
                 root._currentPeer = peer;
                 peer.selectionType = picker.selectionType;
+                root._cancelled = false;
                 root._activeTransfer = peer.request(root._contentStore);
                 pageStack.pop();
             }
@@ -64,6 +71,20 @@ Item {
         scope: ContentScope.App
     }
 
+    AttachmentStore {
+        contentStoreInputUri: appContentStore.uri
+        onError: {
+            PopupUtils.open(errorDisplay, page, {"title": i18n.tr("Transfer issue"), "text": msg});
+            // TODO: doesn't abort transfer, open a bug for it, it keeps the transferHint shown
+            //_activeTransfer.state = ContentTransfer.Aborted;
+            root._cancelled = true; // workaround for cancelling
+        }
+    }
+
+    ErrorDialog {
+        id: errorDisplay
+    }
+
     Component {
         id: resultComponent
         ContentItem {}
@@ -72,6 +93,10 @@ Item {
     Connections {
         target: _activeTransfer
         onStateChanged: {
+            if (root._cancelled) {
+                _activeTransfer.state = ContentTransfer.Aborted;
+                return;
+            }
             if (root._to === ContentHandler.Source) {
                 /*
                  * We move manually every item of the temp import filename in the permanent content app store to the

@@ -58,7 +58,6 @@ import "pages"
 
   NEXT: theme, C++ binding for removing files, look at strings, localization for currency, save current page, timezone
 */
-import splitthebill 1.0
 
 MainView {
     id: mainview
@@ -105,17 +104,11 @@ MainView {
         onTriggered: billsPage.showBottomEdgePage()
     }
 
-    MyType {
-          id: helloType
-       }
-
     Component.onCompleted: {
         mainStack.push(billsPage);
         // If there is no document on start, show in new Bill page
         if (billsHandler.isEmpty)
             newBillTimer.running = true;
-        helloType.helloWorld = "foo"
-        console.log(" from backend: " + helloType.helloWorld)
     }
 }
 
