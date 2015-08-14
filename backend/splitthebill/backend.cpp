@@ -8,6 +8,7 @@ void BackendPlugin::registerTypes(const char *uri)
 {
     Q_ASSERT(uri == QLatin1String("splitthebill"));
 
+    // add new C++ types to export to QML here
     qmlRegisterType<MyType>(uri, 1, 0, "MyType");
 }
 

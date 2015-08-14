@@ -4,7 +4,7 @@ TARGET = splitthebill
 RESOURCES += splitthebill.qrc
 
 QML_FILES += $$files(*.qml,true) \
-					   $$files(*.js,true)
+             $$files(*.js,true)
 
 CONF_FILES +=  splitthebill.apparmor \
                splitthebill.desktop \
@@ -37,4 +37,3 @@ config_files.path = /splitthebill
 config_files.files += $${CONF_FILES}
 
 INSTALLS+=config_files qml_files
-
