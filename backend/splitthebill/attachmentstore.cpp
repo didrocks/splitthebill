@@ -39,6 +39,11 @@ QString AttachmentStore::nextBillAttachRef(QString filenameUri) {
     QString currentBillAttachRef;
     int i = 0;
 
+    if (m_billId.isEmpty()) {
+        qWarning() << "Can not be called without having a billId associated";
+        return "";
+    }
+
     // look at first valid attachment file to save
     do {
         i++;

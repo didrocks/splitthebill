@@ -273,6 +273,8 @@ Page {
             Button {
                 anchors { left: parent.left }
                 text: i18n.tr("Add attachments")
+                // we don't let people add any attachments before getting a valid directory (billId)
+                visible: billsHandler.current.billId
                 onClicked: { contentHubHandler.importFrom(billsHandler.current, ContentType.Pictures) }
             }
 
