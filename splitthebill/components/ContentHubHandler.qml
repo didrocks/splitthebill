@@ -8,6 +8,8 @@ import splitthebill 1.0
 Item {
     id: root
 
+    property alias attachmentStore: attachmentStore.uri
+
     property alias _url: picker.url
     property alias _to: picker.to
     property alias _contentStore: picker.contentStore
@@ -72,6 +74,8 @@ Item {
     }
 
     AttachmentStore {
+        id: attachmentStore
+        billId: _currentBill ? _currentBill.billId: ""
         contentStoreInputUri: appContentStore.uri
         onError: {
             PopupUtils.open(errorDisplay, page, {"title": i18n.tr("Transfer issue"), "text": msg});
@@ -106,20 +110,14 @@ Item {
                  * TODO: how to clean old files?????
                  */
                 if (_activeTransfer.state === ContentTransfer.Charged) {
-                    var uri = "%1/attachments/%2".arg(_contentStore.uri.toString().substring(0, _contentStore.uri.toString().lastIndexOf("/")))
-                                                 .arg(_currentBill.billId);
                     var importItems = _activeTransfer.items;
                     for (var i = 0; i < importItems.length; i++) {
-                        /* Have to save the full absolute path for rerence (see last line of description in
+                        /* Have to save the full absolute path for reference (see last line of description in
                           https://bugs.launchpad.net/ubuntu/+source/content-hub/+bug/1483589 */
-                        var ext = importItems[i].url.toString().substr(importItems[i].url.toString().lastIndexOf('.') + 1);
-                        var j = 1;
-                        var filename = "attach%1.%2".arg(j).arg(ext);
-                        while (!importItems[i].move(uri, filename)) {
-                            j++;
-                            filename = "attach%1.%2".arg(j).arg(ext);
-                        }
-                        _currentBill.attachments.append({"url": importItems[i].url.toString()});
+                        var filename = attachmentStore.nextBillAttachRef(importItems[i].url.toString());
+                        if (!importItems[i].move(attachmentStore.billUri, filename))
+                            _activeTransfer.state = ContentTransfer.Aborted;
+                        _currentBill.attachments.append({"url": attachmentStore.billUri + "/" + filename});
                     }
                 }
             } else if (_to === ContentHandler.Destination) {

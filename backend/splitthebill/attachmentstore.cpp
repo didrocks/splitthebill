@@ -32,3 +32,18 @@ void AttachmentStore::setContentStoreInputUri(QString uri) {
         Q_EMIT contentStoreInputUriChanged();
     }
 }
+
+QString AttachmentStore::nextBillAttachRef(QString filenameUri) {
+    QString attachPattern("attachment_%1.%2");
+    QFileInfo origFile(filenameUri);
+    QString currentBillAttachRef;
+    int i = 0;
+
+    // look at first valid attachment file to save
+    do {
+        i++;
+        currentBillAttachRef = attachPattern.arg(i).arg(origFile.suffix());
+    } while(QFile(billUri() + "/" + currentBillAttachRef).exists());
+
+    return currentBillAttachRef;
+}
