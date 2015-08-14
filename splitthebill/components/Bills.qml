@@ -2,6 +2,8 @@ import QtQuick 2.4
 import U1db 1.0 as U1db
 import Ubuntu.Components 1.2
 
+import splitthebill 1.0
+
 Item {
     id: handler
 
@@ -90,6 +92,10 @@ Item {
         }
     }
 
+    AttachmentStore {
+        id: attachmentStore
+    }
+
     function saveCurrent() {
         // create a new docID if not saved already
         if (!current.billId)
@@ -106,6 +112,7 @@ Item {
     }
 
     function deleteBill(docId) {
+        attachmentStore.purge(docId);
         db.deleteDoc(docId);
 
         // if current Bill as well, reset it

@@ -1,6 +1,7 @@
 #include "attachmentstore.h"
 #include <QDir>
 #include <QDebug>
+#include <cassert>
 
 AttachmentStore::AttachmentStore(QObject *parent) :
     QObject(parent),
@@ -83,4 +84,9 @@ bool AttachmentStore::remove(QFileInfo fileInfo) {
     if (fileInfo.isFile())
         return QFile(fileInfo.absoluteFilePath()).remove();
     return QDir(fileInfo.absoluteFilePath()).removeRecursively();
+}
+
+bool AttachmentStore::purge(QString billId) {
+    assert(!billId.isEmpty());
+    return QDir(uri() + "/" + billId).removeRecursively();
 }
