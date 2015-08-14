@@ -6,6 +6,8 @@ import Ubuntu.Components.Themes.Ambiance 1.0
 import Ubuntu.Components.Popups 1.0
 import Ubuntu.Content 1.1
 
+import splitthebill 1.0
+
 import "../components"
 import "../tools.js" as Tools
 
@@ -59,6 +61,50 @@ Page {
 
     ErrorDialog {
         id: errorDisplay
+    }
+
+    AttachmentStore {
+        id: attachmentStore
+        billId: billsHandler.current.billId ? billsHandler.current.billId: ""
+    }
+
+    Component {
+        id: deletionConfirmationDialog
+        Dialog {
+            id: dialogue
+
+            property string attachmentUri
+
+            title: "Remove attachment"
+            text: "Do you really want to delete this attachement?"
+
+            Row {
+                id: row
+                width: parent.width
+                spacing: units.gu(1)
+                Button {
+                    width: parent.width/2
+                    text: "Cancel"
+                    onClicked: PopupUtils.close(dialogue)
+                }
+                Button {
+                    width: parent.width/2
+                    text: "Confirm"
+                    color: UbuntuColors.green
+                    onClicked: {
+                        for (var i = 0; i < billsHandler.current.attachments.count; i++) {
+                            var elem = billsHandler.current.attachments.get(i);
+                            if (elem.url === attachmentUri) {
+                                billsHandler.current.attachments.remove(i);
+                                break;
+                            }
+                        }
+                        attachmentStore.remove(attachmentUri);
+                        PopupUtils.close(dialogue)
+                    }
+                }
+            }
+        }
     }
 
     // COMMENT: fixed headerbar before non fixed triggers the bug
@@ -264,7 +310,8 @@ Page {
                         }
                         MouseArea {
                             anchors.fill: parent
-                            onClicked: { contentHubHandler.open(url, ContentType.Pictures) }
+                            onClicked: contentHubHandler.open(url, ContentType.Pictures)
+                            onPressAndHold: PopupUtils.open(deletionConfirmationDialog, parent, {"attachmentUri": url});
                         }
                     }
                 }

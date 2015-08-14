@@ -21,6 +21,7 @@ public:
     Q_INVOKABLE QString nextBillAttachRef(QString filenameUri);
     Q_INVOKABLE bool cleanup(QList<QString> attachmentsUri);
     Q_INVOKABLE bool remove(QFileInfo fileInfo);
+    Q_INVOKABLE bool remove(QString uri);
     Q_INVOKABLE bool purge(QString billId);
 
 Q_SIGNALS:

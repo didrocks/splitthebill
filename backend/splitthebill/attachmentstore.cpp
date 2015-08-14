@@ -86,6 +86,10 @@ bool AttachmentStore::remove(QFileInfo fileInfo) {
     return QDir(fileInfo.absoluteFilePath()).removeRecursively();
 }
 
+bool AttachmentStore::remove(QString uri) {
+    return remove(QFileInfo(uri));
+}
+
 bool AttachmentStore::purge(QString billId) {
     assert(!billId.isEmpty());
     return QDir(uri() + "/" + billId).removeRecursively();
