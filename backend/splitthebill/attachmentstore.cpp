@@ -4,21 +4,16 @@
 
 AttachmentStore::AttachmentStore(QObject *parent) :
     QObject(parent),
-    m_contentStoreInputUri("")
-{
-    /*QDir foo = QDir("/home");
-    qDebug() << "Path: " << foo.path();*/
+    m_contentStoreInputUri("") {
 }
 
 AttachmentStore::~AttachmentStore() {
 
 }
 
-
 void AttachmentStore::setContentStoreInputUri(QString uri) {
     if (uri != m_contentStoreInputUri) {
         m_contentStoreInputUri = uri;
-        qDebug() << "m_contentStoreInputUri changed " << m_contentStoreInputUri;
 
         /*
          * Cleaning up this contentstore exchange path as we use it as a temporary storage until
@@ -29,11 +24,11 @@ void AttachmentStore::setContentStoreInputUri(QString uri) {
             QDir exchange = QDir(m_contentStoreInputUri);
             if (!exchange.removeRecursively()) {
                 // TODO: add i18n
+                // COMMENT: show raising an signal with parameters to QML
                 Q_EMIT error("Couldn't remove transient directory, please retry attachement");
             }
 
         }
-
         Q_EMIT contentStoreInputUriChanged();
     }
 }
