@@ -139,8 +139,11 @@ Item {
                     root._activeTransfer.state = ContentTransfer.Charged;
                 }
             }
-
-            // TODO: error handling (Aborted). Also remove all Pictures/* (if import failed)
+            if (_activeTransfer.state === ContentTransfer.Aborted) {
+                PopupUtils.open(errorDisplay, page,
+                                {"title": i18n.tr("Transfer issue"),
+                                 "text": i18n.tr("Transfer has been aborted. Please retry again later")});
+            }
         }
     }
 }
