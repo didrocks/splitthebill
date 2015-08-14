@@ -6,7 +6,8 @@ TEMPLATE = subdirs
 #load Ubuntu specific features
 load(ubuntu-click)
 
-SUBDIRS += splitthebill
+SUBDIRS += splitthebill \
+           backend/splitthebill
 
 # specify the manifest file, this file is required for click
 # packaging and for the IDE to create runconfigurations
@@ -22,7 +23,9 @@ UBUNTU_TRANSLATION_DOMAIN="splitthebill.didrocks"
 # translation copy the template to e.g. de.po and edit the sources
 UBUNTU_TRANSLATION_SOURCES+= \
     $$files(*.qml,true) \
-    $$files(*.js,true)
+    $$files(*.js,true)  \
+    $$files(*.cpp,true) \
+    $$files(*.h,true)
 
 # specifies all translations files and makes sure they are
 # compiled and installed into the right place in the click package
