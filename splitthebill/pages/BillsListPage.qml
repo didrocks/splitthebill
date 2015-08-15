@@ -25,6 +25,7 @@ PageWithBottomEdge {
     }
 
     state: "default"
+    StateSaver.properties: "state"
     states: [
         PageHeadState {
             name: "default"
@@ -47,6 +48,7 @@ PageWithBottomEdge {
             ]
         },
         PageHeadState {
+            id: pageHeadStateSearch
             name: "search"
             head: billsListPage.head
             backAction: Action {
@@ -68,6 +70,7 @@ PageWithBottomEdge {
                 inputMethodHints: Qt.ImhNoPredictiveText
                 placeholderText: i18n.tr("Search…")
                 onTextChanged: billsHandler.query = Tools.normalizeNum(text)
+                StateSaver.properties: "text"
             }
         }
     ]
