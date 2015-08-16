@@ -56,7 +56,9 @@ import "pages"
 
   - adding C++ binding: remove files (attachements)
 
-  NEXT: theme, C++ binding for removing files, look at strings, localization for currency, save current page, timezone
+  NEXT: theme, look at strings, localization for currency, save current page, timezone
+
+  // TODO: open bug as cancel doesn't work on contenthub
 */
 
 MainView {
