@@ -85,15 +85,22 @@ MainView {
 
     PageStack {
         id: mainStack
-        // HACK for bug where bottomEdgePage is going over the top
-        // TODO: open a bug on this
+        property string lastPage;
         onCurrentPageChanged: {
+            // HACK for bug where bottomEdgePage is going over the top
+            // TODO: open a bug for this
             if (currentPage === billsPage.bottomEdgePage) {
+                lastPage = "bottomEdgePage";
                 billsPage.bottomEdgePage.y = billsPage.header.height
                 billsPage.bottomEdgePage.activate();
-            }
+            } else if (currentPage === billsPage)
+                lastPage = "main";
+            else if (String(currentPage).indexOf("SettingsPage") != -1)
+                lastPage = "settings";
+            else
+                lastPage = currentPage
         }
-        // TODO: save current page view
+        StateSaver.properties: "lastPage"
     }
 
     Bills {
@@ -107,7 +114,13 @@ MainView {
     }
 
     Component.onCompleted: {
+        var pageToRestore = mainStack.lastPage;
         mainStack.push(billsPage);
+        if (pageToRestore === "bottomEdgePage")
+            billsPage.showBottomEdgePage();
+        else if (pageToRestore === "settings")
+            mainStack.push(Qt.createComponent("pages/SettingsPage.qml"))
+
         // If there is no document on start, show in new Bill page
         if (billsHandler.isEmpty)
             newBillTimer.running = true;
