@@ -8,8 +8,6 @@ import splitthebill 1.0
 Item {
     id: root
 
-    property alias attachmentStore: attachmentStore.uri
-
     property alias _url: picker.url
     property alias _to: picker.to
     property alias _contentStore: picker.contentStore
