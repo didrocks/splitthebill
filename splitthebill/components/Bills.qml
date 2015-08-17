@@ -19,7 +19,7 @@ Item {
     Bill {
         id: current
         // non user interactive properties
-        StateSaver.properties: "billId date"
+        StateSaver.properties: "billId, date"
 
         // Only reset if not restored (and so, if date isn't attributed)
         Component.onCompleted: {
