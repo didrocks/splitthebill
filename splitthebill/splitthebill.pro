@@ -37,3 +37,6 @@ config_files.path = /splitthebill
 config_files.files += $${CONF_FILES}
 
 INSTALLS+=config_files qml_files
+
+DISTFILES += \
+    components/queryworker.js
