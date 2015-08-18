@@ -55,8 +55,9 @@ import "pages"
   - contenthub export to other apps.
 
   - adding C++ binding: remove files (attachements)
+  - worker script (putting the model manipulation in it) after showing it can be slow if done in the UI for fake loops
 
-  NEXT: theme, look at strings, localization for currency, save current page, timezone
+  NEXT: theme, look at strings, localization for currency, timezone
 
   // TODO: open bug as cancel doesn't work on contenthub
 */
