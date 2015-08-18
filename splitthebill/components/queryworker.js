@@ -5,9 +5,6 @@ WorkerScript.onMessage = function(msg) {
 
     billsResults.clear();
     // docID isn't part of results(), that's why we added billId.
-    // simulate heavy load
-    for(var i=0; i<50000; i++)
-        console.log("SPAM")
     for (var index in allresults) {
         // if there is a query, search on all fields to decide or not to include the elem
         var currentElem = allresults[index];
