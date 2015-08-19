@@ -57,6 +57,8 @@ Item {
                 root._activeTransfer = peer.request(root._contentStore);
                 pageStack.pop();
             }
+            // If transfer is cancelled, pop it up from the stack
+            onCancelPressed: { pageStack.pop() }
         }
     }
 
