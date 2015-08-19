@@ -29,37 +29,35 @@ import "pages"
   - when working on listView: add format.arg() concept + changing height + animation on changing height
   - animations for expanding listitem content
   - responsive design, portrait mode
-  - add currency converter (+ fetching from the web)
-  - what happen if the app is or become offline or server doesn't respond?
+  - // add currency converter (+ fetching from the web)
+  - // what happen if the app is or become offline or server doesn't respond?
   - share (email/twitter) (loader with like contenthubloader in address-book-app)
-  - importing bills
+  - // importing bills
   - add i18n (show currency, build pot, po and mo files). Also switch order: xxx € for $xxx for instance for currency
     fix it as well for existing module bug.
-  - changing theme
+  - // changing theme
   - save and archive: add notes + photo at the bottom to be saved. Ensure to refactor there to only list properties
     to be saved as few as possible
   - change the date with a time + date picker, define new components, explain limits and timezone. Use that to present
     MouseArea as well.
   - add page stacks and bottom edge
   - upload app to the store, availability
-  - adding transitions for removing elements
+  - // adding transitions for removing elements
   - first user experience when the app is empty (show a new bill, and so on)
     introduce Timer thanks to it.
   - adding flickable, animations to switch between sections (look at reboot weather app)
-  - default property?
   - error handling (with popup or small notification window)
   - general polish (no search match, focus and so on)
   attachements enables to introduce:
   - contenthub import
-  - file management (as we have to remove files)
+  - file management (as we have to remove files). First, with contenthub and listing the directory manually. Then C++
+  http://bazaar.launchpad.net/~ubuntu-clock-dev/ubuntu-clock-app/utopic-3.0/view/head:/app/alarm/EditAlarmPage.qml#L197
   - contenthub export to other apps.
-
   - adding C++ binding: remove files (attachements)
   - worker script (putting the model manipulation in it) after showing it can be slow if done in the UI for fake loops
+  - Animation system (removing one of the attachment)
 
-  NEXT: theme, look at strings, localization for currency, timezone
-
-  // TODO: open bug as cancel doesn't work on contenthub
+  NEXT: theme, look at strings, localization for currency, timezone, animation to remove image
 */
 
 MainView {

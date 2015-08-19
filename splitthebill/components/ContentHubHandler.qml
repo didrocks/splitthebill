@@ -68,6 +68,8 @@ Item {
     }
 
     /* we don't direct import request to the permanent app local store directly (see comments in state changed) */
+    /* doesn't work with the StateSaver:
+       https://bugs.launchpad.net/ubuntu/+source/content-hub/+bug/1485222 */
     ContentStore {
         id: appContentStore
         scope: ContentScope.App
