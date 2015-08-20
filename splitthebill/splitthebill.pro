@@ -39,4 +39,7 @@ config_files.files += $${CONF_FILES}
 INSTALLS+=config_files qml_files
 
 DISTFILES += \
-    components/queryworker.js
+    components/queryworker.js \
+    components/CurrenciesModel.qml \
+    components/CurrenciesCenter.qml \
+    components/CurrencyPicker.qml
