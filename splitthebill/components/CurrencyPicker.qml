@@ -8,8 +8,7 @@ Component {
     id: currencySelector
     Popover {
         id: popover
-        // changing it to CurrenciesModel instead of var breaks it
-        property var model
+        property var bill
         Column {
             anchors {
                 top: parent.top
@@ -18,13 +17,13 @@ Component {
             }
             Header {
                 id: header
-                text: i18n.tr("Select currency on %1").arg(model.fetchedOn)
+                text: i18n.tr("Select currency (refreshed on %1)").arg(bill.currencyFetchDate.toLocaleString(Qt.locale(),  "dd-MM-yyyy"))
             }
             UbuntuListView {
                 clip: true
                 width: parent.width
                 height: popover.height
-                model: popover.model
+                model: popover.bill.currencies
                 delegate: ListItem {
                     Label {
                         // TRANSLATORS: %1 is currency name, %2 is the rate
