@@ -92,6 +92,7 @@ Item {
         // We shift the date by the time difference so that the date is directly in UTC
         // (which is what is saved by putDoc)
         tosave["date"] = new Date(tosave["date"].getTime() + tosave["date"].getTimezoneOffset() * 60000)
+        tosave["currencyFetchDate"] = new Date(tosave["currencyFetchDate"].getTime() + tosave["currencyFetchDate"].getTimezoneOffset() * 60000)
 
         return db.putDoc(tosave, current.billId) !== "-1";
     }

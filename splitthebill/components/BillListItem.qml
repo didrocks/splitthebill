@@ -26,10 +26,16 @@ ListItem {
         // be future-proof when adding new properties
         comments: model.comments ? model.comments: ""
         attachments: model.attachments ? model.attachments : newListModel.createObject(parent)
+        currencies: model.currencies ? model.currencies : newCurrenciesModel.createObject(parent)
+        currencyFetchDate: model.currencyFetchDate ? model.currencyFetchDate: ''
     }
 
     NewListModel {
         id: newListModel
+    }
+
+    CurrenciesModel {
+        id: newCurrenciesModel
     }
 
     Column {

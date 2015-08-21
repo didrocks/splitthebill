@@ -16,9 +16,11 @@ Item {
     // we use directly a ListModel as a list of Strings is automatically transtyped as such by any attached property
     // to a model
     property ListModel attachments: newListModel.createObject(parent)
+    property date currencyFetchDate
+    property ListModel currencies: newCurrenciesModel.createObject(parent)
 
     property var billSavedProperties: ["billId", "title", "date", "rawBill", "tipShare", "numTotalPeople",
-                                       "numSharePeople", "comments", "attachments"]
+                                       "numSharePeople", "comments", "attachments", "currencies", "currencyFetchDate"]
 
     readonly property double bill: {
         var value = parseFloat(Tools.normalizeNum(rawBill));
@@ -53,6 +55,10 @@ Item {
 
     NewListModel {
         id: newListModel
+    }
+
+    CurrenciesModel {
+        id: newCurrenciesModel
     }
 
     /* load from json or dictionary compatible objects */
@@ -113,5 +119,7 @@ Item {
         numSharePeople = 1;
         comments = "";
         attachments = newListModel.createObject(parent);
+        currencies = newCurrenciesModel.createObject(parent);
+        currencyFetchDate = new Date();
     }
 }
