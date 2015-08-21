@@ -68,6 +68,16 @@ Page {
         billId: billsHandler.current.billId ? billsHandler.current.billId: ""
     }
 
+    CurrenciesCenter {
+        id: currencyCenter
+        bill: billsHandler.current
+    }
+
+    CurrencyPicker {
+        id: currencySelector
+    }
+
+
     Component {
         id: deletionConfirmationDialog
         Dialog {
@@ -209,6 +219,12 @@ Page {
                         when: billPrice.text !== ""
                     }
                     StateSaver.properties: "text"
+                }
+                Button {
+                    id: selectorFrom
+                    property int currencyIndex: 0
+                    text: currencyCenter.getCurrency(currencyIndex)
+                    onClicked: PopupUtils.open(currencySelector, selectorFrom, {"bill": billsHandler.current})
                 }
             }
 
