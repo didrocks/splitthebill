@@ -8,7 +8,8 @@ Component {
     id: currencySelector
     Popover {
         id: popover
-        property CurrenciesModel model
+        // changing it to CurrenciesModel instead of var breaks it
+        property var model
         Column {
             anchors {
                 top: parent.top
@@ -17,7 +18,7 @@ Component {
             }
             Header {
                 id: header
-                text: i18n.tr("Select currency for " + model.fetchedOn)
+                text: i18n.tr("Select currency on %1").arg(model.fetchedOn)
             }
             UbuntuListView {
                 clip: true
