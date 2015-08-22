@@ -192,8 +192,6 @@ PageWithBottomEdge {
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
 
-            /* COMMENT: present translators comment in i18n */
-            // TRANSLATORS: Presented when no bills were saved
             text: {
                 if (billsHandler.isEmpty)
                     return i18n.tr("No bills have been archived")

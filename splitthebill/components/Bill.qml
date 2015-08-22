@@ -39,7 +39,9 @@ Item {
     readonly property double _sharePercent: numSharePeople / numTotalPeople
     readonly property double shareTip: _sharePercent * totalTip
     readonly property double shareBill: _sharePercent * totalBill
-    readonly property string formattedDate: date.toLocaleDateString() + " - " + date.toLocaleTimeString()
+    /* COMMENT: present translators comment in i18n */
+    // TRANSLATORS: %1 is the date of the current bill, %2 is the time of the current bill
+    readonly property string formattedDate: i18n.tr("%1 - %2").arg(date.toLocaleDateString()).arg(date.toLocaleTimeString())
     // COMMENT: here is how to handle plural form
     readonly property string summary: i18n.tr("You paid the totally (1 person).",
                                               "You paid for %1 out of %2 persons.".arg(numSharePeople).arg(numTotalPeople),
