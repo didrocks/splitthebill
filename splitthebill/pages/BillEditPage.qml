@@ -223,7 +223,7 @@ Page {
                 Button {
                     id: selectorFrom
                     property int currencyIndex: 0
-                    text: currencyCenter.getCurrency(currencyIndex)
+                    text: billsHandler.current.billCurrencyName
                     onClicked: PopupUtils.open(currencySelector, selectorFrom, {"bill": billsHandler.current})
                 }
             }

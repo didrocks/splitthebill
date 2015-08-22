@@ -1,6 +1,8 @@
 import QtQuick 2.0
 import Ubuntu.Components 1.2
 
+import "settings"
+
 ListItem {
     id: root
 
@@ -28,6 +30,7 @@ ListItem {
         attachments: model.attachments ? model.attachments : newListModel.createObject(parent)
         currencies: model.currencies ? model.currencies : newCurrenciesModel.createObject(parent)
         currencyFetchDate: model.currencyFetchDate ? model.currencyFetchDate: ''
+        billCurrencyIndex: model.billCurrencyIndex ? model.billCurrencyIndex: AppSettings.preferredCurrencyIndex
     }
 
     NewListModel {

@@ -4,21 +4,6 @@ import QtQuick.XmlListModel 2.0
 Item {
     property var bill
 
-    function getCurrency(idx) {
-        return (idx >= 0 && idx < bill.currencies.count) ? bill.currencies.get(idx).currency: ""
-    }
-
-    function getRate(idx) {
-        return (idx >= 0 && idx < bill.currencies.count) ? bill.currencies.get(idx).rate: 0.0
-    }
-
-    function convert(from, fromRateIndex, toRateIndex) {
-        var fromRate = bill.currencies.getRate(fromRateIndex);
-        if (from.length <= 0 || fromRate <= 0.0)
-            return "";
-        return bill.currencies.getRate(toRateIndex) * (parseFloat(from) / fromRate);
-    }
-
     XmlListModel {
         id: modelFetcher
         source: "http://www.ecb.int/stats/eurofxref/eurofxref-daily.xml"

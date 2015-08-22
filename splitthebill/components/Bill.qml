@@ -1,5 +1,6 @@
 import QtQuick 2.4
 
+import "settings"
 import "../tools.js" as Tools
 
 Item {
@@ -16,11 +17,13 @@ Item {
     // we use directly a ListModel as a list of Strings is automatically transtyped as such by any attached property
     // to a model
     property ListModel attachments: newListModel.createObject(parent)
+    property int billCurrencyIndex
     property date currencyFetchDate
     property ListModel currencies: newCurrenciesModel.createObject(parent)
 
     property var billSavedProperties: ["billId", "title", "date", "rawBill", "tipShare", "numTotalPeople",
-                                       "numSharePeople", "comments", "attachments", "currencies", "currencyFetchDate"]
+                                       "numSharePeople", "comments", "attachments",
+                                       "billCurrencyIndex", "currencies", "currencyFetchDate"]
 
     readonly property double bill: {
         var value = parseFloat(Tools.normalizeNum(rawBill));
@@ -52,6 +55,11 @@ Item {
                                            i18n.tr("Paid: $%1\n").arg(shareBill) +
                                            i18n.tr("Tip: %1%\n\n").arg(tipShare) +
                                            (comments ? i18n.tr("Additional notes: %1").arg(comments) : '');
+    readonly property string billCurrencyName: currencies.get(billCurrencyIndex).currency
+    readonly property string prefCurrencyName: currencies.get(AppSettings.preferredCurrencyIndex).currency
+    readonly property double _exchangeRate: currencies.get(billCurrencyIndex).rate / currencies.get(AppSettings.preferredCurrencyIndex).rate
+    readonly property double totalBillInPrefCurrency: totalBill * _exchangeRate
+    readonly property double shareBillInPrefCurrency: shareBill * _exchangeRate
 
     NewListModel {
         id: newListModel
@@ -121,5 +129,6 @@ Item {
         attachments = newListModel.createObject(parent);
         currencies = newCurrenciesModel.createObject(parent);
         currencyFetchDate = new Date();
+        billCurrencyIndex = AppSettings.preferredCurrencyIndex;
     }
 }
