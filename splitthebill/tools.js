@@ -5,10 +5,8 @@
 /*
  * Display number with 2 digits
  */
-function displayNum(number, currency) {
+function displayNum(number) {
     number = parseFloat(number.toFixed(2));
-    if (currency)
-        number = number.toLocaleCurrencyString(Qt.locale());
     return number.toString().replace(".", Qt.locale().decimalPoint);
 }
 

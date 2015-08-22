@@ -298,6 +298,9 @@ Page {
                 anchors { left: parent.left; right: parent.right }
                 label: i18n.tr("Total:")
                 mainValue: billsHandler.current.totalBill
+                currencyName: billsHandler.current.billCurrencyName
+                mainValuePrefCurrency: billsHandler.current.totalBillInPrefCurrency
+                prefCurrencyName: billsHandler.current.prefCurrencyName
                 tipValue: billsHandler.current.totalTip
             }
 
@@ -306,6 +309,9 @@ Page {
                 hilight: true
                 label: i18n.tr("You pay:")
                 mainValue: billsHandler.current.shareBill
+                currencyName: billsHandler.current.billCurrencyName
+                mainValuePrefCurrency: billsHandler.current.shareBillInPrefCurrency
+                prefCurrencyName: billsHandler.current.prefCurrencyName
                 tipValue: billsHandler.current.shareTip
             }
 

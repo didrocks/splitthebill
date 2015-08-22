@@ -10,7 +10,10 @@ Item {
     property bool hilight: false
     property alias label: labelPrefix.text
     property double mainValue
+    property double mainValuePrefCurrency
     property double tipValue
+    property string currencyName
+    property string prefCurrencyName
 
     // set a higher height than the one from the children
     height: units.gu(5)
@@ -54,8 +57,9 @@ Item {
             Text {
                 id: mainText
                 horizontalAlignment: Text.AlignHCenter
-                // COMMENT: note that we don't use toLocaleCurrencyString here as we transform the number to a fix 2 digits
-                text: Tools.displayNum(mainValue, true)
+                // TRANSLATORS: %1 is price in bill currency, %2 is bill currency name, %3 is conversion in pref currency, %4 is pref currency name
+                text: i18n.tr("%1 %2 (%3 %4)").arg(Tools.displayNum(mainValue)).arg(currencyName)
+                                              .arg(mainValuePrefCurrency).arg(prefCurrencyName)
                 elide: Text.ElideRight
             }
         }
@@ -64,8 +68,8 @@ Item {
             Layout.preferredWidth: parent.width / 2
             Layout.maximumWidth: parent.width / 2
             horizontalAlignment: Text.AlignHCenter
-            // TRANSLATORS: %1 is paid tip in locale currency
-            text: i18n.tr("(incl. tip: %1)").arg(Tools.displayNum(tipValue, true))
+            // TRANSLATORS: %1 is paid tip in bill currency, %2 is bill currency name
+            text: i18n.tr("(incl. tip: %1 %2)").arg(Tools.displayNum(tipValue)).arg(currencyName)
             elide: Text.ElideRight
         }
     }

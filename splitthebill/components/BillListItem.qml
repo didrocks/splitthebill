@@ -63,7 +63,8 @@ ListItem {
                 fontSize: "small"
             }
             Label {
-                text: bill.shareBill.toLocaleCurrencyString(Qt.locale())
+                text: i18n.tr("%1 %2 (%3 %4)").arg(bill.shareBill).arg(bill.billCurrencyName)
+                                              .arg(bill.shareBillInPrefCurrency).arg(bill.prefCurrencyName)
                 fontSize: "small"
                 color: UbuntuColors.lightAubergine
             }
@@ -92,8 +93,11 @@ ListItem {
         }
         Label {
             anchors { left: parent.left; right: parent.right }
-            text: i18n.tr("Total price was: %1, with %2% tip.").arg(bill.totalBill.toLocaleCurrencyString(Qt.locale()))
-                                                               .arg(bill.tipShare)
+            // TRANSLATORS: %1 is total price, %2 is currency name, %3 is indication in pref currency, %4 is currency name, %5 is tip %
+            text: i18n.tr("Total price was: %1 %2 (%3 %4), with %5% tip.")
+                          .arg(bill.totalBill).arg(bill.billCurrencyName)
+                          .arg(bill.totalBillInPrefCurrency).arg(bill.prefCurrencyName)
+                          .arg(bill.tipShare)
             wrapMode: Text.WordWrap
         }
         Label {
