@@ -57,9 +57,11 @@ Item {
             Text {
                 id: mainText
                 horizontalAlignment: Text.AlignHCenter
-                // TRANSLATORS: %1 is price in bill currency, %2 is bill currency name, %3 is conversion in pref currency, %4 is pref currency name
-                text: i18n.tr("%1 %2 (%3 %4)").arg(Tools.displayNum(mainValue)).arg(currencyName)
-                                              .arg(mainValuePrefCurrency).arg(prefCurrencyName)
+                text: prefCurrencyName ?
+                          // TRANSLATORS: %1 is price in bill currency, %2 is bill currency name, %3 is conversion in pref currency, %4 is pref currency name
+                          i18n.tr("%1 %2 (%3 %4)").arg(Tools.displayNum(mainValue)).arg(currencyName)
+                                              .arg(mainValuePrefCurrency).arg(prefCurrencyName) :
+                          i18n.tr("%1 %2").arg(Tools.displayNum(mainValue)).arg(currencyName)
                 elide: Text.ElideRight
             }
         }

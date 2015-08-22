@@ -46,8 +46,9 @@ Item {
     readonly property string summary: i18n.tr("You paid the totally (1 person).",
                                               "You paid for %1 out of %2 persons.".arg(numSharePeople).arg(numTotalPeople),
                                               numTotalPeople)
-                                                //TRANSLATORS: %1 is the share bill, %2 the currency it was paid in, %3 an indication in the pref currency, %4 the pref currency name and %5 the date it was paid in
-    readonly property string shortSummaryShare: i18n.tr("I paid the totally (1 person) for %1 %2 (%3 %4) on the %5"
+    readonly property string shortSummaryShare: inForeignCurrency ?
+                                                    //TRANSLATORS: %1 is the share bill, %2 the currency it was paid in, %3 an indication in the pref currency, %4 the pref currency name and %5 the date it was paid in
+                                                    i18n.tr("I paid the totally (1 person) for %1 %2 (%3 %4) on the %5"
                                                         .arg(shareBill).arg(billCurrencyName)
                                                         .arg(shareBillInPrefCurrency).arg(prefCurrencyName)
                                                         .arg(formattedDate),
@@ -56,17 +57,28 @@ Item {
                                                         .arg(shareBill).arg(billCurrencyName)
                                                         .arg(shareBillInPrefCurrency).arg(prefCurrencyName)
                                                         .arg(formattedDate),
+                                                        numTotalPeople) :
+                                                    i18n.tr("I paid the totally (1 person) for %1 %2 on the %5"
+                                                        .arg(shareBill).arg(billCurrencyName)
+                                                        .arg(formattedDate),
+                                                        "I paid for %1 out of %2 persons for %3 %4 on the %7"
+                                                        .arg(numSharePeople).arg(numTotalPeople)
+                                                        .arg(shareBill).arg(billCurrencyName)
+                                                        .arg(formattedDate),
                                                         numTotalPeople)
 
     readonly property string summaryShare: i18n.tr("Date: %1\n").arg(formattedDate) +
                                            i18n.tr("I paid the totally (1 person)\n",
                                                    "I paid for %1 out of %2 persons\n".arg(numSharePeople).arg(numTotalPeople),
                                                    numTotalPeople) +
+                                           inForeignCurrency ?
                                            //TRANSLATORS: %1 is a price, %2 the currency it was paid in, %3 the total bill in pref currency, and %4 the pref currency
                                            i18n.tr("Paid: %1 %2 (%3 %4)\n").arg(shareBill).arg(billCurrencyName)
-                                           .arg(shareBillInPrefCurrency).arg(prefCurrencyName) +
+                                           .arg(shareBillInPrefCurrency).arg(prefCurrencyName) :
+                                           i18n.tr("Paid: %1 %2\n").arg(shareBill).arg(billCurrencyName) +
                                            i18n.tr("Tip: %1%\n\n").arg(tipShare) +
                                            (comments ? i18n.tr("Additional notes: %1").arg(comments) : '');
+    readonly property bool inForeignCurrency: billCurrencyName !== prefCurrencyName
     readonly property string billCurrencyName: currencies.get(billCurrencyIndex).currency
     readonly property string prefCurrencyName: currencies.get(AppSettings.preferredCurrencyIndex).currency
     readonly property double _exchangeRate: currencies.get(AppSettings.preferredCurrencyIndex).rate /

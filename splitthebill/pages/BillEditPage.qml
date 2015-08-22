@@ -300,7 +300,7 @@ Page {
                 mainValue: billsHandler.current.totalBill
                 currencyName: billsHandler.current.billCurrencyName
                 mainValuePrefCurrency: billsHandler.current.totalBillInPrefCurrency
-                prefCurrencyName: billsHandler.current.prefCurrencyName
+                prefCurrencyName: billsHandler.current.isForeignCurrency ? billsHandler.current.prefCurrencyName: ""
                 tipValue: billsHandler.current.totalTip
             }
 
@@ -311,7 +311,7 @@ Page {
                 mainValue: billsHandler.current.shareBill
                 currencyName: billsHandler.current.billCurrencyName
                 mainValuePrefCurrency: billsHandler.current.shareBillInPrefCurrency
-                prefCurrencyName: billsHandler.current.prefCurrencyName
+                prefCurrencyName: billsHandler.current.isForeignCurrency ? billsHandler.current.prefCurrencyName: ""
                 tipValue: billsHandler.current.shareTip
             }
 
