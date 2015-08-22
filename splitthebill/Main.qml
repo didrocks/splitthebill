@@ -29,7 +29,7 @@ import "pages"
   - when working on listView: add format.arg() concept + changing height + animation on changing height
   - animations for expanding listitem content
   - responsive design, portrait mode
-  - // add currency converter (+ fetching from the web)
+  - add currency converter (+ fetching from the web)
   - // what happen if the app is or become offline or server doesn't respond?
   - share (email/twitter) (loader with like contenthubloader in address-book-app)
   - // importing bills
@@ -57,7 +57,7 @@ import "pages"
   - worker script (putting the model manipulation in it) after showing it can be slow if done in the UI for fake loops
   - Animation system (removing one of the attachment)
 
-  NEXT: theme, look at strings, localization for currency, timezone, animation to remove image
+  NEXT: theme, look at strings, timezone, animation to remove image
 
   TODO: open a bug for the singleton, when imported from the same directory
 */
