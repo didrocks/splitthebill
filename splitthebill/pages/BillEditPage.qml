@@ -225,6 +225,12 @@ Page {
                     property int currencyIndex: 0
                     text: billsHandler.current.billCurrencyName
                     onClicked: PopupUtils.open(currencySelector, selectorFrom, {"bill": billsHandler.current})
+                    Binding on currencyIndex { value: billsHandler.current.billCurrencyIndex }
+                    Binding {
+                        target: billsHandler.current
+                        property: "billCurrencyIndex"
+                        value: selectorFrom.currencyIndex
+                    }
                 }
             }
 
