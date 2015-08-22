@@ -4,6 +4,7 @@ import Qt.labs.settings 1.0
 import Ubuntu.Components 1.2
 
 import "../components"
+import "../components/settings"
 
 Page {
     id: root

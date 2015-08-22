@@ -58,6 +58,8 @@ import "pages"
   - Animation system (removing one of the attachment)
 
   NEXT: theme, look at strings, localization for currency, timezone, animation to remove image
+
+  TODO: open a bug for the singleton, when imported from the same directory
 */
 
 MainView {

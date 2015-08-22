@@ -4,6 +4,7 @@ import Qt.labs.settings 1.0
 
 Item {
     property alias billSeparationType: settings.billSeparationType
+    property alias preferredCurrencyIndex: settings.preferredCurrencyIndex
 
     property alias sSEPARATIONTYPE: separationType
     property alias sSEPARATIONTYPENAME: separationTypeName
@@ -27,5 +28,6 @@ Item {
     Settings {
         id: settings
         property int billSeparationType
+        property int preferredCurrencyIndex
     }
 }

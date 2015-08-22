@@ -22,7 +22,6 @@ OTHER_FILES += $${CONF_FILES} \
     components/PageWithBottomEdge.qml \
     pages/BillEditPage.qml \
     pages/SettingsPage.qml \
-    components/AppSettings.qml \
     components/ErrorDialog.qml \
     components/DateTimeDialog.qml \
     components/NewListModel.qml \
@@ -42,4 +41,5 @@ DISTFILES += \
     components/queryworker.js \
     components/CurrenciesModel.qml \
     components/CurrenciesCenter.qml \
-    components/CurrencyPicker.qml
+    components/CurrencyPicker.qml \
+    components/settings/AppSettings.qml

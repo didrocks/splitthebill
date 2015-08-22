@@ -3,6 +3,7 @@ import QtQuick.Layouts 1.1
 import Ubuntu.Components 1.2
 
 import "../components"
+import "../components/settings"
 import "../tools.js" as Tools
 
 PageWithBottomEdge {
@@ -43,7 +44,7 @@ PageWithBottomEdge {
                 Action {
                     text: i18n.tr("Settings")
                     iconName: "settings"
-                    onTriggered: mainStack.push(Qt.createComponent("SettingsPage.qml"))
+                    onTriggered: { mainStack.push(Qt.createComponent("SettingsPage.qml"), {"billsHandler": billsHandler}) }
                 }
             ]
         },
