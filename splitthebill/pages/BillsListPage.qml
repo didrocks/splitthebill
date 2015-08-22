@@ -13,6 +13,8 @@ PageWithBottomEdge {
     title: i18n.tr("Split the bill")
     reloadBottomEdgePage: false
 
+    onBottomEdgeDismissed: billsHandler.current.reset()
+
     // don't show elements under the header
     clip: true
 
@@ -212,8 +214,9 @@ PageWithBottomEdge {
         billsHandler: billsListPage.billsHandler
     }
     onIsCollapsedChanged: {
-        // reset even when going out of the collapsed state to have fresh currencies exchange rate and new preferred currency
-        if(!isCollapsed)
+        // reset even when going out of the collapsed state on a new Bill to have fresh currencies exchange rate and
+        // new preferred currency set
+        if(!isCollapsed && !billsHandler.current.billId)
             billsHandler.current.reset();
     }
 }
