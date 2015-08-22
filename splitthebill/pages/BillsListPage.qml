@@ -184,7 +184,11 @@ PageWithBottomEdge {
 
         Label {
             id: emptyStateLabel
-            anchors.fill: parent
+            anchors {
+                fill: parent
+                margins: units.gu(5)
+            }
+
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
 
