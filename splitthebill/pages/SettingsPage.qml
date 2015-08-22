@@ -10,6 +10,8 @@ Page {
     id: root
     title: "Settings"
 
+    property QtObject billsHandler
+
     property bool _readyBindSettings: false
 
     // we want a fixed header
@@ -38,6 +40,20 @@ Page {
                     target: AppSettings
                     property: "billSeparationType"
                     value: separatorSelector.selectedIndex
+                    when: _readyBindSettings
+                }
+            }
+
+            OptionSelector {
+                id: preferredCurrencySelector
+                text: i18n.tr("Preferred currency:")
+                model: billsHandler.current.currencies
+                delegate: OptionSelectorDelegate { text: currency }
+                Binding on selectedIndex { value: AppSettings.preferredCurrencyIndex }
+                Binding {
+                    target: AppSettings
+                    property: "preferredCurrencyIndex"
+                    value: preferredCurrencySelector.selectedIndex
                     when: _readyBindSettings
                 }
             }

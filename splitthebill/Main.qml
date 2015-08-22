@@ -120,7 +120,7 @@ MainView {
         if (pageToRestore === "bottomEdgePage")
             billsPage.showBottomEdgePage();
         else if (pageToRestore === "settings")
-            mainStack.push(Qt.createComponent("pages/SettingsPage.qml"))
+            mainStack.push(Qt.createComponent("pages/SettingsPage.qml"), {"billsHandler": billsHandler});
 
         // If there is no document on start, show in new Bill page
         if (billsHandler.isEmpty)
