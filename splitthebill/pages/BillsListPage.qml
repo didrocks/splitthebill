@@ -13,9 +13,6 @@ PageWithBottomEdge {
     title: i18n.tr("Split the bill")
     reloadBottomEdgePage: false
 
-    // reset current bottom edge Bill on released
-    onBottomEdgeDismissed: billsHandler.current.reset()
-
     // don't show elements under the header
     clip: true
 
@@ -211,5 +208,10 @@ PageWithBottomEdge {
         id: billEditPage
         title: billsHandler.current.billId ? i18n.tr("Edit bill") : i18n.tr("New bill")
         billsHandler: billsListPage.billsHandler
+    }
+    onIsCollapsedChanged: {
+        // reset even when going out of the collapsed state to have fresh currencies exchange rate and new preferred currency
+        if(!isCollapsed)
+            billsHandler.current.reset();
     }
 }
