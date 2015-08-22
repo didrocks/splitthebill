@@ -17,6 +17,7 @@ Component {
             }
             Header {
                 id: header
+                // TRANSLATORS: %1 is a date
                 text: i18n.tr("Select currency (refreshed on %1)").arg(bill.currencyFetchDate.toLocaleString(Qt.locale(),  "dd-MM-yyyy"))
             }
             UbuntuListView {
