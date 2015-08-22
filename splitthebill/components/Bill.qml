@@ -69,7 +69,8 @@ Item {
                                            (comments ? i18n.tr("Additional notes: %1").arg(comments) : '');
     readonly property string billCurrencyName: currencies.get(billCurrencyIndex).currency
     readonly property string prefCurrencyName: currencies.get(AppSettings.preferredCurrencyIndex).currency
-    readonly property double _exchangeRate: currencies.get(billCurrencyIndex).rate / currencies.get(AppSettings.preferredCurrencyIndex).rate
+    readonly property double _exchangeRate: currencies.get(AppSettings.preferredCurrencyIndex).rate /
+                                            currencies.get(billCurrencyIndex).rate
     readonly property double totalBillInPrefCurrency: totalBill * _exchangeRate
     readonly property double shareBillInPrefCurrency: shareBill * _exchangeRate
 
