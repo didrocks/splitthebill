@@ -29,8 +29,11 @@ ListItem {
         comments: model.comments ? model.comments: ""
         attachments: model.attachments ? model.attachments : newListModel.createObject(parent)
         currencies: model.currencies ? model.currencies : newCurrenciesModel.createObject(parent)
-        currencyFetchDate: model.currencyFetchDate ? model.currencyFetchDate: ''
-        billCurrencyIndex: model.billCurrencyIndex ? model.billCurrencyIndex: AppSettings.preferredCurrencyIndex
+        currencyFetchDate: model.currencyFetchDate
+        // COMMENT: don't databind with default here:
+        // Index can be 0 (first item: EUR), so then, index ? is false and it creates a databinding to appsettings
+        // default
+        billCurrencyIndex: model.billCurrencyIndex
     }
 
     NewListModel {
