@@ -63,7 +63,7 @@ ListItem {
                 fontSize: "small"
             }
             Label {
-                text: bill.isForeignCurrency ?
+                text: bill.inForeignCurrency ?
                           i18n.tr("%1 %2 (%3 %4)").arg(bill.shareBill).arg(bill.billCurrencyName)
                                                   .arg(bill.shareBillInPrefCurrency).arg(bill.prefCurrencyName):
                           i18n.tr("%1 %2").arg(bill.shareBill).arg(bill.billCurrencyName)
@@ -96,7 +96,7 @@ ListItem {
         Label {
             anchors { left: parent.left; right: parent.right }
             // TRANSLATORS: %1 is total price, %2 is currency name, %3 is indication in pref currency, %4 is currency name, %5 is tip %
-            text: bill.isForeignCurrency ?
+            text: bill.inForeignCurrency ?
                       i18n.tr("Total price was: %1 %2 (%3 %4), with %5% tip.")
                           .arg(bill.totalBill).arg(bill.billCurrencyName)
                           .arg(bill.totalBillInPrefCurrency).arg(bill.prefCurrencyName)
