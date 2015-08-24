@@ -11,7 +11,7 @@ class AttachmentStore : public QObject
     Q_PROPERTY(QString contentStoreInputUri READ contentStoreInputUri WRITE setContentStoreInputUri
                NOTIFY contentStoreInputUriChanged)
     Q_PROPERTY(QString uri READ uri)
-    Q_PROPERTY(QString billId WRITE setBillId)
+    Q_PROPERTY(QString billId READ billId WRITE setBillId)
     Q_PROPERTY(QString billUri READ billUri)
 
 public:
@@ -34,6 +34,7 @@ protected:
     QString m_contentStoreInputUri;
 
     void setBillId(QString billId) { m_billId = billId; }
+    QString billId() { return m_billId; }
     QString m_billId;
 
     QString uri() { return QStandardPaths::writableLocation(QStandardPaths::DataLocation) + "/attachments"; }
