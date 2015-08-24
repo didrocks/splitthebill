@@ -193,12 +193,6 @@ Page {
                     height: parent.height
                     verticalAlignment: Text.AlignVCenter
                 }
-                Label {
-                    // COMMENT: i18n is not only about translations! It's currency as well.
-                    text: Qt.locale().currencySymbol()
-                    height: parent.height
-                    verticalAlignment: Text.AlignVCenter
-                }
                 TextField {
                     // TODO: click should select the whole item
                     id: billPrice
