@@ -12,7 +12,8 @@ import "pages"
   - how bindings works (advanced bindings)
   - add input methods (as it won't show keyboard) + tricks
     https://developer.ubuntu.com/en/apps/qml/tutorials/ubuntu-screen-keyboard-tricks/
-  - factorize components in other files and define API: first non visual element like Bill, then AddRemoveInt
+  - factorize components in other files and define API: first non visual element like Bill, then AddRemoveInt.
+    How to add subdirectory and edit .pro files
   - more refactoring with the Total elements and conditions (like only the orange box for results)
   - state saver (using Bill), app lifecycle management
     -> insist on avoiding the statesaver breaking data-binding when restoring
@@ -55,11 +56,14 @@ import "pages"
   - contenthub export to other apps.
   - adding C++ binding: remove files (attachements)
   - worker script (putting the model manipulation in it) after showing it can be slow if done in the UI for fake loops
-  - Animation system (removing one of the attachment)
+  - // Animation system (removing one of the attachment)
 
   NEXT: theme, look at strings, timezone, animation to remove image
 
+  location service
+
   TODO: open a bug for the singleton, when imported from the same directory
+  TODO: open a bug for the . in the keyboard, not respecting locale and so failing in the validator
 */
 
 MainView {
