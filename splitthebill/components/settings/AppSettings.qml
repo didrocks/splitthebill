@@ -12,6 +12,8 @@ Item {
     property alias currentLocation: settings.currentLocation
     property alias useDarkTheme: settings.useDarkTheme
 
+    property alias positionErrorMsg: positionSource.errormsg
+
     property alias sSEPARATIONTYPE: separationType
     property alias sSEPARATIONTYPENAME: separationTypeName
 
@@ -41,12 +43,20 @@ Item {
     PositionSource {
         id: positionSource
         active: useLocation
+        property string errormsg
         updateInterval: 120000 // 2 mins
         onPositionChanged: {
             var coord = positionSource.position.coordinate;
+            console.log("OOOOOOOOOOOOOOOOOOO " + coord + " is valid: " + coord.isValid)
+            // that probably means latitude and longitude are nan, assume the permission was denied (bug URL…)
+            if (!coord.isValid) {
+                errormsg = i18n.tr("We couldn't get your location yet. You should check in system settings the application permissions.")
+                return;
+            }
             if (coord.isValid && geocodeModel.query !== coord) {
-                geocodeModel.query = coord
-                geocodeModel.update()
+                errormsg = "";
+                geocodeModel.query = coord;
+                geocodeModel.update();
             }
         }
     }

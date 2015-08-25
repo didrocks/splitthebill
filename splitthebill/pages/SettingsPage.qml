@@ -80,6 +80,14 @@ Page {
                 }
             }
 
+            Label {
+                anchors { left: parent.left; right: parent.right }
+                text: AppSettings.positionErrorMsg
+                fontSize: "small"
+                color: UbuntuColors.red
+                wrapMode: Text.WordWrap
+            }
+
             RowLayout {
                 anchors { left: parent.left; right: parent.right }
 
