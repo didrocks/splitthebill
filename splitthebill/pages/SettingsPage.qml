@@ -30,6 +30,7 @@ Page {
                 right: parent.right
                 margins: units.gu(2)
             }
+            spacing: units.gu(1)
 
             OptionSelector {
                 id: separatorSelector
