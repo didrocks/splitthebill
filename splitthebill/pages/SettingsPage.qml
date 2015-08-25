@@ -78,11 +78,6 @@ Page {
                     }
                 }
             }
-
-            /* workaround for https://launchpad.net/bugs/1481624 */
-            Label {
-                text: " "
-            }
         }
     }
     // only bind settings now as the OptionSelector is setting default and retrigger binding
