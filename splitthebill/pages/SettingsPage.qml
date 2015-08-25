@@ -1,4 +1,5 @@
 import QtQuick 2.4
+import QtQuick.Layouts 1.1
 import Qt.labs.settings 1.0
 
 import Ubuntu.Components 1.2
@@ -55,6 +56,26 @@ Page {
                     property: "preferredCurrencyIndex"
                     value: preferredCurrencySelector.selectedIndex
                     when: _readyBindSettings
+                }
+            }
+
+            RowLayout {
+                anchors { left: parent.left; right: parent.right }
+
+                Label {
+                    Layout.fillWidth: true
+                    text: i18n.tr("Location support")
+                }
+
+                Switch {
+                    id: useLocationSwitch
+                    checked: AppSettings.useLocation
+                    Binding {
+                        target: AppSettings
+                        property: "useLocation"
+                        value: useLocationSwitch.checked
+                        when: _readyBindSettings
+                    }
                 }
             }
 

@@ -57,10 +57,11 @@ import "pages"
   - adding C++ binding: remove files (attachements)
   - worker script (putting the model manipulation in it) after showing it can be slow if done in the UI for fake loops
   - // Animation system (removing one of the attachment)
+  - location service addition
 
-  NEXT: theme, look at strings, timezone, animation to remove image
+  TODO: how to get the permission denied info like in location?
 
-  location service
+  NEXT: theme, timezone
 
   TODO: open a bug for the singleton, when imported from the same directory
   TODO: open a bug for the . in the keyboard, not respecting locale and so failing in the validator

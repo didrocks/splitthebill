@@ -1,10 +1,14 @@
 pragma Singleton
 import QtQuick 2.4
 import Qt.labs.settings 1.0
+import QtPositioning 5.2
+import QtLocation 5.3
 
 Item {
     property alias billSeparationType: settings.billSeparationType
     property alias preferredCurrencyIndex: settings.preferredCurrencyIndex
+    property alias useLocation: settings.useLocation
+    property alias currentLocation: settings.currentLocation
 
     property alias sSEPARATIONTYPE: separationType
     property alias sSEPARATIONTYPENAME: separationTypeName
@@ -25,9 +29,43 @@ Item {
       property string none: i18n.tr("None")
     }
 
+    Plugin {
+        id: osmPlugin
+        name: "osm"
+    }
+
+    PositionSource {
+        id: positionSource
+        active: useLocation
+        updateInterval: 120000 // 2 mins
+        onPositionChanged: {
+            var coord = positionSource.position.coordinate;
+            if (coord.isValid && geocodeModel.query !== coord) {
+                geocodeModel.query = coord
+                geocodeModel.update()
+            }
+        }
+    }
+
+    GeocodeModel {
+        id: geocodeModel
+        autoUpdate: false
+        plugin: osmPlugin
+        limit: 1
+
+        onCountChanged: {
+            // Update the currentLocation if one is found and it does not match the stored location
+            if (count > 0) {
+                settings.currentLocation = geocodeModel.get(0).address.city
+            }
+        }
+    }
+
     Settings {
         id: settings
         property int billSeparationType
         property int preferredCurrencyIndex
+        property bool useLocation
+        property string currentLocation
     }
 }

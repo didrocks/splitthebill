@@ -150,7 +150,9 @@ Item {
         tipShare = 15;
         numTotalPeople = 2;
         numSharePeople = 1;
-        comments = "";
+        // TRANSLATORS: %1 is default addition to comment if we detected a location
+        comments = AppSettings.useLocation && AppSettings.currentLocation ?
+                    i18n.tr("(in %1)").arg(AppSettings.currentLocation) : "";
         attachments = newListModel.createObject(parent);
         currencies = newCurrenciesModel.createObject(parent);
         currencyFetchDate = new Date();
