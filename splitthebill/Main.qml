@@ -73,12 +73,6 @@ MainView {
     // Note! applicationName needs to match the "name" field of the click manifest
     applicationName: "splitthebill.didrocks"
 
-    /*
-     This property enables the application to change orientation
-     when the device is rotated. The default is false.
-    */
-    //automaticOrientation: true
-
     width: units.gu(40)
     height: units.gu(75)
 
