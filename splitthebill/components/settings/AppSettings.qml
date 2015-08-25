@@ -3,15 +3,19 @@ import QtQuick 2.4
 import Qt.labs.settings 1.0
 import QtPositioning 5.2
 import QtLocation 5.3
+import Ubuntu.Components 1.2
 
 Item {
     property alias billSeparationType: settings.billSeparationType
     property alias preferredCurrencyIndex: settings.preferredCurrencyIndex
     property alias useLocation: settings.useLocation
     property alias currentLocation: settings.currentLocation
+    property alias useDarkTheme: settings.useDarkTheme
 
     property alias sSEPARATIONTYPE: separationType
     property alias sSEPARATIONTYPENAME: separationTypeName
+
+    property string _defaultTheme
 
     QtObject {
       id: separationType
@@ -67,5 +71,14 @@ Item {
         property int preferredCurrencyIndex
         property bool useLocation
         property string currentLocation
+        property bool useDarkTheme
+        onUseDarkThemeChanged: {
+            if (!_defaultTheme)
+                _defaultTheme = Theme.name
+            if (useDarkTheme)
+                Theme.name = "Ubuntu.Components.Themes.SuruDark";
+            else
+                Theme.name = _defaultTheme;
+        }
     }
 }

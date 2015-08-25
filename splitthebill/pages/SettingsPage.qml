@@ -78,6 +78,26 @@ Page {
                     }
                 }
             }
+
+            RowLayout {
+                anchors { left: parent.left; right: parent.right }
+
+                Label {
+                    Layout.fillWidth: true
+                    text: i18n.tr("Use Dark theme")
+                }
+
+                Switch {
+                    id: useDarkThemeSwitch
+                    checked: AppSettings.useDarkTheme
+                    Binding {
+                        target: AppSettings
+                        property: "useDarkTheme"
+                        value: useDarkThemeSwitch.checked
+                        when: _readyBindSettings
+                    }
+                }
+            }
         }
     }
     // only bind settings now as the OptionSelector is setting default and retrigger binding

@@ -36,7 +36,7 @@ import "pages"
   - // importing bills
   - add i18n (show currency, build pot, po and mo files). Also switch order: xxx € for $xxx for instance for currency
     fix it as well for existing module bug.
-  - // changing theme
+  - changing theme
   - save and archive: add notes + photo at the bottom to be saved. Ensure to refactor there to only list properties
     to be saved as few as possible
   - change the date with a time + date picker, define new components, explain limits and timezone. Use that to present
@@ -60,8 +60,6 @@ import "pages"
   - location service addition
 
   TODO: how to get the permission denied info like in location?
-
-  NEXT: theme, timezone
 
   TODO: open a bug for the singleton, when imported from the same directory
   TODO: open a bug for the . in the keyboard, not respecting locale and so failing in the validator
