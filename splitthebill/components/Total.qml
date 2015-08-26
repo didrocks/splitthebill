@@ -31,13 +31,11 @@ Item {
         PropertyChanges { target: mainText; font.weight: Font.Bold }
     }
 
-    // TODO: UbuntuShape force width == height
-    Rectangle {
+    UbuntuShape {
         id: hilightRect
         anchors.fill: parent
         visible: false
-        radius: units.gu(1)
-        gradient: UbuntuColors.orangeGradient
+        backgroundColor: UbuntuColors.orange
     }
 
     RowLayout {
