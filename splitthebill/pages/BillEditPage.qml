@@ -201,6 +201,7 @@ Page {
                     errorHighlight: true
                     validator: DoubleValidator {}
                     maximumLength: 7
+                    // Keyboard doesn't respect locale: https://launchpad.net/bugs/1488778
                     inputMethodHints: Qt.ImhFormattedNumbersOnly
                     // replace after a while with activate() when polishing
                     //Component.onCompleted: billPrice.forceActiveFocus()
