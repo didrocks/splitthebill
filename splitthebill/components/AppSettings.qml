@@ -3,7 +3,6 @@ import QtQuick 2.4
 import Qt.labs.settings 1.0
 import QtPositioning 5.2
 import QtLocation 5.3
-import Ubuntu.Components 1.2
 
 Item {
     property alias billSeparationType: settings.billSeparationType
