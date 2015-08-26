@@ -62,8 +62,6 @@ import "pages"
 
   TODO: open a bug that even with permission denied, we always get sourceError as PositionSource.NoError
   TODO: open a bug that even when switching back to permission denied while the app is running, the next refresh still get the location
-
-  TODO: open a bug for the singleton, when imported from the same directory
 */
 
 MainView {

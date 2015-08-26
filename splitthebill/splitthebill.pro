@@ -7,7 +7,8 @@ QML_FILES += $$files(*.qml,false) \
              $$files(*.js,false)
 
 COMPONENTS_FILES += $$files(components/*.qml,false) \
-                    $$files(components/*.js,false)
+                    $$files(components/*.js,false) \
+                    components/qmldir
 
 SETTINGS_FILES += $$files(components/settings/*,false)
 
@@ -32,10 +33,7 @@ config_files.files += $${CONF_FILES}
 components_files.path = /splitthebill/components
 components_files.files += $${COMPONENTS_FILES}
 
-settings_files.path = /splitthebill/components/settings
-settings_files.files += $${SETTINGS_FILES}
-
 pages_files.path = /splitthebill/pages
 pages_files.files += $${PAGES_FILES}
 
-INSTALLS+=config_files qml_files components_files settings_files pages_files
+INSTALLS+=config_files qml_files components_files pages_files

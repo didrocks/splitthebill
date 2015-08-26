@@ -1,6 +1,7 @@
 import QtQuick 2.4
 
-import "settings"
+// Need to import current dir for AppSettings: https://launchpad.net/bugs/1488782
+import "."
 import "../tools.js" as Tools
 
 Item {

@@ -3,7 +3,6 @@ import QtQuick.Layouts 1.1
 import Ubuntu.Components 1.2
 
 import "../components"
-import "../components/settings"
 import "../tools.js" as Tools
 
 PageWithBottomEdge {
