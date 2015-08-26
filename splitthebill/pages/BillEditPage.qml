@@ -166,7 +166,6 @@ Page {
                 id: dateTimeDialog
             }
 
-            /* TODO: be able to change the date and time. */
             Label {
                 id: dateTime
                 text: billsHandler.current.formattedDate
@@ -175,7 +174,6 @@ Page {
                 // COMMENT: present MouseArea and pressed signal (as well are return accepted, looking at documentation)
                 MouseArea {
                     anchors.fill: parent
-                    // TODO: to check: click event transposed to a press in touch?
                     onClicked: { PopupUtils.open(dateTimeDialog, dateTime) }
                     }
             }

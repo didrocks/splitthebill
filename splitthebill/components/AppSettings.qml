@@ -43,11 +43,16 @@ Item {
         id: positionSource
         active: useLocation
         property string errormsg
+        /* Note that it's not respecting on phone and onPositionChanged may be fired multiple times for the same coords
+          https://launchpad.net/bugs/1488801
+        */
         updateInterval: 120000 // 2 mins
         onPositionChanged: {
             var coord = positionSource.position.coordinate;
-            console.log("OOOOOOOOOOOOOOOOOOO " + coord + " is valid: " + coord.isValid)
-            // that probably means latitude and longitude are nan, assume the permission was denied (bug URL…)
+            /*
+             * That probably means latitude and longitude are nan, assume the permission was denied. This is a slight change
+             * from Qt documentation due to https://launchpad.net/bugs/1488811
+             */
             if (!coord.isValid) {
                 errormsg = i18n.tr("We couldn't get your location yet. You should check in system settings the application permissions.")
                 return;

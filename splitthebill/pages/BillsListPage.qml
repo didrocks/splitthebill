@@ -109,19 +109,13 @@ PageWithBottomEdge {
     }
 
     /*
-     * we only filter on the name element as u1db nor filtermodel enable to filter on multiple elements with "or".
-     * Future tuts on C++ to filter this model?
-     * TODO: open a bug on this
+     * We need to pre-filter the model in billsResults and only do the sorting here, see the refresh() comments
      */
     SortFilterModel {
         id: currentmodel
         model: billsHandler.billsResults
         sort.property: "timestamp"
         sort.order: Qt.DescendingOrder
-        // TODO: bug to open: doesn't filter on subproperty like contents.title
-        // this seems ot be linked to https://code.launchpad.net/~kalikiana/u1db-qt/indexRoles/+merge/211771
-        //filter.property: 'contents.title'
-        //filter.pattern: /BAR/
     }
 
     UbuntuListView {

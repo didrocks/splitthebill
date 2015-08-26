@@ -58,10 +58,6 @@ import "pages"
   - worker script (putting the model manipulation in it) after showing it can be slow if done in the UI for fake loops
   - // Animation system (removing one of the attachment)
   - location service addition
-
-
-  TODO: open a bug that even with permission denied, we always get sourceError as PositionSource.NoError
-  TODO: open a bug that even when switching back to permission denied while the app is running, the next refresh still get the location
 */
 
 MainView {

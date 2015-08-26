@@ -18,7 +18,7 @@ void AttachmentStore::setContentStoreInputUri(QString uri) {
 
         /*
          * Cleaning up this contentstore exchange path as we use it as a temporary storage until
-         * bug #<TODO> is fixed.
+         * https://launchpad.net/bugs/1483589 is fixed.
          * That way, even if the application crash during a transfer, we won't be stuck
          */
         if (!m_contentStoreInputUri.isEmpty()) {

@@ -56,7 +56,8 @@ Item {
      * Create a new model with filter capability as
      * This is not optimized, but it's a QML workaround for now as Query can't match multiple "or" elements or
      * search with *foo (only foo* is supported) and FilterSortItem doesn't support filter.property = "contents.title"
-     * on a subelement
+     * on a subelements. Also, it can't sort and filter at the same time
+     * https://launchpad.net/bugs/1488821, https://launchpad.net/bugs/1488822, https://launchpad.net/bugs/1488823.
      */
     ListModel {
         id: billsResults
