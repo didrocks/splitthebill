@@ -339,10 +339,14 @@ Page {
                         }
                         MouseArea {
                             anchors.fill: parent
-                            onClicked: contentHubHandler.open(url, ContentType.Pictures);
-                            onPressed: resImage.state = "PRESSED";
-                            onPressAndHold: PopupUtils.open(deletionConfirmationDialog, parent, {"attachmentUri": url});
-                            onReleased: resImage.state = "RELEASED";
+                            onClicked: contentHubHandler.open(url, ContentType.Pictures)
+                            onPressed: resImage.state = "PRESSED"
+                            onPressAndHold: PopupUtils.open(deletionConfirmationDialog, parent, {"attachmentUri": url})
+                            onReleased: resImage.state = "RELEASED"
+                            /* COMMENT: first, without this, show that clicking + dragging out doesn't give the
+                              onReleased signal. Use then onExited with hoverEnabled: true */
+                            hoverEnabled: true
+                            onExited: resImage.state = "RELEASED"
                         }
 
                         /* COMMENT: Behavior on is presented in the UbuntuListView, simple for one element
