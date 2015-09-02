@@ -3,7 +3,6 @@ import Ubuntu.Components 1.2
 import Ubuntu.Components.Popups 1.0
 import Ubuntu.Components.ListItems 1.0
 
-// TODO: open a bug on why we can do height: page.height if in the same QML page, but not in a separate file when using a component
 Component {
     id: currencySelector
     Popover {

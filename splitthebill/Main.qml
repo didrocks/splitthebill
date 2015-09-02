@@ -81,7 +81,7 @@ MainView {
         property string lastPage;
         onCurrentPageChanged: {
             // HACK for bug where bottomEdgePage is going over the top
-            // TODO: open a bug for this
+            // https://bugs.launchpad.net/component-store/+bug/1491387
             if (currentPage === billsPage.bottomEdgePage) {
                 lastPage = "bottomEdgePage";
                 billsPage.bottomEdgePage.y = billsPage.header.height

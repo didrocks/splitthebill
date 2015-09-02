@@ -123,8 +123,8 @@ Page {
         id: editflickable
 
         anchors.fill: parent
-        // TODO: open bug childrenRect isn't updated when adding images by the repeater
-        contentHeight: mainColumn.height
+        // better experience: give additional padding below
+        contentHeight: mainColumn.height + units.gu(3)
         clip: true
 
         Column {
