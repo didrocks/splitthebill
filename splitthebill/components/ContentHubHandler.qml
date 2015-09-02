@@ -86,8 +86,6 @@ Item {
             else
                 msg = i18n.tr("Unknown Error, please reinstall the application if this persists");
             PopupUtils.open(errorDisplay, page, {"title": i18n.tr("Transfer issue"), "text": msg});
-            // TODO: doesn't abort transfer, open a bug for it, it keeps the transferHint shown
-            //_activeTransfer.state = ContentTransfer.Aborted;
             root._cancelled = true; // workaround for cancelling
         }
     }
