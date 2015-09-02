@@ -91,7 +91,7 @@ MainView {
             else if (String(currentPage).indexOf("SettingsPage") != -1)
                 lastPage = "settings";
             else
-                lastPage = currentPage
+                lastPage = String(currentPage)
         }
         StateSaver.properties: "lastPage"
     }

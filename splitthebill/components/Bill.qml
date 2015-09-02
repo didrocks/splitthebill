@@ -80,10 +80,11 @@ Item {
                                            i18n.tr("Tip: %1%\n\n").arg(tipShare) +
                                            (comments ? i18n.tr("Additional notes: %1").arg(comments) : '');
     readonly property bool inForeignCurrency: billCurrencyName !== prefCurrencyName
-    readonly property string billCurrencyName: currencies.get(billCurrencyIndex).currency
-    readonly property string prefCurrencyName: currencies.get(AppSettings.preferredCurrencyIndex).currency
-    readonly property double _exchangeRate: currencies.get(AppSettings.preferredCurrencyIndex).rate /
-                                            currencies.get(billCurrencyIndex).rate
+    // COMMENT: billCurrencyIndex might be restored before currencies
+    readonly property string billCurrencyName: currencies ? currencies.get(billCurrencyIndex).currency : ""
+    readonly property string prefCurrencyName: currencies ? currencies.get(AppSettings.preferredCurrencyIndex).currency : ""
+    readonly property double _exchangeRate: currencies ? currencies.get(AppSettings.preferredCurrencyIndex).rate /
+                                            currencies.get(billCurrencyIndex).rate : 1.0
     readonly property double totalBillInPrefCurrency: totalBill * _exchangeRate
     readonly property double shareBillInPrefCurrency: shareBill * _exchangeRate
 
