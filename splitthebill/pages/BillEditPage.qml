@@ -329,19 +329,59 @@ Page {
 
                     UbuntuShape {
                         id: resImage
-                        width: image.width
+                        width: source.width > parent.width ? parent.width : source.width
                         height: units.gu(14)
-                        image: Image {
+                        sourceFillMode: UbuntuShape.PreserveAspectCrop
+                        source: Image {
                             source: url
                             sourceSize.height: parent.height
-                            height: parent.height
-                            fillMode: Image.PreserveAspectFit
                             smooth: true
                         }
                         MouseArea {
                             anchors.fill: parent
-                            onClicked: contentHubHandler.open(url, ContentType.Pictures)
+                            onClicked: contentHubHandler.open(url, ContentType.Pictures);
+                            onPressed: resImage.state = "PRESSED";
                             onPressAndHold: PopupUtils.open(deletionConfirmationDialog, parent, {"attachmentUri": url});
+                            onReleased: resImage.state = "RELEASED";
+                        }
+
+                        /* COMMENT: Behavior on is presented in the UbuntuListView, simple for one element
+                         * Then, we can try the onPressed setting values and on presshold, but what happen
+                         * on onClicked (if you released quick enough). Better to use States then.
+                         */
+                        states: [
+                            State {
+                                name: "PRESSED"
+                                PropertyChanges {
+                                    target: resImage
+                                    sourceOpacity: 0.1
+                                    scale: 0.7;
+                                }
+                            },
+                            State {
+                                name: "RELEASED"
+                                PropertyChanges {
+                                    target: resImage
+                                    sourceOpacity: 1.0
+                                    scale: 1;
+                                }
+                            }
+                        ]
+                        // COMMENT: behavior will be easier here, but we want to show how to do more complex animation
+                        // Show different in/out animations, Sequential and parallel
+                        transitions: Transition {
+                            to: "*" // we can have transition from: to:
+                            /* Simple case:
+                            SequentialAnimation {
+                                NumberAnimation { target: resImage; properties: "sourceOpacity"; duration: 1000}
+                                NumberAnimation { target: resImage; properties: "scale"; duration: 2000}
+                            }*/
+                            NumberAnimation {
+                                target: resImage;
+                                properties: "sourceOpacity, scale";
+                                easing: UbuntuAnimation.StandardEasing
+                                duration: UbuntuAnimation.SlowDuration
+                            }
                         }
                     }
                 }

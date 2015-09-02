@@ -43,7 +43,7 @@ import "pages"
     MouseArea as well.
   - add page stacks and bottom edge
   - upload app to the store, availability
-  - // adding transitions for removing elements
+  - adding transitions for removing elements, animation system in general
   - first user experience when the app is empty (show a new bill, and so on)
     introduce Timer thanks to it.
   - adding flickable, animations to switch between sections (look at reboot weather app)
@@ -56,7 +56,6 @@ import "pages"
   - contenthub export to other apps.
   - adding C++ binding: remove files (attachements)
   - worker script (putting the model manipulation in it) after showing it can be slow if done in the UI for fake loops
-  - // Animation system (removing one of the attachment)
   - location service addition
 */
 
