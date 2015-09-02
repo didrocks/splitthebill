@@ -315,6 +315,15 @@ Page {
                 anchors { left: parent.left; right: parent.right }
                 spacing: units.gu(1)
 
+                add: Transition {
+                    NumberAnimation {
+                        properties: "x,y"
+                        easing: UbuntuAnimation.StandardEasing
+                        duration: UbuntuAnimation.SlowDuration
+                    }
+                }
+                move: add
+
                 Repeater {
                     model: billsHandler.current.attachments
 
