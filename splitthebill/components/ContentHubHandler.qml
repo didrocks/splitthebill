@@ -78,6 +78,7 @@ Item {
     AttachmentStore {
         id: attachmentStore
         billId: _currentBill ? _currentBill.billId: ""
+        // warning in the binding: https://bugs.launchpad.net/ubuntu/+source/content-hub/+bug/1491411
         contentStoreInputUri: appContentStore.uri
         onError: {
             var msg;
