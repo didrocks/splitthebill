@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-25 13:44+0200\n"
+"POT-Creation-Date: 2015-09-02 15:15+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,13 +18,34 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
+#. TRANSLATORS: separation bills string
+#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/components/AppSettings.qml:30
+msgid "Month"
+msgstr ""
+
+#. TRANSLATORS: separation bills string
+#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/components/AppSettings.qml:32
+msgid "Year"
+msgstr ""
+
+#. TRANSLATORS: separation bills string
+#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/components/AppSettings.qml:34
+msgid "None"
+msgstr ""
+
+#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/components/AppSettings.qml:57
+msgid ""
+"We couldn't get your location yet. You should check in system settings the "
+"application permissions."
+msgstr ""
+
 #. TRANSLATORS: %1 is the date of the current bill, %2 is the time of the current bill
-#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/components/Bill.qml:44
+#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/components/Bill.qml:45
 #, qt-format
 msgid "%1 - %2"
 msgstr ""
 
-#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/components/Bill.qml:46
+#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/components/Bill.qml:47
 #, qt-format
 msgid "You paid the totally (1 person)."
 msgid_plural "You paid for %1 out of %2 persons."
@@ -32,26 +53,26 @@ msgstr[0] ""
 msgstr[1] ""
 
 #. TRANSLATORS: %1 is the share bill, %2 the currency it was paid in, %3 an indication in the pref currency, %4 the pref currency name and %5 the date it was paid in
-#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/components/Bill.qml:51
+#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/components/Bill.qml:52
 #, qt-format
 msgid "I paid the totally (1 person) for %1 %2 (%3 %4) on the %5"
 msgid_plural "I paid for %1 out of %2 persons for %3 %4 (%5 %6) on the %7"
 msgstr[0] ""
 msgstr[1] ""
 
-#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/components/Bill.qml:61
+#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/components/Bill.qml:62
 #, qt-format
 msgid "I paid the totally (1 person) for %1 %2 on the %5"
 msgid_plural "I paid for %1 out of %2 persons for %3 %4 on the %7"
 msgstr[0] ""
 msgstr[1] ""
 
-#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/components/Bill.qml:70
+#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/components/Bill.qml:71
 #, qt-format
 msgid "Date: %1\n"
 msgstr ""
 
-#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/components/Bill.qml:71
+#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/components/Bill.qml:72
 #, qt-format
 msgid "I paid the totally (1 person)\n"
 msgid_plural "I paid for %1 out of %2 persons\n"
@@ -59,42 +80,42 @@ msgstr[0] ""
 msgstr[1] ""
 
 #. TRANSLATORS: %1 is a price, %2 the currency it was paid in, %3 the total bill in pref currency, and %4 the pref currency
-#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/components/Bill.qml:76
+#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/components/Bill.qml:77
 #, qt-format
 msgid "Paid: %1 %2 (%3 %4)\n"
 msgstr ""
 
-#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/components/Bill.qml:78
+#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/components/Bill.qml:79
 #, qt-format
 msgid "Paid: %1 %2\n"
 msgstr ""
 
-#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/components/Bill.qml:79
+#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/components/Bill.qml:80
 #, qt-format
 msgid ""
 "Tip: %1%\n"
 "\n"
 msgstr ""
 
-#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/components/Bill.qml:80
+#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/components/Bill.qml:81
 #, qt-format
 msgid "Additional notes: %1"
 msgstr ""
 
-#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/components/Bill.qml:155
+#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/components/Bill.qml:157
 #, qt-format
 msgid "(in %1)"
 msgstr ""
 
 #. TRANSLATORS: %1 is price in bill currency, %2 is bill currency name, %3 is conversion in pref currency, %4 is pref currency name
 #: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/components/BillListItem.qml:70
-#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/components/Total.qml:64
+#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/components/Total.qml:62
 #, qt-format
 msgid "%1 %2 (%3 %4)"
 msgstr ""
 
 #: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/components/BillListItem.qml:72
-#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/components/Total.qml:66
+#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/components/Total.qml:64
 #, qt-format
 msgid "%1 %2"
 msgstr ""
@@ -109,23 +130,31 @@ msgstr ""
 msgid "Total price was: %1 %2, with %5% tip."
 msgstr ""
 
-#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/components/ContentHubHandler.qml:83
-#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/components/ContentHubHandler.qml:153
+#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/components/ContentHubHandler.qml:85
+msgid "Couldn't remove transient directory, please retry attachement"
+msgstr ""
+
+#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/components/ContentHubHandler.qml:87
+msgid "Unknown Error, please reinstall the application if this persists"
+msgstr ""
+
+#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/components/ContentHubHandler.qml:88
+#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/components/ContentHubHandler.qml:156
 msgid "Transfer issue"
 msgstr ""
 
-#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/components/ContentHubHandler.qml:154
+#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/components/ContentHubHandler.qml:157
 msgid "Transfer has been aborted. Please retry again later"
 msgstr ""
 
 #. TRANSLATORS: %1 is a date
-#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/components/CurrencyPicker.qml:21
+#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/components/CurrencyPicker.qml:20
 #, qt-format
 msgid "Select currency (refreshed on %1)"
 msgstr ""
 
 #. TRANSLATORS: %1 is currency name, %2 is the rate
-#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/components/CurrencyPicker.qml:31
+#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/components/CurrencyPicker.qml:30
 #, qt-format
 msgid "%1 (%2)"
 msgstr ""
@@ -136,7 +165,7 @@ msgid "Close"
 msgstr ""
 
 #. TRANSLATORS: %1 is paid tip in bill currency, %2 is bill currency name
-#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/components/Total.qml:76
+#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/components/Total.qml:74
 #, qt-format
 msgid "(incl. tip: %1 %2)"
 msgstr ""
@@ -154,115 +183,100 @@ msgstr ""
 msgid "New bill split"
 msgstr ""
 
-#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/pages/BillEditPage.qml:192
+#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/pages/BillEditPage.qml:190
 msgid "Bill:"
 msgstr ""
 
-#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/pages/BillEditPage.qml:234
+#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/pages/BillEditPage.qml:233
 msgid "Number of people:"
 msgstr ""
 
-#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/pages/BillEditPage.qml:245
+#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/pages/BillEditPage.qml:244
 msgid "You pay for:"
 msgstr ""
 
-#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/pages/BillEditPage.qml:259
+#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/pages/BillEditPage.qml:258
 msgid "Tip"
 msgstr ""
 
 #. TRANSLATORS: tip share in %
-#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/pages/BillEditPage.qml:283
+#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/pages/BillEditPage.qml:282
 #, qt-format
 msgid "%1%"
 msgstr ""
 
-#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/pages/BillEditPage.qml:293
+#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/pages/BillEditPage.qml:292
 msgid "Total:"
 msgstr ""
 
-#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/pages/BillEditPage.qml:304
+#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/pages/BillEditPage.qml:303
 msgid "You pay:"
 msgstr ""
 
-#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/pages/BillEditPage.qml:344
+#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/pages/BillEditPage.qml:396
 msgid "Add attachments"
 msgstr ""
 
-#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/pages/BillEditPage.qml:352
+#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/pages/BillEditPage.qml:404
 msgid "Additional notes"
 msgstr ""
 
-#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/pages/BillEditPage.qml:368
+#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/pages/BillEditPage.qml:420
 msgid "Reset"
 msgstr ""
 
-#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/pages/BillEditPage.qml:376
+#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/pages/BillEditPage.qml:428
 msgid "Delete"
 msgstr ""
 
-#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/pages/BillsListPage.qml:13
+#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/pages/BillsListPage.qml:12
 msgid "Split the bill"
 msgstr ""
 
-#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/pages/BillsListPage.qml:35
+#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/pages/BillsListPage.qml:34
 msgid "Search"
 msgstr ""
 
-#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/pages/BillsListPage.qml:44
+#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/pages/BillsListPage.qml:43
 msgid "Settings"
 msgstr ""
 
-#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/pages/BillsListPage.qml:55
+#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/pages/BillsListPage.qml:54
 msgid "Cancel"
 msgstr ""
 
-#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/pages/BillsListPage.qml:71
+#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/pages/BillsListPage.qml:70
 msgid "Search…"
 msgstr ""
 
-#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/pages/BillsListPage.qml:199
+#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/pages/BillsListPage.qml:192
 msgid "No bills have been archived"
 msgstr ""
 
-#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/pages/BillsListPage.qml:201
+#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/pages/BillsListPage.qml:194
 msgid "No results for your query"
 msgstr ""
 
-#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/pages/BillsListPage.qml:213
+#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/pages/BillsListPage.qml:206
 msgid "Edit bill"
 msgstr ""
 
-#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/pages/BillsListPage.qml:213
+#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/pages/BillsListPage.qml:206
 msgid "New bill"
 msgstr ""
 
-#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/pages/SettingsPage.qml:37
+#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/pages/SettingsPage.qml:36
 msgid "Divide list on:"
 msgstr ""
 
-#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/pages/SettingsPage.qml:51
+#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/pages/SettingsPage.qml:50
 msgid "Preferred currency:"
 msgstr ""
 
-#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/pages/SettingsPage.qml:68
+#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/pages/SettingsPage.qml:67
 msgid "Location support"
 msgstr ""
 
-#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/pages/SettingsPage.qml:88
+#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/pages/SettingsPage.qml:95
 msgid "Use Dark theme"
-msgstr ""
-
-#. TRANSLATORS: separation bills string
-#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/components/settings/AppSettings.qml:29
-msgid "Month"
-msgstr ""
-
-#. TRANSLATORS: separation bills string
-#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/components/settings/AppSettings.qml:31
-msgid "Year"
-msgstr ""
-
-#. TRANSLATORS: separation bills string
-#: /home/didrocks/work/ubuntu-sdk/splitthebill/splitthebill/components/settings/AppSettings.qml:33
-msgid "None"
 msgstr ""
