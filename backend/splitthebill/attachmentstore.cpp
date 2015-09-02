@@ -24,9 +24,8 @@ void AttachmentStore::setContentStoreInputUri(QString uri) {
         if (!m_contentStoreInputUri.isEmpty()) {
             QDir exchange = QDir(m_contentStoreInputUri);
             if (!exchange.removeRecursively()) {
-                // TODO: add i18n
                 // COMMENT: show raising an signal with parameters to QML
-                Q_EMIT error("Couldn't remove transient directory, please retry attachement");
+                Q_EMIT error(ERR_REMOVAL);
             }
 
         }

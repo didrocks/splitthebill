@@ -80,6 +80,11 @@ Item {
         billId: _currentBill ? _currentBill.billId: ""
         contentStoreInputUri: appContentStore.uri
         onError: {
+            var msg;
+            if (err === AttachmentStore.ERR_REMOVAL)
+                msg = i18n.tr("Couldn't remove transient directory, please retry attachement");
+            else
+                msg = i18n.tr("Unknown Error, please reinstall the application if this persists");
             PopupUtils.open(errorDisplay, page, {"title": i18n.tr("Transfer issue"), "text": msg});
             // TODO: doesn't abort transfer, open a bug for it, it keeps the transferHint shown
             //_activeTransfer.state = ContentTransfer.Aborted;

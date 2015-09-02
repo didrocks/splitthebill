@@ -8,6 +8,7 @@
 class AttachmentStore : public QObject
 {
     Q_OBJECT
+    Q_ENUMS(ErrorType)
     Q_PROPERTY(QString contentStoreInputUri READ contentStoreInputUri WRITE setContentStoreInputUri
                NOTIFY contentStoreInputUriChanged)
     Q_PROPERTY(QString uri READ uri)
@@ -24,9 +25,14 @@ public:
     Q_INVOKABLE bool remove(QString uri);
     Q_INVOKABLE bool purge(QString billId);
 
+    enum ErrorType {
+        ERR_REMOVAL,
+        ERR_UNKNOWN,
+    };
+
 Q_SIGNALS:
     void contentStoreInputUriChanged();
-    void error(QString msg);
+    void error(ErrorType err);
 
 protected:
     QString contentStoreInputUri() { return m_contentStoreInputUri; }

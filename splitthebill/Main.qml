@@ -54,7 +54,8 @@ import "pages"
   - file management (as we have to remove files). First, with contenthub and listing the directory manually. Then C++
   http://bazaar.launchpad.net/~ubuntu-clock-dev/ubuntu-clock-app/utopic-3.0/view/head:/app/alarm/EditAlarmPage.qml#L197
   - contenthub export to other apps.
-  - adding C++ binding: remove files (attachements)
+  - adding C++ binding: remove files (attachements), exporting an enum from C++ + error handling with function, signal
+    and attachments
   - worker script (putting the model manipulation in it) after showing it can be slow if done in the UI for fake loops
   - location service addition
 */
